@@ -1,0 +1,29 @@
+glDownload=/home/a1605/Templates/GLExtract/
+
+filesLocation =/home/santoshkeleti/Desktop/santosh/
+
+APPLET_PRINT_LOCATION=/home/santoshkeleti/apache-tomee-plus-1.6.0.2/webapps/kls-application-1.1.0.0/view/Applet/
+
+IP_ADDRESS=192.168.1.220
+
+PRINTER_NAME=--TVS-MSP-245CH_XL
+
+MEMBERSHIP_REST_URL= http://192.168.2.185:8080/customer-1.0/rest/
+
+PACS_REST_URL= http://192.168.2.185:8080/pacs-application-1.1.0.0/json/
+
+KLS_SUVIKAS_REST_URL= http://192.168.2.93:8080/pacs-suvikas/json/
+
+SHARES_REST_URL=
+
+PACS_GL_FILE_NAME=pacsgl_.xls
+
+BANK_GL_FILE_NAME=bankgl_.xls
+
+
+#Name of the core banking application used while generating Bank GL extract. Presently supported are SUVIKAS, FINACLE
+CBS_APPLICATION=SUVIKAS
+
+USER_ROLE=bank-user
+
+PACS_CAMEL_REST_URL= http://192.168.2.185:8097/cbs/

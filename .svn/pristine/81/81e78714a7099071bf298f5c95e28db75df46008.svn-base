@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0"
+	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	<persistence-unit name="klsPersistenceUnit"
+		transaction-type="RESOURCE_LOCAL">
+		<!-- Persistence Unit Provider - vendor-specific persistence provider name -->
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<non-jta-data-source>java:/comp/env/jdbc/jtaDataSource</non-jta-data-source>
+		<!--<non-jta-data-source>java:/comp/env/jdbc/myDB</non-jta-data-source> -->
+		<class>com.vsoftcorp.kls.business.entities.District</class>
+		<class>com.vsoftcorp.kls.business.entities.Taluka</class>
+		<class>com.vsoftcorp.kls.business.entities.Pacs</class>
+		<class>com.vsoftcorp.kls.business.entities.Crop</class>
+		<class>com.vsoftcorp.kls.business.entities.CropTypeMaster</class>
+		<class>com.vsoftcorp.kls.business.entities.Village</class>
+		<class>com.vsoftcorp.kls.business.entities.SeasonDefinition</class>
+		<class>com.vsoftcorp.kls.business.entities.Branch</class>
+		<class>com.vsoftcorp.kls.business.entities.LandType</class>
+		<class>com.vsoftcorp.kls.business.entities.ScaleOfFinance</class>
+		<class>com.vsoftcorp.kls.business.entities.PacsGl</class>
+		<class>com.vsoftcorp.kls.business.entities.InterestCategory</class>
+		<class>com.vsoftcorp.kls.business.entities.Product</class>
+		<class>com.vsoftcorp.kls.business.entities.ProductType</class>
+		<class>com.vsoftcorp.kls.business.entities.PacsLoanApplicationHeader</class>
+		<class>com.vsoftcorp.kls.business.entities.PacsLoanApplicationDetail</class>
+		<class>com.vsoftcorp.kls.business.entities.Season</class>
+		<class>com.vsoftcorp.kls.business.entities.Scheme</class>
+		<class>com.vsoftcorp.kls.business.entities.SlabwiseInterestRate</class>
+		<class>com.vsoftcorp.kls.business.entities.LandDetail</class>
+		<class>com.vsoftcorp.kls.business.entities.BankParameter</class>
+		<class>com.vsoftcorp.kls.business.entity.account.Account</class>
+		<class>com.vsoftcorp.kls.business.entity.account.AccountProperty</class>
+		<class>com.vsoftcorp.kls.business.entity.account.LineOfCredit</class>
+		<class>com.vsoftcorp.kls.business.entity.transaction.CurrentTransaction</class>
+		<class>com.vsoftcorp.kls.business.entity.transaction.TransactionHistory</class>
+		<class>com.vsoftcorp.kls.business.entity.account.Charges</class>
+		<class>com.vsoftcorp.kls.business.entity.transaction.AccountWiseConsistency</class>
+		<class>com.vsoftcorp.kls.business.entities.EventTypeDefinition</class>
+		<class>com.vsoftcorp.kls.business.entities.EventType</class>
+		<class>com.vsoftcorp.kls.business.entities.SanctionedComponentDetail</class>
+		<class>com.vsoftcorp.kls.business.entities.BorrowingsAccount</class>
+		<class>com.vsoftcorp.kls.business.entities.BankPacsGl</class>
+		<class>com.vsoftcorp.kls.business.entities.SeasonParameter</class>
+		<class>com.vsoftcorp.kls.business.entities.Purpose</class>
+		<class>com.vsoftcorp.kls.business.entities.SubPurpose</class>
+		<class>com.vsoftcorp.kls.business.entities.Unit</class>
+		<class>com.vsoftcorp.kls.business.entities.Activity</class>
+		<class>com.vsoftcorp.kls.business.entities.Document</class>
+		<class>com.vsoftcorp.kls.business.entity.loan.PacsLoanApplication</class>
+		<class>com.vsoftcorp.kls.business.entity.loan.LoanApplicationDocument</class>
+		<class>com.vsoftcorp.kls.business.entities.LoanProductDocumentMapping</class>
+		<class>com.vsoftcorp.kls.business.entities.LoanProductPurposeMapping</class>
+		<class>com.vsoftcorp.kls.business.entity.loan.LoanApplicationForActivity</class>
+		<class>com.vsoftcorp.kls.business.entity.loan.LoanApplicationForGuarantorDetails</class>
+		<class>com.vsoftcorp.kls.business.entity.account.LoanAccountProperty</class>
+		<class>com.vsoftcorp.kls.business.entity.account.LoanLineOfCredit</class>
+		<class>com.vsoftcorp.kls.business.entity.account.BorrowingsAccountProperty</class>
+		<class>com.vsoftcorp.kls.business.entity.loan.PacsLoanDisbursement</class>
+		<class>com.vsoftcorp.kls.business.entity.loan.LoanDisbursementSchedule</class>
+		<class>com.vsoftcorp.kls.business.entity.loan.ChargesMaster</class>
+		<class>com.vsoftcorp.kls.business.entity.loan.ProductChargesMapping</class>
+		<class>com.vsoftcorp.kls.business.entity.loan.ChargesDebit</class>
+		<class>com.vsoftcorp.kls.business.entity.loan.LoanDisbursementEntry</class>
+		<class>com.vsoftcorp.kls.business.entity.loan.LoanRepaymentSchedule</class>
+		<class>com.vsoftcorp.kls.business.entity.loan.TempLoanRepaymentSchedule</class>
+		<class>com.vsoftcorp.kls.business.entities.BorrowingProduct</class>
+		<class>com.vsoftcorp.kls.business.entity.account.BorrowingsLineOfCredit</class>
+		<class>com.vsoftcorp.kls.business.entities.PacsGlMapping</class>
+		<class>com.vsoftcorp.kls.business.entity.loan.LoanRecovery</class>
+		<class>com.vsoftcorp.kls.business.entities.CalendarSetup</class>
+		<class>com.vsoftcorp.kls.business.entities.Calendar</class>
+		<class>com.vsoftcorp.kls.business.entities.BorrowingProductGlMapping</class>
+		<class>com.vsoftcorp.kls.business.entities.SBNextNumbers</class>
+		<class>com.vsoftcorp.kls.business.entity.subsidy.InstituteMaster</class>
+		<class>com.vsoftcorp.kls.business.entity.subsidy.InterestSubsidy</class>
+		<class>com.vsoftcorp.kls.business.entity.subsidy.SlabwisesubsidyInterestRate</class>
+		<class>com.vsoftcorp.kls.business.entity.subsidy.SubsidyInterestAmounts</class>
+		<class>com.vsoftcorp.kls.business.entity.subsidy.SubsidySchemeGlMapping</class>
+		<class>com.vsoftcorp.kls.business.entity.subsidy.SubsidyInterestAmountsId</class>
+		<class>com.vsoftcorp.kls.business.entities.SBAccountMapping</class>
+		<class>com.vsoftcorp.kls.business.entities.TenantLandDetails</class>
+		<class>com.vsoftcorp.kls.business.entity.loan.ChargesRecovery</class>
+		<class>com.vsoftcorp.kls.business.entity.loan.BorrowingRecoveryEntry</class>
+		<class>com.vsoftcorp.kls.GepRep.business.ReportParameters</class>
+		<class>com.vsoftcorp.kls.GepRep.business.ReportStructure</class>
+		<class>com.vsoftcorp.kls.business.entities.LandOwnerDetails</class>
+		<class>com.vsoftcorp.kls.business.entities.CBSUID</class>
+		<class>com.vsoftcorp.kls.GepRep.business.NPAParameters</class>
+        <class>com.vsoftcorp.kls.business.entities.StLoanRecovery</class>
+        
+		<properties>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.transaction.flush_before_completion"
+				value="true" />
+			<!-- <property name="hibernate.cache.use.query_cache" value="false" /> -->
+			<property name="hibernate.default_schema" value="kls_schema" />
+		</properties>
+
+
+		<!-- <properties> <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" 
+			/> <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://192.168.1.247/kls" 
+			/> <property name="javax.persistence.jdbc.user" value="postgres" /> <property 
+			name="javax.persistence.jdbc.password" value="postgres" /> <property name="hibernate.default_schema" 
+			value="kls_schema" /> <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" 
+			/> <property name="hibernate.show_sql" value="true" /> <property name="hibernate.max_fetch_depth" 
+			value="3" /> </properties> -->
+
+	</persistence-unit>
+	
+	<persistence-unit name="PACSPersistenceUnit"
+		transaction-type="RESOURCE_LOCAL">
+		<!-- Persistence Unit Provider - vendor-specific persistence provider name -->
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<non-jta-data-source>java:/comp/env/jdbc/jtaDataSourcePacs</non-jta-data-source>
+		<!--<non-jta-data-source>java:/comp/env/jdbc/myDB</non-jta-data-source> -->
+		<class>com.vsoftcorp.kls.business.entities.PacsGLExtract</class>
+		<class>com.vsoftcorp.kls.business.entities.AutoGenerationReportDef</class>
+		<properties>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.transaction.flush_before_completion"
+				value="true" />
+			<!-- <property name="hibernate.cache.use.query_cache" value="false" /> -->
+			<property name="hibernate.default_schema" value="public" />
+		</properties>
+
+
+		<!-- <properties> <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" 
+			/> <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://192.168.1.247/kls" 
+			/> <property name="javax.persistence.jdbc.user" value="postgres" /> <property 
+			name="javax.persistence.jdbc.password" value="postgres" /> <property name="hibernate.default_schema" 
+			value="kls_schema" /> <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" 
+			/> <property name="hibernate.show_sql" value="true" /> <property name="hibernate.max_fetch_depth" 
+			value="3" /> </properties> -->
+
+	</persistence-unit>
+	
+</persistence>

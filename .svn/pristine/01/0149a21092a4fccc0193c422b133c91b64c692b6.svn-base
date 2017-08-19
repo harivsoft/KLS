@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.2.xsd http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet author="1.0.0.8" id="1">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<sequenceExists sequenceName="pacs_gl_mapping_id_seq" />
+			</not>
+		</preConditions>
+		<createSequence sequenceName="pacs_gl_mapping_id_seq"
+			startValue="1" incrementBy="1" minValue="1" />
+	</changeSet>
+	<changeSet author="1.0.0.8" id="2">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<sequenceExists sequenceName="borrowing_product_gl_mapping_seq_id" />
+			</not>
+		</preConditions>
+		<createSequence sequenceName="borrowing_product_gl_mapping_seq_id"
+			startValue="1" incrementBy="1" minValue="1" />
+	</changeSet>
+	<changeSet author="1.0.0.8" id="3">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<sequenceExists sequenceName="calendar_id_seq" />
+			</not>
+		</preConditions>
+		<createSequence sequenceName="calendar_id_seq"
+			startValue="1" incrementBy="1" minValue="1" />
+	</changeSet>
+	<changeSet author="1.0.0.8" id="4">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<sequenceExists sequenceName="calendar_setup_id_seq" />
+			</not>
+		</preConditions>
+		<createSequence sequenceName="calendar_setup_id_seq"
+			startValue="1" incrementBy="1" minValue="1" />
+	</changeSet>
+	<changeSet author="1.0.0.8" id="5">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<sequenceExists sequenceName="loan_disbursement_entry_id_sequence" />
+			</not>
+		</preConditions>
+		<createSequence sequenceName="loan_disbursement_entry_id_sequence"
+			startValue="1" incrementBy="1" minValue="1" />
+	</changeSet>
+	<changeSet author="1.0.0.8" id="6">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<sequenceExists sequenceName="institute_master_id_seq" />
+			</not>
+		</preConditions>
+		<createSequence sequenceName="institute_master_id_seq"
+			startValue="1" incrementBy="1" minValue="1" />
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="7">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<sequenceExists sequenceName="interest_subsidy_id_seq" />
+			</not>
+		</preConditions>
+		<createSequence sequenceName="interest_subsidy_id_seq"
+			startValue="1" incrementBy="1" minValue="1" />
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="8">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<sequenceExists sequenceName="slabwise_subsidy_roi_id_seq" />
+			</not>
+		</preConditions>
+		<createSequence sequenceName="slabwise_subsidy_roi_id_seq"
+			startValue="1" incrementBy="1" minValue="1" />
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="9">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<sequenceExists sequenceName="subsidy_interest_amounts_id_seq" />
+			</not>
+		</preConditions>
+		<createSequence sequenceName="subsidy_interest_amounts_id_seq"
+			startValue="1" incrementBy="1" minValue="1" />
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="10">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<sequenceExists sequenceName="subsidy_scheme_gl_mapping_id_seq" />
+			</not>
+		</preConditions>
+		<createSequence sequenceName="subsidy_scheme_gl_mapping_id_seq"
+			startValue="1" incrementBy="1" minValue="1" />
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="11">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<sequenceExists sequenceName="tenant_land_detail_id_seq" />
+			</not>
+		</preConditions>
+		<createSequence sequenceName="tenant_land_detail_id_seq"
+			startValue="1" incrementBy="1" minValue="1" />
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="12">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<sequenceExists sequenceName="charge_recovery_id_sequence" />
+			</not>
+		</preConditions>
+		<createSequence sequenceName="charge_recovery_id_sequence"
+			startValue="1" incrementBy="1" minValue="1" />
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="13">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<sequenceExists sequenceName="land_owner_details_id_seq" />
+			</not>
+		</preConditions>
+		<createSequence sequenceName="land_owner_details_id_seq"
+			startValue="1" incrementBy="1" minValue="1" />
+	</changeSet>
+</databaseChangeLog>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<dataset>
+	<season_definition id='100' name='KHARIF'
+		drawal_start_month='1' drawal_start_day="1" drawal_end_month="12"
+		drawal_end_day="1" loan_overdue_day="12" loan_overdue_month="12" />
+	<season_definition id='200' name='RABI'
+		drawal_start_month='1' drawal_start_day="1" drawal_end_month="12"
+		drawal_end_day="1" loan_overdue_day="12" loan_overdue_month="12" />
+</dataset>

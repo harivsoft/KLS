@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet author="1.0.0.1" id="101">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<sequenceExists sequenceName="kls_slabwiseinterest_id_seq" />
+			</not>
+		</preConditions>
+		<comment>Create Sequence - This sequence will be generated whenever a new slab is created</comment>
+		<createSequence sequenceName="kls_slabwiseinterest_id_seq"
+			startValue="1" incrementBy="1" minValue="1" />
+	</changeSet>
+	
+	<changeSet author="1.0.0.1" id="102">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<sequenceExists sequenceName="kls_product_id_seq" />
+			</not>
+		</preConditions>
+		<comment>Create Sequence - This sequence will be generated whenever a product is created</comment>
+		<createSequence sequenceName="kls_product_id_seq"
+			startValue="1" incrementBy="1" minValue="1" />
+	</changeSet>
+	
+</databaseChangeLog>

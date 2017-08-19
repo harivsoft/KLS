@@ -1,0 +1,353 @@
+#--------------config with the key-----------------#
+
+printCommand=lpr -l -P 
+printCommand-Form=lp -d 
+SBReport-Path=
+pdfrequired=N
+
+#--Drawal Transaction--#
+Drawal-Report-Jrxml=/drwalReport.jrxml
+Drawal-Report-Txt-FileName=/drawalReport_0.txt
+Drawal-Report-Bat-FileName=/drawalReport.bat
+Drawal-FPReport-JSP=drawalFastPrintReport.jsp
+Drawal-Report-PDF-FileName=/drawalReport_0.pdf
+Drawal-Report-pdf-Jrxml=  /drwalReport-pdf.jrxml
+
+#--Collection Transaction--#
+Collection-Report-Bat-FileName=/collectionReport.bat
+Collection-Report-Txt-FileName=/collectionReport_0.txt
+Collection-Report-Jrxml=/collectionReport.jrxml
+Collection-FPReport-JSP=collectionFastPrintReport.jsp
+Collection-Report-PDF-FileName=/collection_0.pdf
+Collection-Report-pdf-Jrxml =/collectionReport-pdf.jrxml
+
+#--Accountwise Inconsistency--#
+Inconsistency-Report-Bat-FileName=/insconsistencyReport.bat
+Inconsistency-Report-Txt-FileName=/insconsistencyReport_0.txt
+Inconsistency-Report-Jrxml=/AccountwiseConsistency.jrxml
+Inconsistency-FPReport-JSP=insconsistencyFastPrintReport.jsp
+Inconsistency-Report-PDF-FileName=/Inconsistency_0.pdf
+Inconsistency-Report-Jrxml-pdf-Jrxml=/AccountwiseConsistency-pdf.jrxml
+Inconsistency-Report-pdf-Jrxml=/AccountwiseConsistency-pdf.jrxml
+
+#--Sanction Letter--#
+Sanction-Report-Bat-FileName=/sanctionLetterReport.bat
+Sanction-Report-Txt-FileName=/sanctionLetterReport_0.txt
+Sanction-Report-Jrxml=/sanctionLetter.jrxml
+Sanction-FPReport-JSP=sanctionLetterFastPrintReport.jsp
+Sanction-Report-PDF-FileName=/Sanction_0.pdf
+Sanction-Report-pdf-Jrxml=/sanctionLetter-pdf.jrxml
+
+
+#--Account Statement--#
+AccStatement-Report-Bat-FileName=/accountStatementReport.bat
+AccStatement-Report-Txt-FileName=/accountStatementReport_0.txt
+AccStatement-Report-Jrxml=/accountStatementReport.jrxml
+AccStatement-FPReport-JSP=accountStatementFastPrintReport.jsp
+AccStatement-Report-PDF-FileName=/AccStatement_0.pdf
+AccStatement-Report-pdf-Jrxml=/accountStatementReport-pdf.jrxml
+
+
+#--DCB Report--#
+DCB-Report-Bat-FileName=/dcbReport.bat
+DCB-Report-Txt-FileName=/dcbReport.txt_0.txt
+DCB-Report-Jrxml=/dcbReport.jrxml
+DCB-Report-Princile-html-Jrxml=/dcbReport-principle.jrxml
+DCB-Report-Interest-html-Jrxml=/dcbReport-interest.jrxml
+DCB-FPReport-JSP=dcbReportFastPrintReport.jsp
+DCB-Report-PDF-FileName=/DCB_0.pdf
+DCB-Report-Jrxml-pdf-Jrxml=/dcbReport-pdf.jrxml
+DCB-Reporrt-Jrxml-principle-pdf-Jrxml=/dcbReport-principle-pdf.jrxml
+DCB-Reporrt-Jrxml-interest-pdf-Jrxml=/dcbReport-interest-pdf.jrxml
+DCB-Report-principle-Jrxml=/dcbReport-principle.jrxml
+DCB-Report-interest-Jrxml=/dcbReport-interest.jrxml
+DCB-Report-Princile-pdf-Jrxml=/dcbReport-principle-pdf.jrxml
+DCB-Report-Interest-pdf-Jrxml=/dcbReport-interest-pdf.jrxml
+
+
+#--Crop Wise Loan Drawl Reportt--#
+CropWiseDrawal-Report-Bat-FileName=/cropWiseLoanDrawlReport.bat
+CropWiseDrawal-Report-Txt-FileName=/cropWiseLoanDrawlReport_0.txt
+CropWiseDrawal-Report-Jrxml=/cropWiseLoanDrawlReport.jrxml
+CropWiseDrawal-FPReport-JSP=cropWiseLoanDrawlFastPrintReport.jsp
+CropWiseDrawal-Report-PDF-FileName=/CropWiseDrawal_0.pdf
+CropWiseDrawal-Report-pdf-Jrxml=/cropWiseLoanDrawlReport-pdf.jrxml
+
+#--Share Account Ledger Report--#
+ShareAccountLedger-Report-Bat-FileName=/shareAccountLedgerReport.bat
+ShareAccountLedger-Report-Txt-FileName=/shareAccountLedgerReport_0.txt
+ShareAccountLedger-Report-Jrxml=/shareAccountLedger.jrxml
+ShareAccountLedger-FPReport-JSP=shareAccountLedgerReportFastPrintReport.jsp
+ShareAccountLedger-Report-PDF-FileName=/ShareAccountLedger_0.pdf
+ShareAccountLedger-Report-pdf-Jrxml=/shareAccountLedger-pdf.jrxml
+
+
+#--MTLT Loan Account Ledger Report--#
+MTLTLoanLedger-Report-Bat-FileName=/MTLTLoanLedgerLedgerReport.bat
+MTLTLoanLedger-Report-Txt-FileName=/MTLTLoanLedgerLedgerReport_0.txt
+MTLTLoanLedger-Report-Jrxml=/LedgerReport.jrxml
+MTLTLoanLedger-FPReport-JSP=mtLTLoanLedgerLedgerReportFastPrintReport.jsp
+MTLTLoanLedger-Report-PDF-FileName=/MTLTLoanLedger_0.pdf
+MTLTLoanLedger-Report-pdf-Jrxml=/LedgerReport-pdf.jrxml
+
+#--Overdue Report--#
+Overdue-Report-Bat-FileName=/overdueReport.bat
+Overdue-Report-Txt-FileName=/overdueReport_0.txt
+Overdue-Report-Jrxml=/overdueListReport.jrxml
+Overdue-Summary-Report-Jrxml=/overdueSummaryReport.jrxml
+Overdue-FPReport-JSP=overdueFastPrintReport.jsp
+Overdue-Report-PDF-FileName=/Overdue_0.pdf
+Overdue-Report-pdf-Jrxml=/overdueListReport-pdf.jrxml
+
+#--Batch Wise Voucher Printing Report--#
+BatchwisevoucherPrint-Report-Bat-FileName=/BatchwisevoucherPrintReport.bat
+BatchWiseVoucherPrint-Report-Txt-FileName=/BatchwisevoucherPrintReport_0.txt
+BatchwisevoucherPrint-Report-Jrxm=/BatchWiseVoucherPrint.jrxml
+BatchwisevoucherPrint-FPReport-JSP=batchwisevoucherPrintReportFastPrintReport.jsp
+BatchwisevoucherPrint-Report-PDF-FileName=/BatchwisevoucherPrint_0.pdf
+BatchwisevoucherPrint-Report-pdf-Jrxm=/BatchWiseVoucherPrint-pdf.jrxml
+
+#--LandRegister Report--#
+LandRegister-Report-Bat-FileName=/landRegister.bat
+LandRegister-Report-Txt-FileName=/landRegister_0.txt
+LandRegister-Report-Jrxml=/landRegisterListReport.jrxml
+LandRegister-FPReport-JSP=landRegisterFastPrintReport.jsp
+LandRegister-Report-PDF-FileName=/LandRegister_0.pdf
+LandRegister-Report-pdf-Jrxml=/landRegisterListReport-pdf.jrxml
+
+#--Share Account Blancing Report--#
+ShareAccountBlancing-Report-Bat-FileName=/shareAccountBlancingReport.bat
+ShareAccountBlancing-Report-Txt-FileName=/shareAccountBlancingReport_0.txt
+ShareAccountBlancing-Report-Jrxml=/shareAccountBalancingReport.jrxml
+ShareAccountBlancing-FPReport-JSP=shareAccountBlancingReport.jsp
+ShareAccountBlancing-Report-PDF-FileName=/ShareAccountBlancing_0.pdf
+ShareAccountBlancing-Report-pdf-Jrxml=/shareAccountBalancingReport-pdf.jrxml
+
+#--Borrowing Account Ledger Report--#
+BorrowingAccountLedger-Report-Bat-FileName=/BorrowingAccountLedgerReport.bat
+BorrowingAccountLedger-Report-Txt-FileName=/BorrowingAccountLedgerReport_0.txt
+BorrowingAccountLedger-Report-Jrxm=/BorrowingAccountLedgerReport.jrxml
+BorrowingAccountLedger-FPReport-JSP=borrowingAccountLedgerReportFastPrintReport.jsp
+BorrowingAccountLedger-Report-PDF-FileName=/BorrowingAccountLedger_0.pdf
+BorrowingAccountLedger-Report-pdf-Jrxm=/BorrowingAccountLedgerReport-pdf.jrxml
+
+#--Deceased Report--#
+Deceased-Report-Bat-FileName=/deceased.bat
+Deceased-Report-Txt-FileName=/deceased_0.txt
+Deceased-Report-Jrxml=/deceasedMemberReport.jrxml
+Deceased-FPReport-JSP=deceasedFastPrintReport.jsp
+Deceased-Report-PDF-FileName=/Deceased_0.pdf
+Deceased-Report-pdf-Jrxml=/deceasedMemberReport-pdf.jrxml
+
+
+#--Purpose Wise Disbursement Report--#
+PurposeWiseDisbursment-Report-Bat-FileName=/purposeWiseLoanDisbursementReport.bat
+PurposeWiseDisbursment-Report-Txt-FileName=/purposeWiseLoanDisbursementReport_0.txt
+PurposeWiseDisbursment-Report-Jrxml=/purposeWiseLoanDisbursementReport.jrxml
+PurposeWiseDisbursment-FPReport-JSP=purposeWiseLoanDisbursementReport.jsp
+PurposeWiseDisbursment-Report-PDF-FileName=/PurposeWiseDisbursment_0.pdf
+PurposeWiseDisbursment-Report-pdf-Jrxml=/purposeWiseLoanDisbursementReport-pdf.jrxml
+
+
+#--Account Info Report--#
+AccountInfo-Report-Bat-FileName=/accountInfoReport.bat
+AccountInfo-Report-Txt-FileName=/accountInfoReport_0.txt
+AccountInfo-Report-Jrxml=/listOfaccountsOpenedClosedReport.jrxml
+AccountInfo-FPReport-JSP=accountInfoReport.jsp
+AccountInfo-Report-PDF-FileName=/AccountInfo_0.pdf
+AccountInfo-Report-pdf-Jrxml=/listOfaccountsOpenedClosedReport-pdf.jrxml
+
+
+#--Loan Account Status Entry Report--#
+LoanApplicationStatus-Report-Bat-FileName=/loanApplicationStatus.bat
+LoanApplicationStatus-Report-Txt-FileName=/loanApplicationStatus_0.txt
+LoanApplicationStatus-Report-Jrxml=/loanApplicationStatusReport.jrxml
+LoanApplicationStatus-FPReport-JSP=loanApplicationStatusFastPrintReport.jsp
+LoanApplicationStatus-Report-PDF-FileName=/LoanApplicationStatus_0.pdf
+LoanApplicationStatus-Report-pdf-Jrxml=/loanApplicationStatusReport-pdf.jrxml
+
+
+#--Loan Account Status Inspected Report--#
+LoanApplicationStatusInspected-Report-Bat-FileName=/loanApplicationStatusInspected.bat
+LoanApplicationStatusInspected-Report-Txt-FileName=/loanApplicationStatusInspected_0.txt
+LoanApplicationStatusInspected-Report-Jrxml=/loanApplicationStatusReportInspected.jrxml
+LoanApplicationStatusInspected-FPReport-JSP=loanApplicationStatusFastPrintReportInspected.jsp
+LoanApplicationStatusInspected-Report-PDF-FileName=/LoanApplicationStatusInspected_0.pdf
+
+
+#--Loan Account Status Saction Report--#
+LoanApplicationStatusSactioned-Report-Bat-FileName=/loanApplicationStatusSactioned.bat
+LoanApplicationStatusSactioned-Report-Txt-FileName=/loanApplicationStatusSactioned_0.txt
+LoanApplicationStatusSactioned-Report-Jrxml=/loanApplicationStatusReportSactioned.jrxml
+LoanApplicationStatusSactioned-FPReport-JSP=loanApplicationStatusFastPrintReportInspected.jsp
+
+
+#--Member Profile Report--#
+MemberProfile-Report-Bat-FileName=/memberProfileReport.bat
+MemberProfile-Report-Txt-FileName=/memberProfileReport_0.txt
+MemberProfile-Report-Jrxml=/memberProfilesReport.jrxml
+MemberProfile-FPReport-JSP=memberProfileReport.jsp
+MemberProfile-Report-PDF-FileName=/MemberProfile_0.pdf
+MemberProfile-Report-pdf-Jrxml=/memberProfilesReport-pdf.jrxml
+
+#--ST/MT/LT DCB Report--#
+STMTLTDCB-Report-Bat-FileName=/stmtltDcbReport.bat
+STMTLTDCB-Report-Txt-FileName=/stmtltDcbReport_0.txt
+STMTLTDCB-Report-Jrxml=/stmtltDcbReport.jrxml
+STMTLTDCB-FPReport-JSP=stmtltDcbReport.jsp
+STMTLTDCB-Report-PDF-FileName=/STMTLTDCB_0.pdf
+STMTLTDCB-Report-pdf-Jrxml=/stmtltDcbReport-pdf.jrxml
+
+
+#--ST/MT/LT Detailed DCB Report--#
+STMTLTDETAILEDDCB-Report-Bat-FileName=/stmtltDcbReport.bat
+STMTLTDETAILEDDCB-Report-Txt-FileName=/stmtltDcbReport_0.txt
+STMTLTDETAILEDDCB-Report-Jrxml=/stmtltDcbDetailedReport.jrxml
+STMTLTDETAILEDDCB-FPReport-JSP=stmtltDetailedDcbReport.jsp
+STMTLTDETAILEDDCB-Report-PDF-FileName=/STMTLTDCB_0.pdf
+STMTLTDETAILEDDCB-Report-pdf-Jrxml=/stmtltDcbDetailedReport-pdf.jrxml
+
+
+#--Interest Charged Report--#
+InterestCharged-Report-Bat-FileName=/interestChargedReport.bat
+InterestCharged-Report-Txt-FileName=/interestChargedReport_0.txt
+InterestCharged-Report-Jrxml=/InterestChargedReport.jrxml
+InterestCharged-FPReport-JSP=InterestChargedReport.jsp
+InterestCharged-Report-PDF-FileName=/InterestCharged_0.pdf
+
+#--Master Report--#
+Master-Report-Bat-FileName=/masterReport.bat
+Master-Report-Txt-FileName=/masterReport_0.txt
+Master-Report-Jrxml=/masterReports.jrxml
+Master-FPReport-JSP=masterReport.jsp
+Product-Master-Report-Jrxml=/productPurposeMappingReport.jrxml
+Charges-Master-Report-Jrxml=/chargesMasterReport.jrxml
+Product-charges-Master-Report-Jrxml=/productChargesMasterReport.jrxml
+Product-charges-Master-Report-PDF-FileName=/Product-charges-Master_0.pdf
+
+#--Product Wise Collection Report--#
+ProductWiseCollection-Report-Bat-FileName=/productWiseCollectionReport.bat
+ProductWiseCollection-Report-Txt-FileName=/productWiseCollectionReport_0.txt
+ProductWiseCollection-Report-Jrxml=/productWiseCollectionReport.jrxml
+ProductWiseCollection-FPReport-JSP=productWiseCollectionReport.jsp
+ProductWiseCollection-Report-PDF-FileName=/ProductWiseCollection_0.pdf
+
+
+#--Balance List Report--#
+BalanceList-Report-Bat-FileName=/balanceListReport.bat
+BalanceList-Report-Txt-FileName=/balanceListReport_0.txt
+BalanceList-Report-Jrxml=/balanceListReport.jrxml
+BalanceList-FPReport-JSP=balanceListReport.jsp
+BalanceList-Report-PDF-FileName=/BalanceList_0.pdf
+
+#--InterestSubsidy List Report--#
+InterestSubsidy-Report-Bat-FileName=/interestSubsidyReport.bat
+InterestSubsidy-Report-Txt-FileName=/interestSubsidyReport_0.txt
+InterestSubsidy-Report-Jrxml=/interestSubsidyReport.jrxml
+InterestSubsidy-FPReport-JSP=interestSubsidyReport.jsp
+InterestSubsidy-Report-PDF-FileName=/InterestSubsidy_0.pdf
+
+#--SavingAccountStatus List Report--#
+SavingAccountStatus-Report-Bat-FileName=/SBAccountsReport.bat
+SavingAccountStatus-Report-Txt-FileName=/SBAccountsReport_0.txt
+SavingAccountStatus-Report-Jrxml=/SBAccountsReport.jrxml
+SavingAccountStatus-FPReport-JSP=SBAccountsReport.jsp
+SavingAccountStatus-Report-PDF-FileName=/SBAccountsReport_0.pdf
+
+
+#--ScheduleVsGLBalance Report--#
+ScheduleBal-Report-Bat-FileName=/scheduleVsBalanceReport.bat
+ScheduleBal-Report-Txt-FileName=/scheduleVsBalanceReport_0.txt
+ScheduleBal-Report-Jrxml=/scheduleVsBalanceReport.jrxml
+ScheduleBal-FPReport-JSP=scheduleVsBalanceReportFastPrintReport.jsp
+ScheduleBal-Report-PDF-FileName=/scheduleVsBalanceReport_0.pdf
+ScheduleBal-Report-pdf-Jrxml=/scheduleVsBalanceReport-pdf.jrxml
+
+
+
+#--ScheduleReport--#
+Schedule-Report-Bat-FileName=/scheduleReport.bat
+Schedule-Report-Txt-FileName=/scheduleReport_0.txt
+Schedule-Report-Jrxml=/scheduleReport.jrxml
+Schedule-FPReport-JSP=scheduleFastPrintReport.jsp
+Schedule-Report-PDF-FileName=/Schedule_0.pdf
+
+#--DaybookReport--#
+Daybook-Report-Bat-FileName=/daybookReport.bat
+Daybook-Report-Txt-FileName=/daybookReport_0.txt
+Daybook-Report-Jrxml=/dayBookReport.jrxml
+Daybook-FPReport-JSP=daybookFastPrintReport.jsp
+Daybook-Report-PDF-FileName=/Daybook_0.pdf
+
+
+#--LannRegisterMtReport--#
+LoanRegisterMt-Report-Jrxml=/LoanRegisterReportForMTLT.jrxml
+LoanRegisterMt-Report-Txt-FileName=/loanRegisterReportForMTLT_0.txt
+LoanRegisterMt-Report-Bat-FileName=/loanRegisterReportForMTLT.bat
+LoanRegisterMt-FPReport-JSP=LoanRegisterReport.jsp
+LoanRegisterMt-Report-PDF-FileName=/loanRegisterReportForMTLT_0.pdf
+
+#--LannRegisterStReport--#
+LoanRegisterSt-Report-Jrxml=/LoanRegisterReportForST.jrxml
+LoanRegisterSt-Report-Txt-FileName=/loanRegisterReportForST_0.txt
+LoanRegisterSt-Report-Bat-FileName=/loanRegisterReportForST.bat
+LoanRegisterSt-Report-PDF-FileName=/loanRegisterReportForSTLT_0.pdf
+
+#--JindagiReport--#
+Jindagi-Report-Jrxml=/JindagiReport.jrxml
+Jindagi-Report-Txt-FileName=/JindagiReport.txt
+Jindagi-Report-Bat-FileName=/JindagiReport.bat
+Jindagi-Report-PDF-FileName=/JindagiReport_0.pdf
+Jindagi-Report-JSP=/JndagiReport.jsp
+
+
+#--Lending Account Ledger Report--#
+LendingAccountLedger-Report-Bat-FileName=/LendingAccountLedgerReport.bat
+LendingAccountLedger-Report-Txt-FileName=/LendingAccountLedgerReport_0.txt
+LendingAccountLedger-Report-Jrxm=/LendingAccountLedgerReport.jrxml
+LendingAccountLedger-FPReport-JSP=lendingAccountLedgerReportFastPrintReport.jsp
+
+
+#--LannRegisterMtSummeryReport--#
+LoanRegisterMtSummery-Report-Jrxml=/LoanRegisterSummeryReportForMTLT.jrxml
+LoanRegisterMtSummery-Report-Txt-FileName=/loanRegisterSummeryReportForMTLT_0.txt
+LoanRegisterMtSummery-Report-Bat-FileName=/loanRegisterSummeryReportForMTLT.bat
+LoanRegisterMtSummery-FPReport-JSP=LoanRegisterSummeryReport.jsp
+LoanRegisterMtSummery-Report-PDF-FileName=/loanRegisterSummeryReportForMTLT_0.pdf
+
+#--LannRegisterStSummeryReport--#
+LoanRegisterStSummery-Report-Jrxml=/LoanRegisterSummeryReportForST.jrxml
+LoanRegisterStSummery-Report-Txt-FileName=/loanRegisterSummeryReportForST_0.txt
+LoanRegisterStSummery-Report-Bat-FileName=/loanRegisterSummeryReportForST.bat
+LoanRegisterStSummery-Report-PDF-FileName=/loanRegisterSummeryReportForSTLT_0.pdf
+
+#--NpaReport--#
+NPA-Report-Jrxml=/NPAReport.jrxml
+NPA-Report-Txt-FileName=/npaReport_0.txt
+NPA-Report-Bat-FileName=/npaReport.bat
+NPA-Report-PDF-FileName=/npaReport_0.pdf
+npa-FPReport-JSP=npaFastPrintReport.jsp
+npa-FPReport-JSP1=npaFastPrintReport.jsp
+
+#--MemberandCardLinkingReport--#
+MemberandCardLinking-Report-Jrxml=/MemberandCardLinkingReport.jrxml
+MemberandCardLinking-Report-Txt-FileName=/MemberandCardLinkingReport_0.txt
+MemberandCardLinking-Report-Bat-FileName=/MemberandCardLinkingReport.bat
+MemberandCardLinking-Report-PDF-FileName=/MemberandCardLinkingReport_0/pdf 
+
+#--Borrowing NpaReport--#
+Borrowing-NPA-Report-Jrxml=/BorrowingNPAReport.jrxml
+Borrowing-NPA-Report-Txt-FileName=/borrowingNpaReport_0.txt
+Borrowing-NPA-Report-Bat-FileName=/borrowingNpaReport.bat
+Borrowing-NPA-Report-PDF-FileName=/borrowingNpaReport_0.pdf
+Borrowing-npa-FPReport-JSP=borrowingNpaFastPrintReport.jsp
+
+
+#--NpaReport 2 --#
+NPA-Report-Jrxml1=/NPAReport2.jrxml
+NPA-Report-Txt-FileName1=/npaReport_0.txt
+NPA-Report-Bat-FileName1=/npaReport.bat
+NPA-Report-PDF-FileName1=/npaReport_0.pdf
+npa-FPReport-JSP2=npaFastPrintReport2.jsp
+
+ReportAutoGeneration=Y

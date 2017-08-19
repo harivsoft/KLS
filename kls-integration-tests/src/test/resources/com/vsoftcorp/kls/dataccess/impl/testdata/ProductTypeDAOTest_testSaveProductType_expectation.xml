@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<dataset>
+
+	<product_type id='100' description="PRODTYPEDESC" atm_applicable='Y' interest_category_id='150' />
+	
+</dataset>
+

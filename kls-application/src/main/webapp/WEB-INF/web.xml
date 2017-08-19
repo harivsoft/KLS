@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="2.5"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+	<listener>
+		<listener-class>com.vsoftcorp.kls.util.StartupListener</listener-class>
+	</listener>
+
+	<!-- this need same with resteasy servlet url-pattern -->
+	<context-param>
+		<param-name>resteasy.servlet.mapping.prefix</param-name>
+		<param-value>/json</param-value>
+	</context-param>
+	<servlet>
+		<servlet-name>resteasy-servlet</servlet-name>
+		<servlet-class>
+			org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher
+		</servlet-class>
+		<init-param>
+			<param-name>javax.ws.rs.Application</param-name>
+			<param-value>com.vsoftcorp.kls.application.KlsRestfulApplication</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>resteasy-servlet</servlet-name>
+		<url-pattern>/json/*</url-pattern>
+	</servlet-mapping>
+	<resource-env-ref>
+		<description>DB Connection </description>
+		<resource-env-ref-name>jdbc/jtaDataSource</resource-env-ref-name>
+		<resource-env-ref-type>javax.sql.DataSource</resource-env-ref-type>
+	</resource-env-ref>
+	<resource-env-ref>
+		<description>DB Connection </description>
+		<resource-env-ref-name>jdbc/jtaDataSourcePacs</resource-env-ref-name>
+		<resource-env-ref-type>javax.sql.DataSource</resource-env-ref-type>
+	</resource-env-ref>
+	<!-- This section configures security (authentication and authorization) 
+		using Shiro -->
+	<listener>
+		<listener-class>org.apache.shiro.web.env.EnvironmentLoaderListener</listener-class>
+	</listener>
+	<welcome-file-list>
+		<welcome-file>logon.html</welcome-file>
+	</welcome-file-list>
+	<!-- ==== Security ================================================================== -->
+	<filter>
+		<filter-name>ShiroFilter</filter-name>
+		<filter-class>org.apache.shiro.web.servlet.IniShiroFilter</filter-class>
+		<init-param>
+			<param-name>configPath</param-name>
+			<param-value>classpath:shiro.ini</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>ShiroFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter>
+		<!-- The CORS filter with parameters -->
+		<filter-name>CORS</filter-name>
+		<filter-class>com.thetransactioncompany.cors.CORSFilter</filter-class>
+
+		<!-- Note: All parameters are options, if omitted the CORS Filter will 
+			fall back to the respective default values. -->
+		<init-param>
+			<param-name>cors.allowGenericHttpRequests</param-name>
+			<param-value>true</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>cors.allowOrigin</param-name>
+			<param-value>*</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>cors.allowSubdomains</param-name>
+			<param-value>false</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>cors.supportedMethods</param-name>
+			<param-value>OPTIONS, GET, PUT, POST, DELETE</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>cors.supportsCredentials</param-name>
+			<param-value>true</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>cors.maxAge</param-name>
+			<param-value>0</param-value>
+		</init-param>
+
+	</filter>
+
+	<filter-mapping>
+		<!-- CORS Filter mapping -->
+		<filter-name>CORS</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<servlet>
+		<servlet-name>DrawalReport</servlet-name>
+		<servlet-class>com.vsoftcorp.kls.report.action.DrawalReportActionServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DrawalReport</servlet-name>
+		<url-pattern>/drawalReportForm</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>CollectionReport</servlet-name>
+		<servlet-class>com.vsoftcorp.kls.report.action.CollectionReportActionServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CollectionReport</servlet-name>
+		<url-pattern>/collectionReportForm</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>InconsistencyReport</servlet-name>
+		<servlet-class>com.vsoftcorp.kls.report.action.InconsistencyReportActionServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>InconsistencyReport</servlet-name>
+		<url-pattern>/inconsistencyReportForm</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>SanctionLetterReport</servlet-name>
+		<servlet-class>com.vsoftcorp.kls.report.action.SanctionReportActionServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SanctionLetterReport</servlet-name>
+		<url-pattern>/sanctionLetterForm</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>AccountStatementReport</servlet-name>
+		<servlet-class>com.vsoftcorp.kls.report.action.AccountStatementActionServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AccountStatementReport</servlet-name>
+		<url-pattern>/accountStatementForm</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>DCBReport</servlet-name>
+		<servlet-class>com.vsoftcorp.kls.report.action.DCBReportActionServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DCBReport</servlet-name>
+		<url-pattern>/dcbRegisterForm</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ShareAccountLedgerReport</servlet-name>
+		<servlet-class>com.vsoftcorp.kls.report.action.ShareAccountLedgerActionServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ShareAccountLedgerReport</servlet-name>
+		<url-pattern>/shareAccountLedgerReportForm</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>mtLtLoanLedgerReport</servlet-name>
+		<servlet-class>com.vsoftcorp.kls.report.action.MTLTLoanLedgerActionServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>mtLtLoanLedgerReport</servlet-name>
+		<url-pattern>/mtLtLoanLedgerReportForm</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>CropWiseDrawlReport</servlet-name>
+		<servlet-class>com.vsoftcorp.kls.report.action.CropWiseDrawlActionServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CropWiseDrawlReport</servlet-name>
+		<url-pattern>/cropWiseLoanDisbursementReportForm</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>OverdueReport</servlet-name>
+		<servlet-class>com.vsoftcorp.kls.report.action.OverdueReportActionServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>OverdueReport</servlet-name>
+		<url-pattern>/overDueListReportForm</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>batchWiseVoucherPrintingReport</servlet-name>
+		<servlet-class>com.vsoftcorp.kls.report.action.BatchWiseVoucherPrintReportActionServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>batchWiseVoucherPrintingReport</servlet-name>
+		<url-pattern>/batchWiseVoucherPrintingForm</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>landRegisterReport</servlet-name>
+		<servlet-class>com.vsoftcorp.kls.report.action.LandRegisterActionServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>landRegisterReport</servlet-name>
+		<url-pattern>/landRegisterReportForm</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>ShareAccountBalancingReport</servlet-name>
+		<servlet-class>com.vsoftcorp.kls.report.action.ShareAccountBalancingActionServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ShareAccountBalancingReport</servlet-name>
+		<url-pattern>/shareAccountBalancingReportForm</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>PurposeWiseDisbursmentReport</servlet-name>
+		<servlet-class>com.vsoftcorp.kls.report.action.PurposeWiseDisbursmentActionServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>PurposeWiseDisbursmentReport</servlet-name>
+		<url-pattern>/productWiseLoanDisbursementReportForm</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>DeceasedReport</servlet-name>
+		<servlet-class>com.vsoftcorp.kls.report.action.DeceasedReportActionServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DeceasedReport</servlet-name>
+		<url-pattern>/reportListOfDeceasedMembers</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>LoanApplicationStatus</servlet-name>
+		<servlet-class>com.vsoftcorp.kls.report.action.LoanApplicationStatusReportActionServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LoanApplicationStatus</servlet-name>
+		<url-pattern>/loanApplicationStatusReportForm</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>BorrowingLedgerReport</servlet-name>
+		<servlet-class>com.vsoftcorp.kls.report.action.BorrowingAccountLedgerActionServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BorrowingLedgerReport</servlet-name>
+		<url-pattern>/borrowingLedgerReportForm</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>MemberProfileReport</servlet-name>
+		<servlet-class>com.vsoftcorp.kls.report.action.MemberProfileActionServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MemberProfileReport</servlet-name>
+		<url-pattern>/listOfMembersReportForm</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>STMTLTDcbReport</servlet-name>
+		<servlet-class>com.vsoftcorp.kls.report.action.STMTLTDcbReportActionServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>STMTLTDcbReport</servlet-name>
+		<url-pattern>/MTLTdcbRegisterForm</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>InterestChargeReport</servlet-name>
+		<servlet-class>com.vsoftcorp.kls.report.action.InterestChargedActionServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>InterestChargeReport</servlet-name>
+		<url-pattern>/interestChargeForm</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>MasterReport</servlet-name>
+		<servlet-class>com.vsoftcorp.kls.report.action.MasterReportsActionServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MasterReport</servlet-name>
+		<url-pattern>/masterReportForm</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>ProductWiseCollectionReport</servlet-name>
+		<servlet-class>com.vsoftcorp.kls.report.action.ProductWiseCollectionReportActionServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ProductWiseCollectionReport</servlet-name>
+		<url-pattern>/productWiseCollectionForm</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>AccountsOpenedClosedReport</servlet-name>
+		<servlet-class>com.vsoftcorp.kls.report.action.AccountInfoActionServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AccountsOpenedClosedReport</servlet-name>
+		<url-pattern>/accountsInfoReportForm</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>BalanceListReport</servlet-name>
+		<servlet-class>com.vsoftcorp.kls.report.action.BalanceListReportActionServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BalanceListReport</servlet-name>
+		<url-pattern>/balanceListReportForm</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>GLDownloadServlet</servlet-name>
+		<servlet-class>com.vsoftcorp.kls.report.action.GLDownloadServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GLDownloadServlet</servlet-name>
+		<url-pattern>/gLDownloadServlet</url-pattern>
+	</servlet-mapping>
+ 	<servlet>
+		<servlet-name>InterestSubsidyReport</servlet-name>
+		<servlet-class>com.vsoftcorp.kls.report.action.InterestSubsidyReportActionServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>InterestSubsidyReport</servlet-name>
+		<url-pattern>/interestSubsidyReportForm</url-pattern>
+	</servlet-mapping>
+	<servlet>
+	<servlet-name>AssignSavingReport</servlet-name>
+	<servlet-class>com.vsoftcorp.kls.report.action.AccountAssignedSavingServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	<servlet-name>AssignSavingReport</servlet-name>
+    <url-pattern>/AssignSavingReportForm</url-pattern>
+	</servlet-mapping>
+    <servlet>
+		<servlet-name>ScheduleVsGLBalanceReport</servlet-name>
+		<servlet-class>com.vsoftcorp.kls.report.action.ScheduleVsGLBalanceActionServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ScheduleVsGLBalanceReport</servlet-name>
+		<url-pattern>/scheduleVsGlBalanceForm</url-pattern>
+	</servlet-mapping>
+	 <servlet>
+		<servlet-name>ScheduleReport</servlet-name>
+		<servlet-class>com.vsoftcorp.kls.report.action.ScheduleReportActionServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ScheduleReport</servlet-name>
+		<url-pattern>/scheduleReportForm</url-pattern>
+	</servlet-mapping>
+	<!-- daybook  -->
+	 <servlet>
+		<servlet-name>DaybookReport</servlet-name>
+		<servlet-class>com.vsoftcorp.kls.report.action.DaybookReportActionServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DaybookReport</servlet-name>
+		<url-pattern>/daybookReportForm</url-pattern>
+	</servlet-mapping>
+	
+	<!-- Loan Register Repsrt -->
+	 <servlet>
+		<servlet-name>LoanRegiseterReport</servlet-name>
+		<servlet-class>com.vsoftcorp.kls.report.action.LoanRegisterReportActionServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LoanRegiseterReport</servlet-name>
+		<url-pattern>/loanRegiseterReport</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>JindagiRegiseterReport</servlet-name>
+		<servlet-class>com.vsoftcorp.kls.report.action.JindagiReportActionServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>JindagiRegiseterReport</servlet-name>
+		<url-pattern>/jindagiRegiseterReport</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>LendingLedgerReport</servlet-name>
+		<servlet-class>com.vsoftcorp.kls.report.action.LendingAccountLedgerActionServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LendingLedgerReport</servlet-name>
+		<url-pattern>/lendingLedgerReportForm</url-pattern>
+	</servlet-mapping>
+	
+	<!-- Loan Register Summery Report -->
+	 <servlet>
+		<servlet-name>LoanRegiseterSummeryReport</servlet-name>
+		<servlet-class>com.vsoftcorp.kls.report.action.LoanRegisterSummeryReportActionServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LoanRegiseterSummeryReport</servlet-name>
+		<url-pattern>/LoanRegiseterSummeryReport</url-pattern>
+	</servlet-mapping>
+	
+	<!-- Member And Card Linking Report -->
+	 <servlet>
+		<servlet-name>MemberandCardLinkingReport</servlet-name>
+		<servlet-class>com.vsoftcorp.kls.report.action.MemberandCardLinkingActionServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MemberandCardLinkingReport</servlet-name>
+		<url-pattern>/MemberandCardLinkingReport</url-pattern>
+	</servlet-mapping>
+	
+	<!-- NPA Report -->
+	 <servlet>
+		<servlet-name>NPAReport</servlet-name>
+		<servlet-class>com.vsoftcorp.kls.report.action.NPAReportActionServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>NPAReport</servlet-name>
+		<url-pattern>/NPAReport</url-pattern>
+	</servlet-mapping>
+	
+	<!-- Borrowing NPA Report -->
+	 <servlet>
+		<servlet-name>BorrowingsNPAReport</servlet-name>
+		<servlet-class>com.vsoftcorp.kls.report.action.BorrowingsNPAReportActionServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BorrowingsNPAReport</servlet-name>
+		<url-pattern>/BorrowingsNPAReport</url-pattern>
+	</servlet-mapping>
+	
+	<!-- NPA Report -->
+	 <servlet>
+		<servlet-name>NPAReport2</servlet-name>
+		<servlet-class>com.vsoftcorp.kls.report.action.NPAReportActionServlet2</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>NPAReport2</servlet-name>
+		<url-pattern>/NPAReport2</url-pattern>
+	</servlet-mapping>
+</web-app>

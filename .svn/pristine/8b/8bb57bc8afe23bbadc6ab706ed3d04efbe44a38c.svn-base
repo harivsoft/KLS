@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.2.xsd http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet author="1.0.0.6" id="1">
+		<addForeignKeyConstraint baseColumnNames="account_id"
+			baseTableName="inconsistency_audit_trail" constraintName="fkAccount"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="account" />
+	</changeSet>
+	<changeSet author="1.0.0.6" id="2">
+		<addForeignKeyConstraint baseColumnNames="line_of_credit_id"
+			baseTableName="inconsistency_audit_trail" constraintName="fkLineOfCredit"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="line_of_credit" />
+	</changeSet>
+
+	<changeSet author="1.0.0.6" id="3">
+		<addForeignKeyConstraint baseColumnNames="product_id"
+			baseTableName="borrowings_account" constraintName="fkBankParamter"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="product" />
+	</changeSet>
+	<changeSet author="1.0.0.6" id="4">
+		<addForeignKeyConstraint baseColumnNames="branch_id"
+			baseTableName="borrowings_account" constraintName="fkBranch"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="branch" />
+	</changeSet>
+	<changeSet author="1.0.0.6" id="5">
+		<addForeignKeyConstraint baseColumnNames="pacs_id"
+			baseTableName="borrowings_account" constraintName="fkPacs"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="pacs" />
+	</changeSet>
+
+	<changeSet author="1.0.0.6" id="8">
+		<addForeignKeyConstraint baseColumnNames="branch_id"
+			baseTableName="bank_pacs_gl_map" constraintName="fkBranch"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="branch" />
+	</changeSet>
+	<changeSet author="1.0.0.6" id="9">
+		<addForeignKeyConstraint baseColumnNames="pacs_id"
+			baseTableName="bank_pacs_gl_map" constraintName="fkProduct"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="pacs" />
+	</changeSet>
+	<changeSet author="1.0.0.6" id="10">
+		<addForeignKeyConstraint baseColumnNames="crop_id"
+			baseTableName="season_parameter" constraintName="fkCrop"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="crop" />
+	</changeSet>
+	<changeSet author="1.0.0.6" id="11">
+		<addForeignKeyConstraint baseColumnNames="season_id"
+			baseTableName="season_parameter" constraintName="fkProduct"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="season" />
+	</changeSet>
+</databaseChangeLog>

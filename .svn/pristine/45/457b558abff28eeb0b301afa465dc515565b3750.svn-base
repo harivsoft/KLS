@@ -1,0 +1,40 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<parent>
+		<groupId>com.vsoftcorp.kls</groupId>
+		<artifactId>kls</artifactId>
+		<version>1.3.0.5-SNAPSHOT</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>kls-value-types</artifactId>
+	<packaging>jar</packaging>
+	<name>Kisan Value Types</name>
+
+<!-- Error Message thrown in jenkins in case if we dont add the plugin TODO: to find the actual root cause and eliminate
+
+Expecting a stackmap frame at branch target 11 Exception Details:   Location:     com/vsoftcorp/kls/valuetypes/AccountStatus.<init>(Ljava/lang/String;ILjava/lang/String;)V @4: ifnonnull   Reason:     Expected stackmap frame at this location.   Bytecode:     0000000: b200 6b59 c700 0757 b800 7507 323a 042a     0000010: 2b1c b700 0c2a 2db5 000b 1904 0304 54b1     0000020:                                         
+Stacktrace
+
+java.lang.VerifyError: Expecting a stackmap frame at branch target 11
+Exception Details:
+  Location:
+    com/vsoftcorp/kls/valuetypes/AccountStatus.<init>(Ljava/lang/String;ILjava/lang/String;)V @4: ifnonnull
+  Reason:
+    Expected stackmap frame at this location.
+  Bytecode:
+    0000000: b200 6b59 c700 0757 b800 7507 323a 042a
+    0000010: 2b1c b700 0c2a 2db5 000b 1904 0304 54b1
+    0000020:                                        
+ -->
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<forkMode>once</forkMode>
+					<argLine>-Xms512m -Xmx512m -XX:-UseSplitVerifier</argLine>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<dataset>
+	<season name="KHARIF_2014-2015" drawal_start="15/04/2014"
+		drawal_end="10/08/2014" overdue_date="26/10/2014" process_status="N"/>
+</dataset>

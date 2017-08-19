@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.2.xsd http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet author="1.0.0.8" id="1">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<foreignKeyConstraintExists
+					foreignKeyTableName="borrowing_product_gl_mapping" foreignKeyName="borrowing_product_gl_mapping_product_id_fkey" />
+			</not>
+		</preConditions>
+		<addForeignKeyConstraint baseColumnNames="product_id"
+			baseTableName="borrowing_product_gl_mapping" constraintName="borrowing_product_gl_mapping_product_id_fkey"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="product" />
+	</changeSet>
+	<changeSet author="1.0.0.8" id="2">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<foreignKeyConstraintExists
+					foreignKeyTableName="calendar" foreignKeyName="calendar_setup_id_fkey" />
+			</not>
+		</preConditions>
+		<addForeignKeyConstraint baseColumnNames="setup_id"
+			baseTableName="calendar" constraintName="calendar_setup_id_fkey"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="calendar_setup" />
+	</changeSet>
+	<changeSet author="1.0.0.8" id="3">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<foreignKeyConstraintExists
+					foreignKeyTableName="pacs_loan_app_document" foreignKeyName="pacs_loan_app_document__fkey_app_id" />
+			</not>
+		</preConditions>
+		<addForeignKeyConstraint baseColumnNames="application_id"
+			baseTableName="pacs_loan_app_document" constraintName="pacs_loan_app_document__fkey_app_id"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="pacs_loan_application" />
+	</changeSet>
+	<changeSet author="1.0.0.8" id="4">
+		<addPrimaryKey columnNames="id" constraintName="pacs_loan_app_document_pkey"
+			tableName="pacs_loan_app_document" />
+	</changeSet>
+	<changeSet author="1.0.0.8" id="5">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<foreignKeyConstraintExists
+					foreignKeyTableName="borrowing_product_gl_mapping"
+					foreignKeyName="borrowing_product_gl_mapping_borrowing_product_id_fkey" />
+			</not>
+		</preConditions>
+		<addForeignKeyConstraint baseColumnNames="product_id"
+			baseTableName="borrowing_product_gl_mapping"
+			constraintName="borrowing_product_gl_mapping_borrowing_product_id_fkey"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="borrowing_product" />
+	</changeSet>
+	<changeSet author="1.0.0.8" id="6">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<foreignKeyConstraintExists
+					foreignKeyTableName="season_parameter" foreignKeyName="season_parameter_pacs_id_fkey" />
+			</not>
+		</preConditions>
+		<addForeignKeyConstraint baseColumnNames="pacs_id"
+			baseTableName="season_parameter" constraintName="season_parameter_pacs_id_fkey"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="pacs" />
+	</changeSet>
+
+	<changeSet author="1605" id="7">
+		<createIndex indexName="loanaccountproperty_product_index"
+			tableName="loan_account_property">
+			<column name="product_id" type="INT4" />
+		</createIndex>
+	</changeSet>
+	<changeSet author="1605" id="8">
+		<createIndex indexName="loandisbursementschedule_disbursementdate_index"
+			tableName="loan_disbursement_schedule">
+			<column name="disbursement_date" type="date" />
+		</createIndex>
+	</changeSet>
+	<changeSet author="1605" id="9">
+		<createIndex indexName="loc_account_index" tableName="line_of_credit">
+			<column name="account_id" type="INT8" />
+		</createIndex>
+	</changeSet>
+	<changeSet author="1605" id="10">
+		<createIndex indexName="loc_customer_index" tableName="line_of_credit">
+			<column name="customer_id" type="INT8" />
+		</createIndex>
+	</changeSet>
+	<changeSet author="1605" id="11">
+		<createIndex indexName="loc_interestaccrued_index"
+			tableName="line_of_credit">
+			<column name="interest_accrued" type="numeric(22,6)" />
+		</createIndex>
+	</changeSet>
+	<changeSet author="1605" id="12">
+		<createIndex indexName="loc_product_index" tableName="line_of_credit">
+			<column name="product_id" type="INT4" />
+		</createIndex>
+	</changeSet>
+	<changeSet author="1605" id="13">
+		<createIndex indexName="loc_sanctioneddate_index"
+			tableName="line_of_credit">
+			<column name="sanctioned_date" type="date" />
+		</createIndex>
+	</changeSet>
+	<changeSet author="1605" id="14">
+		<createIndex indexName="loc_scheme_index" tableName="line_of_credit">
+			<column name="scheme_id" type="INT4" />
+		</createIndex>
+	</changeSet>
+	<changeSet author="1605" id="15">
+		<createIndex indexName="loc_season_index" tableName="line_of_credit">
+			<column name="season_id" type="INT4" />
+		</createIndex>
+	</changeSet>
+	<changeSet author="1605" id="16">
+		<createIndex indexName="currenttransaction_account_index"
+			tableName="current_transaction">
+			<column name="account_id" type="INT8" />
+		</createIndex>
+	</changeSet>
+	<changeSet author="1605" id="17">
+		<createIndex indexName="currenttransaction_loc_index"
+			tableName="current_transaction">
+			<column name="line_of_credit_id" type="INT8" />
+		</createIndex>
+	</changeSet>
+	<changeSet author="1605" id="18">
+		<createIndex indexName="accountproperty_customer_index"
+			tableName="account_property">
+			<column name="customer_id" type="INT8" />
+		</createIndex>
+	</changeSet>
+	<changeSet author="1605" id="19">
+		<createIndex indexName="accountproperty_savingsaccno_index"
+			tableName="account_property">
+			<column name="savings_account_number" type="varchar(20)" />
+		</createIndex>
+	</changeSet>
+	<changeSet author="1605" id="20">
+		<createIndex indexName="borrowingsaccount_product_index"
+			tableName="borrowings_account">
+			<column name="product_id" type="INT4" />
+		</createIndex>
+	</changeSet>
+	<changeSet author="1605" id="21">
+		<createIndex indexName="transactionhistory_account_index"
+			tableName="transaction_history">
+			<column name="account_id" type="INT8" />
+		</createIndex>
+	</changeSet>
+	<changeSet author="1605" id="22">
+		<createIndex indexName="transactionhistory_loc_index"
+			tableName="transaction_history">
+			<column name="line_of_credit_id" type="INT8" />
+		</createIndex>
+	</changeSet>
+	<changeSet author="1605" id="23">
+		<createIndex indexName="transactionhistory_pacs_index"
+			tableName="transaction_history">
+			<column name="pacs_id" type="INT4" />
+		</createIndex>
+	</changeSet>
+	<changeSet author="1605" id="24">
+		<createIndex indexName="pacsloanapplicationdetail_customer_index"
+			tableName="pacs_loan_application_dtl">
+			<column name="customer_id" type="INT8" />
+		</createIndex>
+	</changeSet>
+	<changeSet author="1605" id="25">
+		<createIndex indexName="pacsloanapplication_customer_index"
+			tableName="pacs_loan_application">
+			<column name="customer_id" type="INT8" />
+		</createIndex>
+	</changeSet>
+	<changeSet author="1605" id="26">
+		<createIndex indexName="loc_overdueinterest_index"
+			tableName="line_of_credit">
+			<column name="overdue_interest" type="numeric(22,6)" />
+		</createIndex>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="28">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<foreignKeyConstraintExists
+					foreignKeyTableName="loan_disbursement_entry" foreignKeyName="loan_disbursement_entry_line_of_credit_fkey" />
+			</not>
+		</preConditions>
+		<addForeignKeyConstraint baseColumnNames="line_of_credit_id"
+			baseTableName="loan_disbursement_entry" constraintName="loan_disbursement_entry_line_of_credit_fkey"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="line_of_credit" />
+	</changeSet>
+	<changeSet author="1.0.0.8" id="29">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<foreignKeyConstraintExists
+					foreignKeyTableName="loan_disbursement_entry" foreignKeyName="loan_disbursement_entry_pacs_id_fkey" />
+			</not>
+		</preConditions>
+		<addForeignKeyConstraint baseColumnNames="pacs_id"
+			baseTableName="loan_disbursement_entry" constraintName="loan_disbursement_entry_pacs_id_fkey"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="pacs" />
+	</changeSet>
+	
+		<changeSet author="1.0.0.8" id="30">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<foreignKeyConstraintExists
+					foreignKeyTableName="interest_subsidy" foreignKeyName="institute_master_fk" />
+			</not>
+		</preConditions>
+		<addForeignKeyConstraint baseColumnNames="institute_master_id"
+			baseTableName="interest_subsidy" constraintName="institute_master_fk"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="institute_master" />
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="31">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<foreignKeyConstraintExists
+					foreignKeyTableName="interest_subsidy" foreignKeyName="scheme_id_fk" />
+			</not>
+		</preConditions>
+		<addForeignKeyConstraint baseColumnNames="scheme_id"
+			baseTableName="interest_subsidy" constraintName="scheme_id_fk"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="scheme" />
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="32">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<foreignKeyConstraintExists
+					foreignKeyTableName="interest_subsidy" foreignKeyName="season_id_fk" />
+			</not>
+		</preConditions>
+		<addForeignKeyConstraint baseColumnNames="season_id"
+			baseTableName="interest_subsidy" constraintName="season_id_fk"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="season" />
+	</changeSet>
+
+    <changeSet author="1.0.0.8" id="33">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<foreignKeyConstraintExists
+					foreignKeyTableName="slabwise_subsidy_interestrate" foreignKeyName="interest_subsidy_id_fk" />
+			</not>
+		</preConditions>
+		<addForeignKeyConstraint baseColumnNames="interest_subsidy_id"
+			baseTableName="slabwise_subsidy_interestrate" constraintName="interest_subsidy_id_fk"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="interest_subsidy" />
+	</changeSet>
+	
+	 <changeSet author="1.0.0.8" id="34">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<foreignKeyConstraintExists
+					foreignKeyTableName="subsidy_scheme_gl_mapping" foreignKeyName="subsidyscheme_id_fk" />
+			</not>
+		</preConditions>
+		<addForeignKeyConstraint baseColumnNames="subsidy_scheme_id"
+			baseTableName="subsidy_scheme_gl_mapping" constraintName="subsidyscheme_id_fk"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="interest_subsidy" />
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="35">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<primaryKeyExists
+					tableName="subsidy_interest_amounts" primaryKeyName="subsidy_interest_amountspmr_key" />
+			</not>
+		</preConditions>
+	    <addPrimaryKey
+	            columnNames="loc_id,subsidy_scheme_id"
+	            constraintName="subsidy_interest_amountspmr_key"
+	            tableName="subsidy_interest_amounts"/>
+	</changeSet>
+	
+	 <changeSet author="1.0.0.8" id="36">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<foreignKeyConstraintExists
+					foreignKeyTableName="subsidy_interest_amounts" foreignKeyName="subsidy_interest_id_fk" />
+			</not>
+		</preConditions>
+		<addForeignKeyConstraint baseColumnNames="subsidy_scheme_id"
+			baseTableName="subsidy_interest_amounts" constraintName="subsidy_interest_id_fk"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="interest_subsidy" />
+	</changeSet>
+	
+	 <changeSet author="1.0.0.8" id="37">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<foreignKeyConstraintExists
+					foreignKeyTableName="subsidy_interest_amounts" foreignKeyName="subsidy_interest_loc_id_fk" />
+			</not>
+		</preConditions>
+		<addForeignKeyConstraint baseColumnNames="loc_id"
+			baseTableName="subsidy_interest_amounts" constraintName="subsidy_interest_loc_id_fk"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="line_of_credit" />
+	</changeSet>
+	
+	
+</databaseChangeLog>

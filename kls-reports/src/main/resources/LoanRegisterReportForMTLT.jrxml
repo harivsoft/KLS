@@ -1,0 +1,788 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="LoanRegisterReport" language="groovy" pageWidth="1713" pageHeight="792" columnWidth="1673" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="527"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="totalNumOfLoans" class="java.lang.Integer"/>
+	<parameter name="businessDate" class="java.lang.String"/>
+	<parameter name="userName" class="java.lang.String"/>
+	<parameter name="productName" class="java.lang.String"/>
+	<field name="productId" class="java.lang.String"/>
+	<field name="accountNumber" class="java.lang.String"/>
+	<field name="locNumber" class="java.lang.String"/>
+	<field name="memberNumber" class="java.lang.String"/>
+	<field name="customerName" class="java.lang.String"/>
+	<field name="fatherName" class="java.lang.String"/>
+	<field name="villageName" class="java.lang.String"/>
+	<field name="purpose" class="java.lang.String"/>
+	<field name="activity" class="java.lang.String"/>
+	<field name="sanctionDate" class="java.lang.String"/>
+	<field name="sanctionAmount" class="java.lang.String"/>
+	<field name="loanPeriod" class="java.lang.String"/>
+	<field name="installmentAmount" class="java.lang.String"/>
+	<field name="dateOfDisbursement" class="java.lang.String"/>
+	<field name="disbursementAmount" class="java.lang.String"/>
+	<group name="product">
+		<groupExpression><![CDATA[$F{productId}]]></groupExpression>
+		<groupHeader>
+			<band height="87">
+				<staticText>
+					<reportElement x="526" y="0" width="100" height="20"/>
+					<textElement>
+						<font fontName="Courier New" size="10" isBold="false" pdfFontName="Courier"/>
+					</textElement>
+					<text><![CDATA[Product Name :]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="806" y="44" width="81" height="30"/>
+					<box leftPadding="1">
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" isBold="false" pdfFontName="Courier"/>
+					</textElement>
+					<text><![CDATA[Purpose]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="906" y="44" width="78" height="30"/>
+					<box leftPadding="1">
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" isBold="false" pdfFontName="Courier"/>
+					</textElement>
+					<text><![CDATA[Activity]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1003" y="44" width="100" height="30"/>
+					<box leftPadding="1">
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" isBold="false" pdfFontName="Courier"/>
+					</textElement>
+					<text><![CDATA[Sanctioned Date]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1122" y="44" width="100" height="30"/>
+					<box leftPadding="1">
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" isBold="false" pdfFontName="Courier"/>
+					</textElement>
+					<text><![CDATA[Sanctioned Amount]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1241" y="44" width="60" height="30"/>
+					<box leftPadding="1">
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" isBold="false" pdfFontName="Courier"/>
+					</textElement>
+					<text><![CDATA[Loan Period (in months)]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1320" y="44" width="76" height="30"/>
+					<box leftPadding="1">
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" isBold="false" pdfFontName="Courier"/>
+					</textElement>
+					<text><![CDATA[Installment Amount]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1415" y="44" width="98" height="30"/>
+					<box leftPadding="1">
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" isBold="false" pdfFontName="Courier"/>
+					</textElement>
+					<text><![CDATA[Date of Disbursement]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1532" y="44" width="98" height="30"/>
+					<box leftPadding="1">
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" isBold="false" pdfFontName="Courier"/>
+					</textElement>
+					<text><![CDATA[Disbursed Amount]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1" y="31" width="1648" height="13"/>
+					<textElement>
+						<font fontName="Courier New" pdfFontName="Courier"/>
+					</textElement>
+					<text><![CDATA[-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------]]></text>
+				</staticText>
+				<staticText>
+					<reportElement stretchType="RelativeToTallestObject" x="192" y="44" width="19" height="30"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="10" isBold="false" isStrikeThrough="false" pdfFontName="Courier"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement stretchType="RelativeToTallestObject" x="73" y="44" width="19" height="30"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="10" isBold="false" isStrikeThrough="false" pdfFontName="Courier"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="449" y="44" width="100" height="30"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" isBold="false" pdfFontName="Courier"/>
+					</textElement>
+					<text><![CDATA[Member Name]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="92" y="44" width="100" height="30"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" isBold="false" pdfFontName="Courier"/>
+					</textElement>
+					<text><![CDATA[Account Number]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="687" y="44" width="100" height="30"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" isBold="false" pdfFontName="Courier"/>
+					</textElement>
+					<text><![CDATA[Village]]></text>
+				</staticText>
+				<staticText>
+					<reportElement stretchType="RelativeToTallestObject" x="311" y="44" width="19" height="30"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="10" isBold="false" isStrikeThrough="false" pdfFontName="Courier"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement stretchType="RelativeToTallestObject" x="549" y="44" width="19" height="30"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="10" isBold="false" isStrikeThrough="false" pdfFontName="Courier"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="20" y="44" width="53" height="30"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" isBold="false" pdfFontName="Courier"/>
+					</textElement>
+					<text><![CDATA[SNo.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement stretchType="RelativeToTallestObject" x="1" y="44" width="19" height="30"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="10" isBold="false" isStrikeThrough="false" pdfFontName="Courier"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="211" y="44" width="100" height="30"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" isBold="false" pdfFontName="Courier"/>
+					</textElement>
+					<text><![CDATA[LOC Number]]></text>
+				</staticText>
+				<staticText>
+					<reportElement stretchType="RelativeToTallestObject" x="787" y="44" width="19" height="30"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="10" isBold="false" isStrikeThrough="false" pdfFontName="Courier"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="568" y="44" width="100" height="30"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" isBold="false" pdfFontName="Courier"/>
+					</textElement>
+					<text><![CDATA[Father Name]]></text>
+				</staticText>
+				<staticText>
+					<reportElement stretchType="RelativeToTallestObject" x="668" y="44" width="19" height="30"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="10" isBold="false" isStrikeThrough="false" pdfFontName="Courier"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="330" y="44" width="100" height="30"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" isBold="false" pdfFontName="Courier"/>
+					</textElement>
+					<text><![CDATA[Member Number]]></text>
+				</staticText>
+				<staticText>
+					<reportElement stretchType="RelativeToTallestObject" x="430" y="44" width="19" height="30"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="10" isBold="false" isStrikeThrough="false" pdfFontName="Courier"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement stretchType="RelativeToTallestObject" x="887" y="44" width="19" height="30"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="10" isBold="false" isStrikeThrough="false" pdfFontName="Courier"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement stretchType="RelativeToTallestObject" x="984" y="44" width="19" height="30"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="10" isBold="false" isStrikeThrough="false" pdfFontName="Courier"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement stretchType="RelativeToTallestObject" x="1103" y="44" width="19" height="30"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="10" isBold="false" isStrikeThrough="false" pdfFontName="Courier"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement stretchType="RelativeToTallestObject" x="1222" y="44" width="19" height="30"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="10" isBold="false" isStrikeThrough="false" pdfFontName="Courier"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement stretchType="RelativeToTallestObject" x="1301" y="44" width="19" height="30"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="10" isBold="false" isStrikeThrough="false" pdfFontName="Courier"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement stretchType="RelativeToTallestObject" x="1396" y="44" width="19" height="30"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="10" isBold="false" isStrikeThrough="false" pdfFontName="Courier"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement stretchType="RelativeToTallestObject" x="1513" y="44" width="19" height="30"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="10" isBold="false" isStrikeThrough="false" pdfFontName="Courier"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1" y="74" width="1648" height="13"/>
+					<textElement>
+						<font fontName="Courier New" pdfFontName="Courier"/>
+					</textElement>
+					<text><![CDATA[------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="626" y="0" width="180" height="20"/>
+					<textElement>
+						<font fontName="Courier New" size="10" isBold="false" pdfFontName="Courier"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{productName}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement stretchType="RelativeToTallestObject" x="1630" y="44" width="19" height="30"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="10" isBold="false" isStrikeThrough="false" pdfFontName="Courier"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="89" splitType="Stretch">
+			<staticText>
+				<reportElement x="502" y="9" width="279" height="20"/>
+				<textElement>
+					<font fontName="Courier New" size="10" isBold="false" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[Loan Register Report]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="36" y="34" width="100" height="20"/>
+				<textElement>
+					<font fontName="Courier New" isBold="false" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[For MT/LT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="111" y="67" width="100" height="20"/>
+				<textElement>
+					<font fontName="Courier New" isBold="false" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[As On Date :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="899" y="67" width="147" height="20"/>
+				<textElement>
+					<font fontName="Courier New" isBold="false" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[Total Number Of Loans :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="211" y="67" width="100" height="20"/>
+				<textElement>
+					<font fontName="Courier New" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{businessDate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1046" y="67" width="100" height="20"/>
+				<textElement>
+					<font fontName="Courier New" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{totalNumOfLoans}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="806" y="0" width="81" height="29"/>
+				<box leftPadding="1">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{purpose}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="906" y="0" width="78" height="29"/>
+				<box leftPadding="1">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{activity}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1003" y="0" width="100" height="29"/>
+				<box leftPadding="1">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sanctionDate}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1122" y="0" width="100" height="29"/>
+				<box leftPadding="1">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="Courier New" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sanctionAmount}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="1241" y="0" width="60" height="29"/>
+				<box leftPadding="1">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{loanPeriod}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1320" y="0" width="76" height="29"/>
+				<box leftPadding="1">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="Courier New" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{installmentAmount}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1415" y="0" width="98" height="29"/>
+				<box leftPadding="1">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dateOfDisbursement}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1532" y="0" width="98" height="29"/>
+				<box leftPadding="1">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="Courier New" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{disbursementAmount}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="449" y="0" width="100" height="29"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{customerName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="1" y="0" width="19" height="29"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="10" isBold="false" isStrikeThrough="false" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="687" y="0" width="100" height="29"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{villageName}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="568" y="0" width="100" height="29"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fatherName}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="92" y="1" width="100" height="28"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{accountNumber}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="430" y="0" width="19" height="29"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="10" isBold="false" isStrikeThrough="false" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="192" y="0" width="19" height="29"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="10" isBold="false" isStrikeThrough="false" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="549" y="0" width="19" height="29"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="10" isBold="false" isStrikeThrough="false" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="73" y="0" width="19" height="29"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="10" isBold="false" isStrikeThrough="false" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="20" y="0" width="53" height="29"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="Courier New" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="330" y="0" width="100" height="29"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{memberNumber}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="787" y="0" width="19" height="29"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="10" isBold="false" isStrikeThrough="false" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="668" y="1" width="19" height="29"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="10" isBold="false" isStrikeThrough="false" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="211" y="0" width="100" height="29"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{locNumber}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="311" y="0" width="19" height="29"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="10" isBold="false" isStrikeThrough="false" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="887" y="0" width="19" height="29"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="10" isBold="false" isStrikeThrough="false" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="984" y="0" width="19" height="29"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="10" isBold="false" isStrikeThrough="false" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="1103" y="0" width="19" height="29"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="10" isBold="false" isStrikeThrough="false" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="1222" y="0" width="19" height="29"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="10" isBold="false" isStrikeThrough="false" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="1301" y="0" width="19" height="29"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="10" isBold="false" isStrikeThrough="false" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="1396" y="0" width="19" height="29"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="10" isBold="false" isStrikeThrough="false" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="1513" y="0" width="19" height="29"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="10" isBold="false" isStrikeThrough="false" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="1630" y="0" width="19" height="30"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="10" isBold="false" isStrikeThrough="false" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="94" splitType="Stretch">
+			<staticText>
+				<reportElement x="299" y="13" width="28" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" isBold="false" isItalic="true" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[by]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="121" y="13" width="178" height="20"/>
+				<textElement>
+					<font fontName="Courier New" isItalic="true" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{businessDate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="327" y="13" width="132" height="20"/>
+				<textElement>
+					<font fontName="Courier New" isItalic="true" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{userName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="13" width="120" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" isBold="false" isItalic="true" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[Report Generated on]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1234" y="71" width="171" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="10" isBold="false" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[Authorised Signature]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="0" width="1648" height="13"/>
+				<textElement>
+					<font fontName="Courier New" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

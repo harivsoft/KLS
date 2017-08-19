@@ -1,0 +1,3711 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DCBReport" language="groovy" pageWidth="3384" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="3344" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="bankName" class="java.lang.String"/>
+	<parameter name="bussinessDate" class="java.lang.String"/>
+	<parameter name="demandFrequency" class="java.lang.String"/>
+	<parameter name="dcbReportFor" class="java.lang.String"/>
+	<parameter name="fromDate" class="java.lang.String"/>
+	<parameter name="toDate" class="java.lang.String"/>
+	<parameter name="dcbFor" class="java.lang.String"/>
+	<parameter name="reportType" class="java.lang.String"/>
+	<parameter name="userName" class="java.lang.String"/>
+	<parameter name="businessDate" class="java.lang.String"/>
+	<field name="memberNumber" class="java.lang.String"/>
+	<field name="memberName" class="java.lang.String"/>
+	<field name="overduePrincipalCollection" class="java.math.BigDecimal"/>
+	<field name="overdueInterestCollection" class="java.math.BigDecimal"/>
+	<field name="currentInterestDemand" class="java.math.BigDecimal"/>
+	<field name="totalPrincipalDemand" class="java.math.BigDecimal"/>
+	<field name="totalInterestDemand" class="java.math.BigDecimal"/>
+	<field name="previousInterestOverdueDemand" class="java.math.BigDecimal"/>
+	<field name="currentDemandPrincipalCollection" class="java.math.BigDecimal"/>
+	<field name="currentDemandInterestCollection" class="java.math.BigDecimal"/>
+	<field name="totalPrincipalCollection" class="java.math.BigDecimal"/>
+	<field name="totalInterestCollection" class="java.math.BigDecimal"/>
+	<field name="principalOverdueFromCurrentDemand" class="java.math.BigDecimal"/>
+	<field name="interestOverdueFromCurrentDemand" class="java.math.BigDecimal"/>
+	<field name="totalPrincipalOverdue" class="java.math.BigDecimal"/>
+	<field name="totalInterestOverdue" class="java.math.BigDecimal"/>
+	<field name="advancePrincipalCollection" class="java.math.BigDecimal"/>
+	<field name="advanceInterestCollection" class="java.math.BigDecimal"/>
+	<field name="overduePrincipleAsOnFromDate" class="java.math.BigDecimal"/>
+	<field name="overdueInterestAsOnFromDate" class="java.math.BigDecimal"/>
+	<field name="previousPrincipalOverdueDemand" class="java.math.BigDecimal"/>
+	<field name="currentPrincipalDemand" class="java.math.BigDecimal"/>
+	<field name="branchName" class="java.lang.String"/>
+	<field name="pacName" class="java.lang.String"/>
+	<field name="schemeName" class="java.lang.String"/>
+	<field name="schemeCode" class="java.lang.String"/>
+	<field name="accountNumber" class="java.lang.String"/>
+	<field name="pacsId" class="java.lang.String"/>
+	<field name="branchId" class="java.lang.String"/>
+	<field name="principalBalanceOutstanding" class="java.math.BigDecimal"/>
+	<field name="interestBalanceOutstanding" class="java.math.BigDecimal"/>
+	<variable name="sumPrincipalOverdueAsOnBeginingDate" class="java.math.BigDecimal" resetType="Group" resetGroup="schemeGroup" incrementType="Group" incrementGroup="schemeGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{previousPrincipalOverdueDemand}]]></variableExpression>
+	</variable>
+	<variable name="principalOverdueFronCurrentDemand" class="java.math.BigDecimal"/>
+	<variable name="principalOverDueAsOnFromDate" class="java.math.BigDecimal"/>
+	<variable name="interestOverdueFronCurrentDemand" class="java.math.BigDecimal"/>
+	<variable name="interestOverDueAsOnFromDate" class="java.math.BigDecimal"/>
+	<variable name="sumInterestOverdueAsOnBeginingDate" class="java.math.BigDecimal" resetType="Group" resetGroup="schemeGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{previousInterestOverdueDemand}]]></variableExpression>
+	</variable>
+	<variable name="sumBPrincipalOverdueAsOnBeginingDate" class="java.math.BigDecimal" resetType="Group" resetGroup="BranchGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{previousPrincipalOverdueDemand}]]></variableExpression>
+	</variable>
+	<variable name="sumBInterestOverdueAsOnBeginingDate" class="java.math.BigDecimal" resetType="Group" resetGroup="BranchGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{previousInterestOverdueDemand}]]></variableExpression>
+	</variable>
+	<variable name="sumGPrincipalOverdueAsOnBeginingDate" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{previousPrincipalOverdueDemand}]]></variableExpression>
+	</variable>
+	<variable name="sumGInterestOverdueAsOnBeginingDate" class="java.math.BigDecimal" resetType="Group" resetGroup="BranchGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{previousInterestOverdueDemand}]]></variableExpression>
+	</variable>
+	<variable name="sumPrincipalCurrentDemand" class="java.math.BigDecimal" resetType="Group" resetGroup="schemeGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{currentPrincipalDemand}]]></variableExpression>
+	</variable>
+	<variable name="sumInterestCurrentDemand" class="java.math.BigDecimal" resetType="Group" resetGroup="schemeGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{currentInterestDemand}]]></variableExpression>
+	</variable>
+	<variable name="sumGPrincipalCurrentDemand" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{currentPrincipalDemand}]]></variableExpression>
+	</variable>
+	<variable name="sumGInterestCurrentDemand" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{currentInterestDemand}]]></variableExpression>
+	</variable>
+	<variable name="sumBPrincipalCurrentDemand" class="java.math.BigDecimal" resetType="Group" resetGroup="BranchGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{currentPrincipalDemand}]]></variableExpression>
+	</variable>
+	<variable name="sumBInterestCurrentDemand" class="java.math.BigDecimal" resetType="Group" resetGroup="BranchGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{currentInterestDemand}]]></variableExpression>
+	</variable>
+	<variable name="sumPrincipalTotalDemand" class="java.math.BigDecimal" resetType="Group" resetGroup="schemeGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{currentPrincipalDemand}+$F{previousPrincipalOverdueDemand}]]></variableExpression>
+	</variable>
+	<variable name="sumInterestTotalDemand" class="java.math.BigDecimal" resetType="Group" resetGroup="schemeGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{currentInterestDemand}+$F{previousInterestOverdueDemand}]]></variableExpression>
+	</variable>
+	<variable name="sumGPrincipalTotalDemand" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{currentPrincipalDemand}+$F{previousPrincipalOverdueDemand}]]></variableExpression>
+	</variable>
+	<variable name="sumGInterestTotalDemand" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{currentInterestDemand}+$F{previousInterestOverdueDemand}]]></variableExpression>
+	</variable>
+	<variable name="sumBPrincipalTotalDemand" class="java.math.BigDecimal" resetType="Group" resetGroup="BranchGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{currentPrincipalDemand}+$F{previousPrincipalOverdueDemand}]]></variableExpression>
+	</variable>
+	<variable name="sumBInterestTotalDemand" class="java.math.BigDecimal" resetType="Group" resetGroup="BranchGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{currentInterestDemand}+$F{previousInterestOverdueDemand}]]></variableExpression>
+	</variable>
+	<variable name="sumPrincipleOverDueCollection" class="java.math.BigDecimal" resetType="Group" resetGroup="schemeGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{overduePrincipalCollection}]]></variableExpression>
+	</variable>
+	<variable name="sumInterestOverDueCollection" class="java.math.BigDecimal" resetType="Group" resetGroup="schemeGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{overdueInterestCollection}]]></variableExpression>
+	</variable>
+	<variable name="sumGPrincipleOverDueCollection" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{overduePrincipalCollection}]]></variableExpression>
+	</variable>
+	<variable name="sumGInterestOverDueCollection" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{overdueInterestCollection}]]></variableExpression>
+	</variable>
+	<variable name="sumBPrincipleOverDueCollection" class="java.math.BigDecimal" resetType="Group" resetGroup="BranchGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{overduePrincipalCollection}]]></variableExpression>
+	</variable>
+	<variable name="sumBInterestOverDueCollection" class="java.math.BigDecimal" resetType="Group" resetGroup="BranchGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{overdueInterestCollection}]]></variableExpression>
+	</variable>
+	<variable name="sumPPrincipleOverDueCollection" class="java.math.BigDecimal" resetType="Group" resetGroup="PacGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{overduePrincipalCollection}]]></variableExpression>
+	</variable>
+	<variable name="sumPInterestOverDueCollection" class="java.math.BigDecimal" resetType="Group" resetGroup="PacGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{overdueInterestCollection}]]></variableExpression>
+	</variable>
+	<variable name="sumPrincipleColtnAgnstCrntDemd" class="java.math.BigDecimal" resetType="Group" resetGroup="schemeGroup" calculation="Sum">
+		<variableExpression><![CDATA[($F{totalPrincipalCollection}-$F{overduePrincipalCollection})<0.00?0.00:($F{totalPrincipalCollection}-$F{overduePrincipalCollection})]]></variableExpression>
+	</variable>
+	<variable name="sumBPrincipleColtnAgnstCrntDemd" class="java.math.BigDecimal" resetType="Group" resetGroup="BranchGroup" calculation="Sum">
+		<variableExpression><![CDATA[($F{totalPrincipalCollection}-$F{overduePrincipalCollection})<0.00?0.00:($F{totalPrincipalCollection}-$F{overduePrincipalCollection})]]></variableExpression>
+	</variable>
+	<variable name="sumPrincipalTotalCollection" class="java.math.BigDecimal" resetType="Group" resetGroup="schemeGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{totalPrincipalCollection}]]></variableExpression>
+	</variable>
+	<variable name="sumInterestTotalCollection" class="java.math.BigDecimal" resetType="Group" resetGroup="schemeGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{totalInterestCollection}]]></variableExpression>
+	</variable>
+	<variable name="sumGPrincipalTotalCollection" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{totalPrincipalCollection}]]></variableExpression>
+	</variable>
+	<variable name="sumGInterestTotalCollection" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{totalInterestCollection}]]></variableExpression>
+	</variable>
+	<variable name="sumBPrincipalTotalCollection" class="java.math.BigDecimal" resetType="Group" resetGroup="BranchGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{totalPrincipalCollection}]]></variableExpression>
+	</variable>
+	<variable name="sumBInterestTotalCollection" class="java.math.BigDecimal" resetType="Group" resetGroup="BranchGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{totalInterestCollection}]]></variableExpression>
+	</variable>
+	<variable name="sumPPrincipleColtnAgnstCrntDemd" class="java.math.BigDecimal" resetType="Group" resetGroup="PacGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{totalPrincipalCollection}-$F{overduePrincipalCollection}]]></variableExpression>
+	</variable>
+	<variable name="sumPPrincipalTotalCollection" class="java.math.BigDecimal" resetType="Group" resetGroup="PacGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{totalPrincipalCollection}]]></variableExpression>
+	</variable>
+	<variable name="sumPInterestTotalCollection" class="java.math.BigDecimal" resetType="Group" resetGroup="PacGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{totalInterestCollection}]]></variableExpression>
+	</variable>
+	<variable name="sumPrincipalAdvCollection" class="java.math.BigDecimal" resetType="Group" resetGroup="schemeGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{advancePrincipalCollection}]]></variableExpression>
+	</variable>
+	<variable name="sumInterestAdvCollection" class="java.math.BigDecimal" resetType="Group" resetGroup="schemeGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{advanceInterestCollection}]]></variableExpression>
+	</variable>
+	<variable name="sumGPrincipalAdvCollection" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{advancePrincipalCollection}]]></variableExpression>
+	</variable>
+	<variable name="sumGInterestAdvCollection" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{advanceInterestCollection}]]></variableExpression>
+	</variable>
+	<variable name="sumBPrincipalAdvCollection" class="java.math.BigDecimal" resetType="Group" resetGroup="BranchGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{advancePrincipalCollection}]]></variableExpression>
+	</variable>
+	<variable name="sumBInterestAdvCollection" class="java.math.BigDecimal" resetType="Group" resetGroup="BranchGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{advanceInterestCollection}]]></variableExpression>
+	</variable>
+	<variable name="sumPPrincipalAdvCollection" class="java.math.BigDecimal" resetType="Group" resetGroup="PacGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{advancePrincipalCollection}]]></variableExpression>
+	</variable>
+	<variable name="sumPInterestAdvCollection" class="java.math.BigDecimal" resetType="Group" resetGroup="PacGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{advanceInterestCollection}]]></variableExpression>
+	</variable>
+	<variable name="sumPrincipalBalance" class="java.math.BigDecimal" resetType="Group" resetGroup="schemeGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{principalBalanceOutstanding}]]></variableExpression>
+	</variable>
+	<variable name="sumInterestBalance" class="java.math.BigDecimal" resetType="Group" resetGroup="schemeGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{interestBalanceOutstanding}]]></variableExpression>
+	</variable>
+	<variable name="sumGPrincipalBalance" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{principalBalanceOutstanding}]]></variableExpression>
+	</variable>
+	<variable name="sumGInterestBalance" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{interestBalanceOutstanding}]]></variableExpression>
+	</variable>
+	<variable name="sumBPrincipalBalance" class="java.math.BigDecimal" resetType="Group" resetGroup="BranchGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{principalBalanceOutstanding}]]></variableExpression>
+	</variable>
+	<variable name="sumBInterestBalance" class="java.math.BigDecimal" resetType="Group" resetGroup="BranchGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{interestBalanceOutstanding}]]></variableExpression>
+	</variable>
+	<variable name="sumPPrincipalBalance" class="java.math.BigDecimal" resetType="Group" resetGroup="PacGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{principalBalanceOutstanding}]]></variableExpression>
+	</variable>
+	<variable name="sumPInterestBalance" class="java.math.BigDecimal" resetType="Group" resetGroup="PacGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{interestBalanceOutstanding}]]></variableExpression>
+	</variable>
+	<variable name="sumPrincipalOverDueAsOnFromDate" class="java.math.BigDecimal" resetType="Group" resetGroup="schemeGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{overduePrincipleAsOnFromDate}]]></variableExpression>
+	</variable>
+	<variable name="sumInterestOverDueAsOnFromDate" class="java.math.BigDecimal" resetType="Group" resetGroup="schemeGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{overdueInterestAsOnFromDate}]]></variableExpression>
+	</variable>
+	<variable name="sumGPrincipalOverDueAsOnFromDate" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{overduePrincipleAsOnFromDate}]]></variableExpression>
+	</variable>
+	<variable name="sumGInterestOverDueAsOnFromDate" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{overdueInterestAsOnFromDate}]]></variableExpression>
+	</variable>
+	<variable name="sumBPrincipalOverDueAsOnFromDate" class="java.math.BigDecimal" resetType="Group" resetGroup="BranchGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{overduePrincipleAsOnFromDate}]]></variableExpression>
+	</variable>
+	<variable name="sumBInterestOverDueAsOnFromDate" class="java.math.BigDecimal" resetType="Group" resetGroup="BranchGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{overdueInterestAsOnFromDate}]]></variableExpression>
+	</variable>
+	<variable name="sumPPrincipalOverDueAsOnFromDate" class="java.math.BigDecimal" resetType="Group" resetGroup="PacGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{overduePrincipleAsOnFromDate}]]></variableExpression>
+	</variable>
+	<variable name="sumPInterestOverDueAsOnFromDate" class="java.math.BigDecimal" resetType="Group" resetGroup="PacGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{overdueInterestAsOnFromDate}]]></variableExpression>
+	</variable>
+	<variable name="sumPrincipalOverDueFrmCurrentDmd" class="java.math.BigDecimal" resetType="Group" resetGroup="schemeGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{principalOverdueFromCurrentDemand}]]></variableExpression>
+	</variable>
+	<variable name="sumInterestOverDueFrmCurrentDmd" class="java.math.BigDecimal" resetType="Group" resetGroup="schemeGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{interestOverdueFromCurrentDemand}]]></variableExpression>
+	</variable>
+	<variable name="sumGPrincipalOverDueFrmCurrentDmd" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{principalOverdueFromCurrentDemand}]]></variableExpression>
+	</variable>
+	<variable name="sumGInterestOverDueFrmCurrentDmd" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{interestOverdueFromCurrentDemand}]]></variableExpression>
+	</variable>
+	<variable name="sumBPrincipalOverDueFrmCurrentDmd" class="java.math.BigDecimal" resetType="Group" resetGroup="BranchGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{principalOverdueFromCurrentDemand}]]></variableExpression>
+	</variable>
+	<variable name="sumBInterestOverDueFrmCurrentDmd" class="java.math.BigDecimal" resetType="Group" resetGroup="BranchGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{interestOverdueFromCurrentDemand}]]></variableExpression>
+	</variable>
+	<variable name="sumPPrincipalOverDueFrmCurrentDmd" class="java.math.BigDecimal" resetType="Group" resetGroup="PacGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{principalOverdueFromCurrentDemand}]]></variableExpression>
+	</variable>
+	<variable name="sumPInterestOverDueFrmCurrentDmd" class="java.math.BigDecimal" resetType="Group" resetGroup="PacGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{interestOverdueFromCurrentDemand}]]></variableExpression>
+	</variable>
+	<variable name="sumPrincipalTotOverDue" class="java.math.BigDecimal" resetType="Group" resetGroup="schemeGroup" calculation="Sum">
+		<variableExpression><![CDATA[($F{overduePrincipleAsOnFromDate}+$F{principalOverdueFromCurrentDemand})]]></variableExpression>
+	</variable>
+	<variable name="sumInterestTotOverDue" class="java.math.BigDecimal" resetType="Group" resetGroup="schemeGroup" calculation="Sum">
+		<variableExpression><![CDATA[($F{overdueInterestAsOnFromDate}+$F{interestOverdueFromCurrentDemand})]]></variableExpression>
+	</variable>
+	<variable name="sumGPrincipalTotOverDue" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[($F{overduePrincipleAsOnFromDate}+$F{principalOverdueFromCurrentDemand})]]></variableExpression>
+	</variable>
+	<variable name="sumGInterestTotOverDue" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[($F{overdueInterestAsOnFromDate}+$F{interestOverdueFromCurrentDemand})]]></variableExpression>
+	</variable>
+	<variable name="sumBPrincipalTotOverDue" class="java.math.BigDecimal" resetType="Group" resetGroup="BranchGroup" calculation="Sum">
+		<variableExpression><![CDATA[($F{overduePrincipleAsOnFromDate}+$F{principalOverdueFromCurrentDemand})]]></variableExpression>
+	</variable>
+	<variable name="sumBInterestTotOverDue" class="java.math.BigDecimal" resetType="Group" resetGroup="BranchGroup" calculation="Sum">
+		<variableExpression><![CDATA[($F{overdueInterestAsOnFromDate}+$F{interestOverdueFromCurrentDemand})]]></variableExpression>
+	</variable>
+	<variable name="sumPPrincipalTotOverDue" class="java.math.BigDecimal" resetType="Group" resetGroup="PacGroup" calculation="Sum">
+		<variableExpression><![CDATA[($F{overduePrincipleAsOnFromDate}+$F{principalOverdueFromCurrentDemand})]]></variableExpression>
+	</variable>
+	<variable name="sumPInterestTotOverDue" class="java.math.BigDecimal" resetType="Group" resetGroup="PacGroup" calculation="Sum">
+		<variableExpression><![CDATA[($F{overdueInterestAsOnFromDate}+$F{interestOverdueFromCurrentDemand})]]></variableExpression>
+	</variable>
+	<variable name="sumPInterestColtnAgnstCrntDemd" class="java.math.BigDecimal" resetType="Group" resetGroup="PacGroup" calculation="Sum">
+		<variableExpression><![CDATA[($F{totalInterestCollection}-$F{overdueInterestCollection})<0.00?0.00:($F{totalInterestCollection}-$F{overdueInterestCollection})]]></variableExpression>
+	</variable>
+	<variable name="sumGPrincipleColtnAgnstCrntDemd" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[($F{totalPrincipalCollection}-$F{overduePrincipalCollection})<0.00?0.00:($F{totalPrincipalCollection}-$F{overduePrincipalCollection})]]></variableExpression>
+	</variable>
+	<variable name="sumGInterestColtnAgnstCrntDemd" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[($F{totalInterestCollection}-$F{overdueInterestCollection})<0.00?0.00:($F{totalInterestCollection}-$F{overdueInterestCollection})]]></variableExpression>
+	</variable>
+	<variable name="sumBInterestColtnAgnstCrntDemd" class="java.math.BigDecimal" resetType="Group" resetGroup="BranchGroup" calculation="Sum">
+		<variableExpression><![CDATA[($F{totalInterestCollection}-$F{overdueInterestCollection})<0.00?0.00:($F{totalInterestCollection}-$F{overdueInterestCollection})]]></variableExpression>
+	</variable>
+	<variable name="sumInterestColtnAgnstCrntDemd" class="java.math.BigDecimal" resetType="Group" resetGroup="schemeGroup" calculation="Sum">
+		<variableExpression><![CDATA[($F{totalInterestCollection}-$F{overdueInterestCollection})<0.00?0.00:($F{totalInterestCollection}-$F{overdueInterestCollection})]]></variableExpression>
+	</variable>
+	<variable name="sumPPrincipalOverdueAsOnBeginingDate" class="java.math.BigDecimal" resetType="Group" resetGroup="PacGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{previousPrincipalOverdueDemand}]]></variableExpression>
+	</variable>
+	<variable name="sumPInterestOverdueAsOnBeginingDate" class="java.math.BigDecimal" resetType="Group" resetGroup="PacGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{previousInterestOverdueDemand}]]></variableExpression>
+	</variable>
+	<variable name="sumPPrincipalCurrentDemand" class="java.math.BigDecimal" resetType="Group" resetGroup="PacGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{currentPrincipalDemand}]]></variableExpression>
+	</variable>
+	<variable name="sumPInterestCurrentDemand" class="java.math.BigDecimal" resetType="Group" resetGroup="PacGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{currentInterestDemand}]]></variableExpression>
+	</variable>
+	<variable name="sumPPrincipalTotalDemand" class="java.math.BigDecimal" resetType="Group" resetGroup="PacGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{currentPrincipalDemand}+$F{previousPrincipalOverdueDemand}]]></variableExpression>
+	</variable>
+	<variable name="sumPInterestTotalDemand" class="java.math.BigDecimal" resetType="Group" resetGroup="PacGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{currentInterestDemand}+$F{previousInterestOverdueDemand}]]></variableExpression>
+	</variable>
+	<group name="BranchGroup">
+		<groupExpression><![CDATA[$F{branchId}]]></groupExpression>
+		<groupHeader>
+			<band height="19">
+				<staticText>
+					<reportElement x="377" y="0" width="167" height="19" printWhenGroupChanges="BranchGroup"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Branch                             ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="544" y="0" width="20" height="19" printWhenGroupChanges="BranchGroup"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[:]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement x="564" y="0" width="233" height="19" printWhenGroupChanges="BranchGroup"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{branchName}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="22">
+				<staticText>
+					<reportElement x="17" y="1" width="250" height="19"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement>
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total for Branch]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="283" y="1" width="83" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?$V{sumBPrincipalOverdueAsOnBeginingDate}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="489" y="0" width="78" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?$V{sumBPrincipalCurrentDemand}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="587" y="1" width="85" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?$V{sumBInterestCurrentDemand}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="691" y="1" width="63" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?$V{sumBPrincipalTotalDemand}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="770" y="0" width="70" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?$V{sumBInterestTotalDemand}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="863" y="1" width="75" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?$V{sumBPrincipleOverDueCollection}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="954" y="1" width="80" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?$V{sumBInterestOverDueCollection}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1053" y="1" width="85" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?$V{sumBPrincipleColtnAgnstCrntDemd}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1153" y="1" width="109" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?$V{sumBInterestColtnAgnstCrntDemd}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1280" y="0" width="73" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?$V{sumBPrincipalTotalCollection}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1371" y="0" width="92" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?$V{sumBInterestTotalCollection}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1482" y="1" width="75" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?$V{sumBPrincipalAdvCollection}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1573" y="0" width="80" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?$V{sumBInterestAdvCollection}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1672" y="0" width="77" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?$V{sumBPrincipalBalance}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1766" y="0" width="82" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?$V{sumBInterestBalance}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1867" y="0" width="70" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?$V{sumBPrincipalOverDueAsOnFromDate}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1958" y="0" width="89" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?$V{sumBInterestOverDueAsOnFromDate}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="2066" y="0" width="72" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?$V{sumBPrincipalOverDueFrmCurrentDmd}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="2157" y="0" width="89" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?$V{sumBInterestOverDueFrmCurrentDmd}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="2265" y="0" width="71" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?$V{sumBPrincipalTotOverDue}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="2356" y="0" width="65" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?$V{sumBInterestTotOverDue}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="385" y="0" width="85" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?$V{sumBInterestOverdueAsOnBeginingDate}:""]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="2421" y="0" width="19" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="2246" y="0" width="19" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="2047" y="0" width="19" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1848" y="0" width="19" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1653" y="0" width="19" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1463" y="1" width="19" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1262" y="1" width="18" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="844" y="1" width="19" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="672" y="1" width="19" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="470" y="0" width="19" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="267" y="1" width="16" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="0" width="17" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="366" y="0" width="19" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="567" y="1" width="20" height="19"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="754" y="0" width="16" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="938" y="1" width="15" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1034" y="1" width="19" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1138" y="0" width="16" height="21"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1353" y="0" width="18" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1557" y="1" width="16" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1749" y="1" width="17" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1937" y="1" width="21" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="2138" y="1" width="19" height="19"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="2336" y="0" width="20" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="PacGroup">
+		<groupExpression><![CDATA[$F{pacsId}]]></groupExpression>
+		<groupHeader>
+			<band height="22">
+				<staticText>
+					<reportElement x="377" y="0" width="167" height="22" printWhenGroupChanges="PacGroup"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Pacs                                  ]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement x="564" y="0" width="233" height="22" printWhenGroupChanges="PacGroup"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{pacName}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="544" y="0" width="20" height="22" printWhenGroupChanges="PacGroup"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[:]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="35">
+				<staticText>
+					<reportElement x="17" y="0" width="250" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement>
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total for Pacs]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="283" y="0" width="83" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?$V{sumPPrincipalOverdueAsOnBeginingDate}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="385" y="0" width="85" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?$V{sumPInterestOverdueAsOnBeginingDate}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="489" y="0" width="78" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?$V{sumPPrincipalCurrentDemand}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="587" y="0" width="85" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?$V{sumPInterestCurrentDemand}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="691" y="0" width="63" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?$V{sumPPrincipalTotalDemand}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="770" y="0" width="70" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?$V{sumPInterestTotalDemand}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="863" y="0" width="75" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?$V{sumPPrincipleOverDueCollection}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="953" y="0" width="81" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?$V{sumPInterestOverDueCollection}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1053" y="0" width="85" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?$V{sumPrincipleColtnAgnstCrntDemd}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1153" y="0" width="108" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?$V{sumPInterestColtnAgnstCrntDemd}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1280" y="0" width="73" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?$V{sumPPrincipalTotalCollection}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1371" y="0" width="92" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?$V{sumPInterestTotalCollection}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1482" y="0" width="75" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?$V{sumPPrincipalAdvCollection}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1573" y="0" width="80" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?$V{sumPInterestAdvCollection}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1672" y="0" width="77" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?$V{sumPPrincipalBalance}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1766" y="0" width="82" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?$V{sumPInterestBalance}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1867" y="0" width="70" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?$V{sumPPrincipalOverDueAsOnFromDate}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1958" y="0" width="89" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?$V{sumPInterestOverDueAsOnFromDate}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="2157" y="0" width="89" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?$V{sumPInterestOverDueFrmCurrentDmd}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="2265" y="0" width="71" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?$V{sumPPrincipalTotOverDue}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="2356" y="0" width="65" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?$V{sumPInterestTotOverDue}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="2066" y="0" width="72" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?$V{sumPPrincipalOverDueFrmCurrentDmd}:""]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="267" y="0" width="16" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="0" width="17" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="470" y="0" width="19" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="672" y="0" width="19" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="844" y="0" width="19" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1261" y="0" width="19" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1463" y="0" width="19" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1653" y="0" width="19" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1848" y="0" width="19" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="2047" y="0" width="19" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="2246" y="0" width="19" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="2421" y="0" width="19" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="366" y="0" width="19" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="567" y="0" width="20" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="754" y="0" width="16" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="938" y="0" width="15" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1034" y="0" width="19" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1138" y="1" width="16" height="19"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1353" y="0" width="18" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1557" y="0" width="16" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1749" y="0" width="17" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1937" y="0" width="21" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="2138" y="1" width="19" height="19"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="2336" y="0" width="20" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="20" width="2440" height="13"/>
+					<textElement>
+						<font fontName="Courier New" size="8"/>
+					</textElement>
+					<text><![CDATA[---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="schemeGroup">
+		<groupExpression><![CDATA[$F{schemeName}]]></groupExpression>
+		<groupHeader>
+			<band height="38">
+				<staticText>
+					<reportElement x="377" y="0" width="167" height="23" printWhenGroupChanges="schemeGroup"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Nabard Scheme             ]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement x="564" y="0" width="233" height="23" printWhenGroupChanges="schemeGroup"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{schemeName}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="544" y="0" width="20" height="23" printWhenGroupChanges="schemeGroup"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="23" width="2440" height="15"/>
+					<textElement>
+						<font fontName="Courier New" size="8"/>
+					</textElement>
+					<text><![CDATA[---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="36">
+				<staticText>
+					<reportElement x="17" y="0" width="250" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement>
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total for Scheme]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="385" y="0" width="85" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?$V{sumInterestOverdueAsOnBeginingDate}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="489" y="0" width="78" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?$V{sumPrincipalCurrentDemand}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="587" y="0" width="85" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?$V{sumInterestCurrentDemand}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="691" y="0" width="63" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?$V{sumPrincipalTotalDemand}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="770" y="0" width="70" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?$V{sumInterestTotalDemand}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="283" y="0" width="83" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?$V{sumPrincipalOverdueAsOnBeginingDate}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="863" y="0" width="75" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?$V{sumPrincipleOverDueCollection}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="953" y="0" width="81" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?$V{sumInterestOverDueCollection}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1053" y="0" width="85" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?$V{sumPrincipleColtnAgnstCrntDemd}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1279" y="0" width="74" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?$V{sumPrincipalTotalCollection}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1371" y="0" width="91" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?$V{sumInterestTotalCollection}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1481" y="0" width="76" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?$V{sumPrincipalAdvCollection}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1573" y="0" width="79" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?$V{sumInterestAdvCollection}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1671" y="0" width="78" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?$V{sumPrincipalBalance}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1766" y="0" width="81" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?$V{sumInterestBalance}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1866" y="0" width="71" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?$V{sumPrincipalOverDueAsOnFromDate}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1958" y="0" width="88" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?$V{sumInterestOverDueFrmCurrentDmd}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="2066" y="0" width="72" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?$V{sumPrincipalOverDueFrmCurrentDmd}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="2265" y="0" width="71" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?$V{sumPrincipalTotOverDue}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="2356" y="0" width="65" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?$V{sumInterestTotOverDue}:""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1153" y="0" width="107" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?$V{sumInterestColtnAgnstCrntDemd}:""]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="0" width="17" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="267" y="0" width="16" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="470" y="0" width="19" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="672" y="0" width="19" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="844" y="0" width="19" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1260" y="0" width="19" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1462" y="0" width="19" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1652" y="0" width="19" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1847" y="0" width="19" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="2046" y="0" width="20" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="2246" y="0" width="19" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="2157" y="0" width="89" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?$V{sumInterestOverDueFrmCurrentDmd}:""]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="366" y="0" width="19" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="567" y="0" width="20" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="754" y="0" width="16" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="938" y="0" width="15" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1034" y="0" width="19" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1138" y="0" width="16" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1353" y="0" width="18" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1557" y="0" width="16" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1749" y="0" width="17" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1937" y="0" width="21" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="2138" y="0" width="19" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="2336" y="1" width="20" height="19"/>
+					<textElement textAlignment="Center">
+						<font fontName="Courier New" size="14"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="20" width="2440" height="15"/>
+					<textElement>
+						<font fontName="Courier New" size="8"/>
+					</textElement>
+					<text><![CDATA[---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="178">
+			<staticText>
+				<reportElement x="531" y="0" width="382" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="14" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[ST Demand Collection Balance Register]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="716" y="20" width="37" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="471" y="20" width="245" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bank ]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="753" y="20" width="258" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{bankName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="471" y="40" width="245" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Demand Collection Balance Register From]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="716" y="40" width="37" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="471" y="60" width="245" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Frequency]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="716" y="60" width="37" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="753" y="60" width="258" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{demandFrequency}.equals("0")?"Monthly":$P{demandFrequency}.equals("1")?"Quarterly":$P{demandFrequency}.equals("2")?"Semi Annually":"Annually"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="891" y="40" width="120" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{fromDate}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1146" y="40" width="100" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{toDate}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1011" y="40" width="97" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[To date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="17" y="121" width="38" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[S.NO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="489" y="121" width="188" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Current Demand From  To Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="696" y="121" width="148" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Demand ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="863" y="121" width="170" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Collection Against Overdue ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1279" y="121" width="183" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Collection ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="73" y="121" width="100" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{reportType}.equals("0")?"Member Number" : "Scheme Code"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="191" y="121" width="76" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{reportType}.equals("0")? "Member Name" : "Scheme Name"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="283" y="121" width="187" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Overdue as on Beginning date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="17" y="141" width="250" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1052" y="121" width="208" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Collection Against Current Demand]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1481" y="121" width="174" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Advance Collection ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1674" y="121" width="174" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Balance]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1867" y="121" width="180" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Overdue as on from Date ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2066" y="121" width="180" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Overdue from Current Demand]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2265" y="121" width="156" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Overdue ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1108" y="40" width="37" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToBandHeight" x="283" y="141" width="83" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?"Principle":""]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="385" y="141" width="85" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?"Interest":""]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToBandHeight" x="489" y="141" width="78" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?"Principle":""]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="587" y="141" width="90" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?"Interest":""]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToBandHeight" x="696" y="141" width="58" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?"Principle":""]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToBandHeight" x="863" y="141" width="66" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?"Principle":""]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToBandHeight" x="1052" y="141" width="90" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?"Principle":""]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToBandHeight" x="1279" y="141" width="74" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?"Principle":""]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToBandHeight" x="1481" y="141" width="76" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?"Principle":""]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToBandHeight" x="1674" y="141" width="75" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?"Principle":""]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToBandHeight" x="1867" y="141" width="70" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?"Principle":""]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToBandHeight" x="2066" y="141" width="72" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?"Principle":""]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToBandHeight" x="2265" y="141" width="71" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?"Principle":""]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="775" y="141" width="69" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?"Interest":""]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="944" y="141" width="89" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?"Interest":""]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="1156" y="141" width="104" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?"Interest":""]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="1371" y="141" width="91" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?"Interest":""]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="1573" y="141" width="82" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?"Interest":""]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="1766" y="141" width="82" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?"Interest":""]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="1958" y="141" width="89" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?"Interest":""]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="2356" y="141" width="65" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?"Interest":""]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="2157" y="141" width="89" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?"Interest":""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="753" y="40" width="101" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[From Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="854" y="40" width="37" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="106" width="2440" height="15"/>
+				<textElement>
+					<font fontName="Courier New" size="8"/>
+				</textElement>
+				<text><![CDATA[----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="121" width="17" height="40"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="267" y="121" width="16" height="40"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="470" y="121" width="19" height="40"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="677" y="121" width="19" height="40"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="844" y="121" width="19" height="40"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1033" y="121" width="19" height="40"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1260" y="121" width="19" height="40"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1462" y="121" width="19" height="40"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1655" y="121" width="19" height="40"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1848" y="121" width="19" height="40"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2047" y="121" width="19" height="40"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2246" y="121" width="19" height="40"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2421" y="121" width="19" height="40"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="161" width="2440" height="15"/>
+				<textElement>
+					<font fontName="Courier New" size="8"/>
+				</textElement>
+				<text><![CDATA[---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1353" y="141" width="18" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="55" y="121" width="18" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="173" y="121" width="18" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="366" y="141" width="19" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="567" y="141" width="20" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="754" y="141" width="21" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="929" y="141" width="15" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1142" y="141" width="14" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1557" y="141" width="16" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1749" y="141" width="17" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1937" y="141" width="21" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2138" y="141" width="19" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2336" y="141" width="20" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="34" splitType="Stretch">
+			<textField>
+				<reportElement x="17" y="0" width="38" height="22"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{schemeGroup_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="73" y="0" width="100" height="22"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{reportType}.equals("0")?$F{memberNumber}:$F{schemeCode}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="191" y="0" width="76" height="22"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{reportType}.equals("0")?$F{memberName}:$F{schemeName}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="587" y="0" width="85" height="22"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?$F{currentInterestDemand}:""]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="385" y="0" width="85" height="22"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?$F{previousInterestOverdueDemand}:""]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="863" y="0" width="75" height="22"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?$F{overduePrincipalCollection}:""]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="953" y="0" width="83" height="22"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?$F{overdueInterestCollection}:""]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1055" y="0" width="85" height="22"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?($F{totalPrincipalCollection}-$F{overduePrincipalCollection})<0.00?0.00:($F{totalPrincipalCollection}-$F{overduePrincipalCollection}):""]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1156" y="0" width="104" height="22"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?(($F{totalInterestCollection}-$F{overdueInterestCollection})<0.00?0.00:($F{totalInterestCollection}-$F{overdueInterestCollection})):""]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1279" y="0" width="74" height="22"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?$F{totalPrincipalCollection}:""]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1371" y="0" width="91" height="22"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?$F{totalInterestCollection}:""]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1481" y="0" width="76" height="22"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?$F{advancePrincipalCollection}:""]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1573" y="0" width="79" height="22"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2"))?$F{advanceInterestCollection}:""]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="283" y="0" width="83" height="22"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?$F{previousPrincipalOverdueDemand}:""]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="489" y="0" width="78" height="22"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?$F{currentPrincipalDemand}:""]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="691" y="0" width="62" height="22"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?($F{currentPrincipalDemand}+$F{previousPrincipalOverdueDemand}):""]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="770" y="0" width="70" height="22"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?($F{currentInterestDemand}+$F{previousInterestOverdueDemand}):""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1958" y="0" width="88" height="22"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?$F{overdueInterestAsOnFromDate}:""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2265" y="0" width="71" height="22"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?($F{overduePrincipleAsOnFromDate}+$F{principalOverdueFromCurrentDemand}):""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2157" y="0" width="88" height="22"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?$F{interestOverdueFromCurrentDemand}:""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2065" y="0" width="73" height="22"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?$F{principalOverdueFromCurrentDemand}:""]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1671" y="0" width="78" height="22"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?$F{principalBalanceOutstanding}:""]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1766" y="0" width="81" height="22"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2"))?$F{interestBalanceOutstanding}:""]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="2356" y="0" width="65" height="22"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?($F{overdueInterestAsOnFromDate}+$F{interestOverdueFromCurrentDemand}):""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2421" y="0" width="19" height="22"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="17" height="22"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="267" y="0" width="16" height="22"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="470" y="0" width="19" height="22"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="672" y="0" width="19" height="22"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="844" y="0" width="19" height="22"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1260" y="0" width="19" height="22"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1462" y="0" width="19" height="22"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1652" y="0" width="19" height="22"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1847" y="0" width="19" height="22"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2046" y="0" width="19" height="22"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2245" y="0" width="20" height="22"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="55" y="0" width="18" height="22"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="173" y="0" width="18" height="22"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="366" y="0" width="19" height="22"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="567" y="0" width="20" height="22"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="753" y="0" width="17" height="22"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="938" y="0" width="15" height="22"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1036" y="0" width="19" height="22"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1140" y="0" width="16" height="22"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1353" y="0" width="18" height="22"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1557" y="0" width="16" height="22"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1749" y="0" width="17" height="22"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1937" y="0" width="21" height="22"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2138" y="0" width="19" height="22"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2336" y="0" width="20" height="22"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="22" width="2440" height="12"/>
+				<textElement>
+					<font fontName="Courier New" size="8"/>
+				</textElement>
+				<text><![CDATA[---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="1866" y="0" width="71" height="22"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?$F{overduePrincipleAsOnFromDate}:""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2421" y="0" width="19" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<summary>
+		<band height="141">
+			<textField>
+				<reportElement x="283" y="15" width="83" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?$V{sumGPrincipalOverdueAsOnBeginingDate}:""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="385" y="15" width="85" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?$V{sumGInterestOverdueAsOnBeginingDate}:""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="17" y="15" width="250" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Grand Total]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="489" y="15" width="78" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?$V{sumGPrincipalCurrentDemand}:""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="587" y="15" width="85" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?$V{sumGInterestCurrentDemand}:""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="693" y="15" width="61" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?$V{sumGPrincipalTotalDemand}:""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="770" y="15" width="70" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?$V{sumGInterestTotalDemand}:""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="863" y="15" width="75" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?$V{sumGPrincipleOverDueCollection}:""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="953" y="15" width="80" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?$V{sumGInterestOverDueCollection}:""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1053" y="15" width="85" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?$V{sumGPrincipleColtnAgnstCrntDemd}:""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1153" y="15" width="109" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?$V{sumGInterestColtnAgnstCrntDemd}:""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1280" y="15" width="73" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?$V{sumGPrincipalTotalCollection}:""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1371" y="15" width="91" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?$V{sumGInterestTotalCollection}:""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1481" y="15" width="76" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?$V{sumGPrincipalAdvCollection}:""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1573" y="15" width="81" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?$V{sumGInterestAdvCollection}:""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1673" y="15" width="76" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?$V{sumGPrincipalBalance}:""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1766" y="15" width="81" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?$V{sumGInterestBalance}:""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1867" y="15" width="70" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?$V{sumGPrincipalOverDueAsOnFromDate}:""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1958" y="15" width="89" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?$V{sumGInterestOverDueAsOnFromDate}:""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2066" y="15" width="72" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?$V{sumGPrincipalOverDueFrmCurrentDmd}:""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2157" y="15" width="89" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?$V{sumGInterestOverDueFrmCurrentDmd}:""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2265" y="15" width="71" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("0") || $P{dcbFor}.equals("2"))?$V{sumGPrincipalTotOverDue}:""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2356" y="15" width="65" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{dcbFor}.equals("1") || $P{dcbFor}.equals("2")) ?$V{sumGInterestTotOverDue}:""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="50" width="187" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Report generated  on]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="359" y="50" width="146" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{userName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="187" y="50" width="150" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{businessDate}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="854" y="121" width="235" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Authorized signature]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="337" y="50" width="22" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[by]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="2440" height="15"/>
+				<textElement>
+					<font fontName="Courier New" size="8"/>
+				</textElement>
+				<text><![CDATA[---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="15" width="17" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="267" y="15" width="16" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="366" y="15" width="19" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="470" y="15" width="19" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="567" y="15" width="20" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="672" y="15" width="21" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="754" y="15" width="16" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="844" y="15" width="19" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="938" y="15" width="15" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1034" y="15" width="19" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1138" y="15" width="16" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1262" y="15" width="18" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1353" y="15" width="18" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1462" y="15" width="19" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1557" y="15" width="16" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1654" y="15" width="19" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1749" y="15" width="17" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1847" y="15" width="20" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1937" y="15" width="21" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2047" y="15" width="19" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2138" y="15" width="19" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2246" y="15" width="19" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2336" y="15" width="20" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2421" y="15" width="19" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="35" width="2440" height="15"/>
+				<textElement>
+					<font fontName="Courier New" size="8"/>
+				</textElement>
+				<text><![CDATA[---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,1721 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="overDueListReport" language="groovy" pageWidth="1306" pageHeight="792" columnWidth="1266" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="396"/>
+	<property name="ireport.y" value="77"/>
+	<parameter name="pacName" class="java.lang.String"/>
+	<parameter name="productName" class="java.lang.String"/>
+	<parameter name="memberNo" class="java.lang.String"/>
+	<parameter name="memberName" class="java.lang.String"/>
+	<parameter name="villageName" class="java.lang.String"/>
+	<parameter name="schemeName" class="java.lang.String"/>
+	<parameter name="loanType" class="java.lang.String"/>
+	<parameter name="asOnDate" class="java.lang.String"/>
+	<parameter name="bankName" class="java.lang.String"/>
+	<parameter name="businessDate" class="java.lang.String"/>
+	<parameter name="userName" class="java.lang.String"/>
+	<field name="phoneNumber" class="java.lang.String"/>
+	<field name="accountNumber" class="java.lang.String"/>
+	<field name="sanctionLimit" class="java.lang.String"/>
+	<field name="disbursedAmount" class="java.lang.String"/>
+	<field name="principalBalanceOutstanding" class="java.math.BigDecimal"/>
+	<field name="interestBalanceOutstanding" class="java.math.BigDecimal"/>
+	<field name="totalBalanceOutStanding" class="java.math.BigDecimal"/>
+	<field name="principalOverdueAmount" class="java.math.BigDecimal"/>
+	<field name="interestOverdueAmount" class="java.math.BigDecimal"/>
+	<field name="totalOverdueAmount" class="java.math.BigDecimal"/>
+	<field name="noOfInstallementsDue" class="java.lang.Integer"/>
+	<field name="pacsId" class="java.lang.Integer"/>
+	<field name="villageId" class="java.lang.Integer"/>
+	<field name="schemeId" class="java.lang.Integer"/>
+	<field name="productId" class="java.lang.Integer"/>
+	<field name="memberNo" class="java.lang.String"/>
+	<field name="productName" class="java.lang.String"/>
+	<field name="schemeName" class="java.lang.String"/>
+	<field name="villageName" class="java.lang.String"/>
+	<field name="pacsName" class="java.lang.String"/>
+	<field name="memberName" class="java.lang.String"/>
+	<field name="loanType" class="java.lang.String"/>
+	<field name="loanTypeId" class="java.lang.Integer"/>
+	<variable name="sumMPrincipalBalOutstanding" class="java.math.BigDecimal" resetType="Group" resetGroup="member" calculation="Sum">
+		<variableExpression><![CDATA[$F{principalBalanceOutstanding}]]></variableExpression>
+	</variable>
+	<variable name="sumMInterestBalOutstanding" class="java.math.BigDecimal" resetType="Group" resetGroup="member" calculation="Sum">
+		<variableExpression><![CDATA[$F{interestBalanceOutstanding}]]></variableExpression>
+	</variable>
+	<variable name="sumMTotalBalOutstanding" class="java.math.BigDecimal" resetType="Group" resetGroup="member" calculation="Sum">
+		<variableExpression><![CDATA[$F{principalBalanceOutstanding}.add($F{interestBalanceOutstanding})]]></variableExpression>
+	</variable>
+	<variable name="sumMPrincipalOverdueAmount" class="java.math.BigDecimal" resetType="Group" resetGroup="member" calculation="Sum">
+		<variableExpression><![CDATA[$F{principalOverdueAmount}]]></variableExpression>
+	</variable>
+	<variable name="sumMInterestOverdueAmount" class="java.math.BigDecimal" resetType="Group" resetGroup="member" calculation="Sum">
+		<variableExpression><![CDATA[$F{interestOverdueAmount}]]></variableExpression>
+	</variable>
+	<variable name="sumMTotalOverdueAmount" class="java.math.BigDecimal" resetType="Group" resetGroup="member" calculation="Sum">
+		<variableExpression><![CDATA[$F{principalOverdueAmount}.add($F{interestOverdueAmount})]]></variableExpression>
+	</variable>
+	<variable name="totMNoOfInstallementsDue" class="java.lang.Integer" resetType="Group" resetGroup="member" calculation="Sum">
+		<variableExpression><![CDATA[$F{noOfInstallementsDue}]]></variableExpression>
+	</variable>
+	<variable name="sumPPrincipalBalOutstanding" class="java.math.BigDecimal" resetType="Group" resetGroup="product" calculation="Sum">
+		<variableExpression><![CDATA[$F{principalBalanceOutstanding}]]></variableExpression>
+	</variable>
+	<variable name="sumPInterestBalOutstanding" class="java.math.BigDecimal" resetType="Group" resetGroup="product" calculation="Sum">
+		<variableExpression><![CDATA[$F{interestBalanceOutstanding}]]></variableExpression>
+	</variable>
+	<variable name="sumPTotalBalOutstanding" class="java.math.BigDecimal" resetType="Group" resetGroup="product" calculation="Sum">
+		<variableExpression><![CDATA[$F{principalBalanceOutstanding}.add($F{interestBalanceOutstanding})]]></variableExpression>
+	</variable>
+	<variable name="sumPPrincipalOverdueAmount" class="java.math.BigDecimal" resetType="Group" resetGroup="product" calculation="Sum">
+		<variableExpression><![CDATA[$F{principalOverdueAmount}]]></variableExpression>
+	</variable>
+	<variable name="sumPInterestOverdueAmount" class="java.math.BigDecimal" resetType="Group" resetGroup="product" calculation="Sum">
+		<variableExpression><![CDATA[$F{interestOverdueAmount}]]></variableExpression>
+	</variable>
+	<variable name="sumPTotalOverdueAmount" class="java.math.BigDecimal" resetType="Group" resetGroup="product" calculation="Sum">
+		<variableExpression><![CDATA[$F{principalOverdueAmount}.add($F{interestOverdueAmount})]]></variableExpression>
+	</variable>
+	<variable name="totPNoOfInstallementsDue" class="java.lang.Integer" resetType="Group" resetGroup="product" calculation="Sum">
+		<variableExpression><![CDATA[$F{noOfInstallementsDue}]]></variableExpression>
+	</variable>
+	<variable name="sumLPrincipalBalOutstanding" class="java.math.BigDecimal" resetType="Group" resetGroup="loanType" calculation="Sum">
+		<variableExpression><![CDATA[$F{principalBalanceOutstanding}]]></variableExpression>
+	</variable>
+	<variable name="sumLInterestBalOutstanding" class="java.math.BigDecimal" resetType="Group" resetGroup="loanType" calculation="Sum">
+		<variableExpression><![CDATA[$F{interestBalanceOutstanding}]]></variableExpression>
+	</variable>
+	<variable name="sumLTotalBalOutstanding" class="java.math.BigDecimal" resetType="Group" resetGroup="loanType" calculation="Sum">
+		<variableExpression><![CDATA[$F{principalBalanceOutstanding}.add($F{interestBalanceOutstanding})]]></variableExpression>
+	</variable>
+	<variable name="sumLPrincipalOverdueAmount" class="java.math.BigDecimal" resetType="Group" resetGroup="loanType" calculation="Sum">
+		<variableExpression><![CDATA[$F{principalOverdueAmount}]]></variableExpression>
+	</variable>
+	<variable name="sumLInterestOverdueAmount" class="java.math.BigDecimal" resetType="Group" resetGroup="loanType" calculation="Sum">
+		<variableExpression><![CDATA[$F{interestOverdueAmount}]]></variableExpression>
+	</variable>
+	<variable name="sumLTotalOverdueAmount" class="java.math.BigDecimal" resetType="Group" resetGroup="loanType" calculation="Sum">
+		<variableExpression><![CDATA[$F{principalOverdueAmount}.add($F{interestOverdueAmount})]]></variableExpression>
+	</variable>
+	<variable name="totLNoOfInstallementsDue" class="java.lang.Integer" resetType="Group" resetGroup="loanType" calculation="Sum">
+		<variableExpression><![CDATA[$F{noOfInstallementsDue}]]></variableExpression>
+	</variable>
+	<variable name="sumVPrincipalBalOutstanding" class="java.math.BigDecimal" resetType="Group" resetGroup="village" calculation="Sum">
+		<variableExpression><![CDATA[$F{principalBalanceOutstanding}]]></variableExpression>
+	</variable>
+	<variable name="sumVInterestBalOutstanding" class="java.math.BigDecimal" resetType="Group" resetGroup="village" calculation="Sum">
+		<variableExpression><![CDATA[$F{interestBalanceOutstanding}]]></variableExpression>
+	</variable>
+	<variable name="sumVTotalBalOutstanding" class="java.math.BigDecimal" resetType="Group" resetGroup="village" calculation="Sum">
+		<variableExpression><![CDATA[$F{principalBalanceOutstanding}.add($F{interestBalanceOutstanding})]]></variableExpression>
+	</variable>
+	<variable name="sumVPrincipalOverdueAmount" class="java.math.BigDecimal" resetType="Group" resetGroup="village" calculation="Sum">
+		<variableExpression><![CDATA[$F{principalOverdueAmount}]]></variableExpression>
+	</variable>
+	<variable name="sumVInterestOverdueAmount" class="java.math.BigDecimal" resetType="Group" resetGroup="village" calculation="Sum">
+		<variableExpression><![CDATA[$F{interestOverdueAmount}]]></variableExpression>
+	</variable>
+	<variable name="sumVTotalOverdueAmount" class="java.math.BigDecimal" resetType="Group" resetGroup="village" calculation="Sum">
+		<variableExpression><![CDATA[$F{principalOverdueAmount}.add($F{interestOverdueAmount})]]></variableExpression>
+	</variable>
+	<variable name="totVNoOfInstallementsDue" class="java.lang.Integer" resetType="Group" resetGroup="village" calculation="Sum">
+		<variableExpression><![CDATA[$F{noOfInstallementsDue}]]></variableExpression>
+	</variable>
+	<variable name="sumPCPrincipalBalOutstanding" class="java.math.BigDecimal" resetType="Group" resetGroup="pacs" calculation="Sum">
+		<variableExpression><![CDATA[$F{principalBalanceOutstanding}]]></variableExpression>
+	</variable>
+	<variable name="sumPCInterestBalOutstanding" class="java.math.BigDecimal" resetType="Group" resetGroup="pacs" calculation="Sum">
+		<variableExpression><![CDATA[$F{interestBalanceOutstanding}]]></variableExpression>
+	</variable>
+	<variable name="sumPCTotalBalOutstanding" class="java.math.BigDecimal" resetType="Group" resetGroup="pacs" calculation="Sum">
+		<variableExpression><![CDATA[$F{principalBalanceOutstanding}.add($F{interestBalanceOutstanding})]]></variableExpression>
+	</variable>
+	<variable name="sumPCPrincipalOverdueAmount" class="java.math.BigDecimal" resetType="Group" resetGroup="pacs" calculation="Sum">
+		<variableExpression><![CDATA[$F{principalOverdueAmount}]]></variableExpression>
+	</variable>
+	<variable name="sumPCInterestOverdueAmount" class="java.math.BigDecimal" resetType="Group" resetGroup="pacs" calculation="Sum">
+		<variableExpression><![CDATA[$F{interestOverdueAmount}]]></variableExpression>
+	</variable>
+	<variable name="sumPCTotalOverdueAmount" class="java.math.BigDecimal" resetType="Group" resetGroup="pacs" calculation="Sum">
+		<variableExpression><![CDATA[$F{principalOverdueAmount}.add($F{interestOverdueAmount})]]></variableExpression>
+	</variable>
+	<variable name="totPCNoOfInstallementsDue" class="java.lang.Integer" resetType="Group" resetGroup="pacs" calculation="Sum">
+		<variableExpression><![CDATA[$F{noOfInstallementsDue}]]></variableExpression>
+	</variable>
+	<group name="pacs">
+		<groupExpression><![CDATA[$F{pacsId}]]></groupExpression>
+		<groupHeader>
+			<band height="20">
+				<staticText>
+					<reportElement x="0" y="0" width="200" height="20" printWhenGroupChanges="pacs"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Pacs]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="200" y="0" width="37" height="20" printWhenGroupChanges="pacs"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="237" y="0" width="960" height="20" printWhenGroupChanges="pacs"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{pacsName}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="33">
+				<textField isBlankWhenNull="true">
+					<reportElement x="529" y="0" width="71" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{sumPCPrincipalBalOutstanding}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="619" y="0" width="72" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{sumPCInterestBalOutstanding}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="718" y="0" width="68" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{sumPCTotalBalOutstanding}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="796" y="0" width="74" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{sumPCPrincipalOverdueAmount}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="894" y="0" width="64" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{sumPCInterestOverdueAmount}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="982" y="0" width="63" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{sumPCTotalOverdueAmount}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="1055" y="0" width="132" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{totPCNoOfInstallementsDue}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="1187" y="0" width="10" height="20"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1045" y="0" width="10" height="20"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="786" y="0" width="10" height="20"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="10" y="0" width="509" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total for pac : ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="0" width="10" height="20"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="958" y="0" width="24" height="20"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="870" y="0" width="24" height="20"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="691" y="0" width="27" height="20"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="600" y="0" width="19" height="20"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="519" y="1" width="10" height="19"/>
+					<textElement textAlignment="Center">
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="20" width="1266" height="13"/>
+					<textElement/>
+					<text><![CDATA[--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="village">
+		<groupExpression><![CDATA[$F{villageId}]]></groupExpression>
+		<groupHeader>
+			<band height="20">
+				<staticText>
+					<reportElement x="200" y="0" width="37" height="20" printWhenGroupChanges="village"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="0" width="200" height="20" printWhenGroupChanges="village"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Village]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="237" y="0" width="960" height="20" printWhenGroupChanges="village"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{villageName}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="34">
+				<staticText>
+					<reportElement x="10" y="1" width="509" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total for village : ]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement x="529" y="0" width="71" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{sumVPrincipalBalOutstanding}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="796" y="1" width="74" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{sumVPrincipalOverdueAmount}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="894" y="0" width="64" height="21"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{sumVInterestOverdueAmount}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="982" y="0" width="63" height="21"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{sumVTotalOverdueAmount}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="1055" y="1" width="132" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{totVNoOfInstallementsDue}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="1187" y="1" width="10" height="20"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1045" y="1" width="10" height="20"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="786" y="1" width="10" height="20"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement x="718" y="1" width="68" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{sumVTotalBalOutstanding}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="1" width="10" height="20"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="958" y="1" width="24" height="20"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="870" y="1" width="24" height="20"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="692" y="1" width="26" height="20"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement x="619" y="0" width="73" height="21"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{sumVInterestBalOutstanding}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="600" y="1" width="19" height="20"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="519" y="2" width="10" height="19"/>
+					<textElement textAlignment="Center">
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="21" width="1266" height="13"/>
+					<textElement/>
+					<text><![CDATA[--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="product">
+		<groupExpression><![CDATA[$F{productId}]]></groupExpression>
+		<groupHeader>
+			<band height="20">
+				<staticText>
+					<reportElement x="0" y="0" width="200" height="20" printWhenGroupChanges="product"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Product]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="200" y="0" width="37" height="20" printWhenGroupChanges="product"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="237" y="0" width="960" height="20" printWhenGroupChanges="product"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{productName}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="34">
+				<staticText>
+					<reportElement x="10" y="1" width="509" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total for product :]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement x="529" y="0" width="71" height="21"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{sumPPrincipalBalOutstanding}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="619" y="0" width="73" height="21"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{sumPInterestBalOutstanding}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="718" y="1" width="68" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{sumPTotalBalOutstanding}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="796" y="1" width="74" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{sumPPrincipalOverdueAmount}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="894" y="0" width="64" height="21"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{sumPInterestOverdueAmount}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="982" y="1" width="63" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{sumPTotalOverdueAmount}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="1055" y="1" width="132" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{totPNoOfInstallementsDue}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="1187" y="1" width="10" height="20"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1045" y="1" width="10" height="20"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="786" y="1" width="10" height="20"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="1" width="10" height="20"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="958" y="1" width="24" height="20"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="870" y="1" width="24" height="20"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="692" y="1" width="26" height="20"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="600" y="0" width="19" height="21"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="519" y="1" width="10" height="20"/>
+					<textElement textAlignment="Center">
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="21" width="1266" height="13"/>
+					<textElement/>
+					<text><![CDATA[--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="member">
+		<groupExpression><![CDATA[$F{memberNo}]]></groupExpression>
+		<groupHeader>
+			<band height="20">
+				<staticText>
+					<reportElement x="0" y="0" width="200" height="20" printWhenGroupChanges="member"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Membership No.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="200" y="0" width="37" height="20" printWhenGroupChanges="member"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="581" y="0" width="100" height="20" printWhenGroupChanges="member"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Member Name]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="681" y="0" width="37" height="20" printWhenGroupChanges="member"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="237" y="0" width="344" height="20" printWhenGroupChanges="member"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{memberNo}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="718" y="0" width="479" height="20" printWhenGroupChanges="member"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{memberName}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="33">
+				<staticText>
+					<reportElement x="10" y="0" width="509" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total for member :]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement x="529" y="0" width="71" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{sumMPrincipalBalOutstanding}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="619" y="0" width="73" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{sumMInterestBalOutstanding}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="718" y="0" width="68" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{sumMTotalBalOutstanding}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="796" y="1" width="74" height="19"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{sumMPrincipalOverdueAmount}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="894" y="0" width="64" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{sumMInterestOverdueAmount}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="982" y="0" width="63" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{sumMTotalOverdueAmount}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="1055" y="0" width="132" height="20"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{totMNoOfInstallementsDue}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="1045" y="1" width="10" height="19"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="786" y="1" width="10" height="19"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="1" width="10" height="19"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1187" y="0" width="10" height="20"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="958" y="0" width="24" height="20"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="870" y="0" width="24" height="20"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="692" y="0" width="26" height="20"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="600" y="0" width="19" height="20"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="519" y="1" width="10" height="19"/>
+					<textElement textAlignment="Center">
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="20" width="1266" height="13"/>
+					<textElement/>
+					<text><![CDATA[--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="loanType">
+		<groupExpression><![CDATA[$F{loanTypeId}]]></groupExpression>
+		<groupHeader>
+			<band height="20">
+				<staticText>
+					<reportElement x="0" y="0" width="200" height="20" printWhenGroupChanges="loanType"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Loan Type]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="200" y="0" width="37" height="20" printWhenGroupChanges="loanType"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="237" y="0" width="960" height="20" printWhenGroupChanges="loanType"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{loanType}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="34">
+				<staticText>
+					<reportElement x="10" y="0" width="509" height="21"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total for Loan Type : ]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement x="529" y="0" width="70" height="21"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{sumLPrincipalBalOutstanding}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="619" y="0" width="72" height="21"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{sumLInterestBalOutstanding}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="718" y="0" width="68" height="21"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{sumLTotalBalOutstanding}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="796" y="0" width="74" height="21"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{sumLPrincipalOverdueAmount}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="894" y="0" width="64" height="21"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{sumLInterestOverdueAmount}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="982" y="0" width="63" height="21"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{sumLTotalOverdueAmount}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="1055" y="0" width="132" height="21"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{totLNoOfInstallementsDue}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="1187" y="1" width="10" height="20"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1045" y="1" width="10" height="20"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="786" y="1" width="10" height="20"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="1" width="10" height="20"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="958" y="0" width="24" height="21"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="870" y="0" width="24" height="21"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="691" y="0" width="27" height="21"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="599" y="0" width="20" height="21"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="519" y="0" width="10" height="21"/>
+					<textElement textAlignment="Center">
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[|]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="21" width="1266" height="13"/>
+					<textElement/>
+					<text><![CDATA[--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="64" splitType="Stretch">
+			<staticText>
+				<reportElement x="305" y="0" width="346" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[OverDue List]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="437" y="20" width="32" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[  :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="305" y="20" width="132" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bank ]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="469" y="20" width="182" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{bankName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="305" y="40" width="132" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[As on Date]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="469" y="40" width="182" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{asOnDate}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="437" y="40" width="32" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[  :]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="74" splitType="Stretch">
+			<staticText>
+				<reportElement x="10" y="16" width="42" height="42"/>
+				<box leftPadding="0">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[S.NO.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="172" y="16" width="127" height="42"/>
+				<box leftPadding="0">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Account Number]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="309" y="16" width="100" height="42"/>
+				<box leftPadding="0">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sanction Limit]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="419" y="16" width="100" height="42"/>
+				<box leftPadding="0">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Disbursed Amount]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="529" y="16" width="257" height="20"/>
+				<box leftPadding="0">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Balance Outstanding]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="796" y="16" width="249" height="20"/>
+				<box leftPadding="0">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Overdue Amount]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="529" y="36" width="70" height="22"/>
+				<box leftPadding="0">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Principal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1055" y="16" width="132" height="42"/>
+				<box leftPadding="0">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No. of Installments Due]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="619" y="36" width="72" height="22"/>
+				<box leftPadding="0">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Interest]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="717" y="36" width="69" height="22"/>
+				<box leftPadding="0">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="796" y="36" width="74" height="22"/>
+				<box leftPadding="0">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Principal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="894" y="36" width="64" height="22"/>
+				<box leftPadding="0">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Interest]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="982" y="36" width="63" height="22"/>
+				<box leftPadding="0">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="16" width="10" height="42"/>
+				<textElement textAlignment="Center">
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="52" y="16" width="10" height="42"/>
+				<textElement textAlignment="Center">
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="62" y="16" width="100" height="42"/>
+				<box leftPadding="0">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Phone Number]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="58" width="1266" height="16"/>
+				<textElement/>
+				<text><![CDATA[--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="162" y="16" width="10" height="42"/>
+				<textElement textAlignment="Center">
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="299" y="16" width="10" height="42"/>
+				<textElement textAlignment="Center">
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="409" y="16" width="10" height="42"/>
+				<textElement textAlignment="Center">
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="519" y="16" width="10" height="42"/>
+				<textElement textAlignment="Center">
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1045" y="16" width="10" height="42"/>
+				<textElement textAlignment="Center">
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1187" y="16" width="10" height="42"/>
+				<textElement textAlignment="Center">
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="1266" height="16"/>
+				<textElement/>
+				<text><![CDATA[--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="786" y="16" width="10" height="42"/>
+				<textElement textAlignment="Center">
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="599" y="36" width="20" height="22"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="691" y="36" width="26" height="22"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="870" y="36" width="24" height="22"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="958" y="36" width="24" height="22"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[|]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="33" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="62" y="0" width="98" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{phoneNumber}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="170" y="0" width="126" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{accountNumber}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="306" y="0" width="104" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sanctionLimit}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="420" y="0" width="99" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{disbursedAmount}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="529" y="0" width="71" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{principalBalanceOutstanding}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="619" y="0" width="72" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{interestBalanceOutstanding}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="717" y="0" width="69" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{principalBalanceOutstanding}+$F{interestBalanceOutstanding}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="796" y="0" width="74" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{principalOverdueAmount}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="894" y="0" width="64" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{interestOverdueAmount}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="982" y="0" width="63" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{principalOverdueAmount}+$F{interestOverdueAmount}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1055" y="0" width="132" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{noOfInstallementsDue}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="10" y="0" width="42" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1187" y="0" width="10" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1045" y="0" width="10" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="786" y="0" width="10" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="410" y="0" width="10" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="296" y="0" width="10" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="160" y="0" width="10" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="52" y="0" width="10" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="10" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="958" y="0" width="24" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="870" y="0" width="24" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="691" y="0" width="26" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="600" y="0" width="19" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="519" y="0" width="10" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="20" width="1266" height="13"/>
+				<textElement/>
+				<text><![CDATA[--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="55" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="172" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Report generated on]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="703" y="35" width="212" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Authorized signature]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="368" y="0" width="161" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{userName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="345" y="0" width="23" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[by]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="172" y="0" width="173" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{businessDate}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

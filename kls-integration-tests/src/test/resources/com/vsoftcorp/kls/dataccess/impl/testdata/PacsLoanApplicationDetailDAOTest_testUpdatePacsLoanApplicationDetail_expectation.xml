@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<dataset>
+	<pacs_loan_application_dtl header_id='14' customer_id="14" crop_id="1" 
+	season_id="1" land_type_id="1" land_area="1" priority="2" required_amount="1" loan_application_no="123"
+	calculated_amount="1" recommended_amount="1" entered_remarks="good" inspection_amount="1"
+	inspection_remarks="hi" sanctioned_amount="1" application_status="2"/>
+</dataset>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+	<changeSet author="1.0.0.7" id="1" runOnChange="true">
+		<dropTable cascadeConstraints="true" tableName="customer" />
+	</changeSet>
+	<changeSet author="1.0.0.7" id="2">
+		<preConditions onFail="MARK_RAN">
+			<columnExists tableName="account_property" columnName="pac_savings_account_number" />
+		</preConditions>
+		<dropColumn tableName="account_property" columnName="pac_savings_account_number" />
+	</changeSet>
+
+</databaseChangeLog>

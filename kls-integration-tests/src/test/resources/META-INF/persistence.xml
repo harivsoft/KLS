@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0"
+	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	<persistence-unit name="klsTestPU" transaction-type="RESOURCE_LOCAL">
+		<!-- Persistence Unit Provider - vendor-specific persistence provider name -->
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+
+		<class>com.vsoftcorp.kls.business.entities.District</class>
+		<class>com.vsoftcorp.kls.business.entities.Taluka</class>
+		<class>com.vsoftcorp.kls.business.entities.Pacs</class>
+		<class>com.vsoftcorp.kls.business.entities.Crop</class>
+		<class>com.vsoftcorp.kls.business.entities.CropTypeMaster</class>
+		<class>com.vsoftcorp.kls.business.entities.Village</class>
+		<class>com.vsoftcorp.kls.business.entities.SeasonDefinition</class>
+		<class>com.vsoftcorp.kls.business.entities.Branch</class>
+		<class>com.vsoftcorp.kls.business.entities.LandType</class>
+		<class>com.vsoftcorp.kls.business.entities.ScaleOfFinance</class>
+		<class>com.vsoftcorp.kls.business.entities.PacsGl</class>
+		<class>com.vsoftcorp.kls.business.entities.InterestCategory</class>
+		<class>com.vsoftcorp.kls.business.entities.Product</class>
+		<class>com.vsoftcorp.kls.business.entities.ProductType</class>
+		<class>com.vsoftcorp.kls.business.entities.PacsLoanApplicationHeader</class>
+		<class>com.vsoftcorp.kls.business.entities.PacsLoanApplicationDetail</class>
+		<class>com.vsoftcorp.kls.business.entities.Season</class>
+		<class>com.vsoftcorp.kls.business.entities.Scheme</class>
+		<class>com.vsoftcorp.kls.business.entities.SlabwiseInterestRate</class>
+		<class>com.vsoftcorp.kls.business.entities.LandDetail</class>
+		<class>com.vsoftcorp.kls.business.entities.BankParameter</class>
+		<class>com.vsoftcorp.kls.business.entity.account.Account</class>
+		<class>com.vsoftcorp.kls.business.entity.account.AccountProperty</class>
+		<class>com.vsoftcorp.kls.business.entity.account.LineOfCredit</class>
+		<class>com.vsoftcorp.kls.business.entity.transaction.CurrentTransaction</class>
+		<class>com.vsoftcorp.kls.business.entity.transaction.TransactionHistory</class>
+		<class>com.vsoftcorp.kls.business.entity.account.Charges</class>
+		<class>com.vsoftcorp.kls.business.entity.transaction.AccountWiseConsistency</class>
+		<class>com.vsoftcorp.kls.business.entities.EventTypeDefinition</class>
+		<class>com.vsoftcorp.kls.business.entities.EventType</class>
+		<class>com.vsoftcorp.kls.business.entities.SanctionedComponentDetail</class>
+		<class>com.vsoftcorp.kls.business.entities.BorrowingsAccount</class>
+		<class>com.vsoftcorp.kls.business.entities.BankPacsGl</class>
+
+		<properties>
+			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
+			<property name="javax.persistence.jdbc.url"
+				value="jdbc:postgresql://192.168.1.193/kls_integration_test" />
+			<property name="javax.persistence.jdbc.user" value="postgres" />
+			<property name="javax.persistence.jdbc.password" value="postgres" />
+			<property name="hibernate.default_schema" value="kls_schema" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.max_fetch_depth" value="3" />
+			<property name="connection.autocommit" value="false" />
+			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
+			<!-- <property name="hibernate.transaction.auto_close_session"
+				value="true" /> -->
+		</properties>
+
+	</persistence-unit>
+
+</persistence>

@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.2.xsd http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+	<changeSet author="1.0.0.8" id="1" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="borrowing_product_gl_mapping"></tableExists>
+			</not>
+		</preConditions>
+		<createTable tableName="borrowing_product_gl_mapping">
+			<column name="id" type="INT4">
+				<constraints primaryKey="true" nullable="false"
+					primaryKeyName="borrowing_product_gl_mapping_pmr_key" />
+			</column>
+			<column name="product_id" type="INT4">
+				<constraints nullable="false" />
+			</column>
+			<column name="pacs_id" type="INT4" />
+			<column name="gl_code" type="VARCHAR(18)" />
+			<column name="gl_name" type="VARCHAR(45)" />
+			<column name="interest_payable_gl_code" type="VARCHAR(18)" />
+			<column name="interest_paid_gl_code" type="VARCHAR(18)" />
+			<column name="principle_subsidy" type="VARCHAR(18)" />
+			<column name="interst_subsidy" type="VARCHAR(18)" />
+		</createTable>
+	</changeSet>
+
+	<changeSet author="1.0.0.8" id="2" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="calendar_setup"></tableExists>
+			</not>
+		</preConditions>
+		<createTable tableName="calendar_setup">
+			<column name="id" type="INT4">
+				<constraints primaryKey="true" nullable="false"
+					primaryKeyName="calendar_setup_pmr_key" />
+			</column>
+			<column name="pacs_id" type="VARCHAR(6)" />
+			<column name="branch_id" type="VARCHAR(4)" />
+			<column name="weekly_off" type="INT4" />
+			<column name="last_date" type="date" />
+		</createTable>
+	</changeSet>
+
+	<changeSet author="1.0.0.8" id="3" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="calendar"></tableExists>
+			</not>
+		</preConditions>
+		<createTable tableName="calendar">
+			<column name="id" type="INT4">
+				<constraints primaryKey="true" nullable="false"
+					primaryKeyName="calendar_pmr_key" />
+			</column>
+			<column name="title" type="VARCHAR(64)">
+				<constraints nullable="false" />
+			</column>
+			<column name="date" type="date">
+				<constraints nullable="false" />
+			</column>
+			<column name="description" type="VARCHAR(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="type" type="INT4">
+				<constraints nullable="false" />
+			</column>
+			<column name="setup_id" type="INT4">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+
+	<changeSet author="1.0.0.8" id="4" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="sbnxtnos"></tableExists>
+			</not>
+		</preConditions>
+		<createTable tableName="sbnxtnos">
+			<column name="id" type="INT4">
+				<constraints primaryKey="true" nullable="false"
+					primaryKeyName="sbnxtnos_pmr_key" />
+			</column>
+			<column name="pacsid" type="VARCHAR(5)" />
+			<column name="nxtnotype" type="VARCHAR(1)" />
+			<column name="transtype" type="VARCHAR(1)" />
+			<column name="lastusedno" type="INT4" />
+		</createTable>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="5" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="loan_disbursement_entry"></tableExists>
+			</not>
+		</preConditions>
+		<createTable tableName="loan_disbursement_entry">
+			<column name="id" type="INT8">
+				<constraints primaryKey="true" nullable="false"
+					primaryKeyName="loan_disbursement_entry_pmr_key" />
+			</column>
+			<column name="pacs_id" type="INT4" />
+			<column name="line_of_credit_id" type="INT8" />
+			<column name="disbursement_amount" type="numeric(22,6)" />
+			<column name="disbursement_date" type="date" />
+			<column name="mode_of_disbursement" type="VARCHAR(1)" />
+			<column name="pacs_suvikas_voucher_no" type="VARCHAR(10)" />
+			<column name="pacs_suvikas_voucher_date" type="date" />
+			<column name="amt_deducted_from" type="VARCHAR(20)" />
+			<column name="to_account_number" type="VARCHAR(20)" />
+			<column name="cheque_no" type="VARCHAR(16)" />
+			<column name="cheque_date" type="date" />
+			<column name="remarks" type="VARCHAR(40)" />
+		</createTable>
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="6" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="institute_master"></tableExists>
+			</not>
+		</preConditions>
+		<createTable tableName="institute_master">
+			<column name="id" type="INT4">
+				<constraints primaryKey="true" nullable="false"
+					primaryKeyName="institute_master_pmr_key" />
+			</column>
+		
+			<column name="institute_name" type="VARCHAR(45)" />
+			<column name="type_of_institute" type="INT4" />
+			<column name="geographical_area" type="VARCHAR(1)" />
+			
+		</createTable>
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="7" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="interest_subsidy"></tableExists>
+			</not>
+		</preConditions>
+		<createTable tableName="interest_subsidy">
+			<column name="id" type="INT4">
+				<constraints primaryKey="true" nullable="false"
+					primaryKeyName="interest_subsidy_pmr_key" />
+			</column>
+		
+			<column name="type_of_scheme" type="VARCHAR(2)" />
+			<column name="name_of_scheme" type="VARCHAR(45)" />
+			<column name="institute_master_id" type="INT4" />
+			<column name="scheme_id" type="INT4" />
+			<column name="season_id" type="INT4" />
+			<column name="eligibility_criteria" type="VARCHAR(1)" />
+			<column name="max_period_for_subsidy" type="INT4" />
+			
+		</createTable>
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="8" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="slabwise_subsidy_interestrate"></tableExists>
+			</not>
+		</preConditions>
+		<createTable tableName="slabwise_subsidy_interestrate">
+			<column name="id" type="INT4">
+				<constraints primaryKey="true" nullable="false"
+					primaryKeyName="slabwise_subsidy_pmr_key" />
+			</column>
+		
+			<column name="from_amount" type="numeric(22,6)" />
+			<column name="to_amount" type="numeric(22,6)" />
+			<column name="subsidy_roi_per_annum" type="numeric(22,6)" />
+			<column name="interest_subsidy_id" type="INT4" />
+			
+		</createTable>
+	</changeSet>
+
+	<changeSet author="1.0.0.8" id="9" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="subsidy_scheme_gl_mapping"></tableExists>
+			</not>
+		</preConditions>
+		<createTable tableName="subsidy_scheme_gl_mapping">
+			<column name="id" type="INT4">
+				<constraints primaryKey="true" nullable="false"
+					primaryKeyName="subsidy_scheme_gl_mapping_pmr_key" />
+			</column>
+			<column name="pacs_id" type="INT4" />
+			<column name="subsidy_scheme_id" type="INT4" />
+			<column name="subsidy_receievable_gl" type="VARCHAR(45)" />
+		</createTable>
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="10" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="subsidy_interest_amounts"></tableExists>
+			</not>
+		</preConditions>
+		<createTable tableName="subsidy_interest_amounts">
+			
+			<column name="loc_id" type="INT8" />
+			<column name="subsidy_accrued" type="numeric(22,6)" />
+			<column name="subsidy_receivable" type="numeric(22,6)" />
+			<column name="subsidy_scheme_id" type="INT4" />
+		</createTable>
+	</changeSet>
+
+	<changeSet author="1.0.0.8" id="11" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="sb_account_mappig_info"></tableExists>
+			</not>
+		</preConditions>
+		<createTable tableName="sb_account_mappig_info">
+			<column name="party_id" type="INT4">
+				<constraints primaryKey="true" nullable="false"
+					primaryKeyName="sb_account_mappig_info_pkey" />
+			</column>
+			<column name="business_date" type="date" />
+		
+			<column name="pacs_id" type="INT8" />
+			<column name="sb_status" type="INT4" />
+			<column name="savings_account_no" type="VARCHAR(45)" />
+			<column name="remarks" type="VARCHAR(45)" />
+		</createTable>
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="12" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="tenant_land_details"></tableExists>
+			</not>
+		</preConditions>
+		<createTable tableName="tenant_land_details">
+			<column name="id" type="INT8">
+				<constraints primaryKey="true" nullable="false"
+					primaryKeyName="tenant_land_details_pkey" />
+			</column>
+			<column name="customer_id" type="INT8" />
+			<column name="guarantor_id" type="INT8" />
+			<column name="area_cultivated" type="double" />
+			<column name="land_type_id" type="INT4" />
+			<column name="land_ref_id" type="INT8" />
+		</createTable>
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="13" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="charges_recovery"></tableExists>
+			</not>
+		</preConditions>
+		<createTable tableName="charges_recovery">
+			<column name="id" type="INT8">
+				<constraints primaryKey="true" nullable="false"
+					primaryKeyName="charge_recovery_pmr_key" />
+			</column>
+			<column name="charge_debit_id" type="numeric" />
+			<column name="voucher_number" type="VARCHAR(10)" />
+			<column name="amount" type="numeric(22,6)" />
+			<column name="business_date" type="date" />
+			<column name="bank_amount" type="numeric(22, 6)" />
+		</createTable>
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="14" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="land_owner_details"></tableExists>
+			</not>
+		</preConditions>
+		<createTable tableName="land_owner_details">
+			<column name="id" type="INT8">
+				<constraints primaryKey="true" nullable="false"
+					primaryKeyName="land_owner_pmr_key" />
+			</column>
+			<column name="owner_name" type="VARCHAR(64)" />
+			<column name="father_spouse" type="VARCHAR(64)" />
+			<column name="sub_village" type="VARCHAR(64)" />
+			<column name="village_id" type="INT8" />
+			<column name="taluka_id" type="INT8" />
+			<column name="district_id" type="INT8" />
+			<column name="contact_no" type="VARCHAR(15)" />
+		</createTable>
+	</changeSet>
+</databaseChangeLog>

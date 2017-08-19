@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<dataset>
+	<crop id="1" name="PADDY" />
+	<season id='1' name='KHARIF' drawal_start="2014-02-15 00:00:00"
+		drawal_end="2014-02-15 00:00:00" overdue_date="2014-02-15 00:00:00"
+		process_status="E" />
+
+	<branch id="2" rbi_code="OR01" name="Cuttack" address1="Patnaik Nagar" />
+
+	<pacs id="1" name="PAC" address1="hyderabad" secretary_name="nelson"
+		branch_id='2' />
+
+	<land_type id="1" name="LANDTYPE" />
+
+	<interest_category id="101" description="INCAT" />
+	<product_type id='512' description="PRODTYPEDESC"
+		atm_applicable='Y' interest_category_id='101' />
+	<product id="1" name="PRODUC" short_name="PRO" released="Y"
+		released_date="2014-01-01 00:00:00" last_int_post_date="2014-02-15 00:00:00"
+		atm_applicable="Y" interest_category_id="101" product_type_id="512" />
+	<scheme id="50" name="SCHEME" product_id="1" />
+
+	<pacs_loan_application_hdr id='14' pacs_id="1"
+		application_date="2014-01-01 00:00:00" application_type="1"
+		financial_year="2014-15" crop_id="1" scheme_id="50" process_status="2" />
+	<customer id="14" name="chandram" cust_id="CUS01"
+		member_srl_no="MEM01" cbs_cust_id="cbs01" village_id="1" member_type="MEM01" />
+
+	<pacs_loan_application_dtl id='1' header_id='14'
+		customer_id="14" crop_id="1" season_id="1" land_type_id="1" land_area="1"
+		priority="2" required_amount="1" loan_application_no="123"
+		calculated_amount="1" recommended_amount="1" entered_remarks="good"
+		inspection_amount="1" inspection_remarks="hi" sanctioned_amount="1"
+		application_status="2" />
+</dataset>

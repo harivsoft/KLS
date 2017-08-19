@@ -1,0 +1,1422 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet author="1.0.0.8" id="1" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="product_type" columnName="loan_type" />
+			</not>
+		</preConditions>
+		<addColumn tableName="product_type">
+			<column name="loan_type" type="VARCHAR(2)" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="2" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="line_of_credit" columnName="borrowings_loc_id" />
+			</not>
+		</preConditions>
+		<addColumn tableName="line_of_credit">
+			<column name="borrowings_loc_id" type="INT8" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="3">
+		<preConditions onFail="MARK_RAN">
+			<columnExists tableName="borrowing_product" columnName="gl_code" />
+		</preConditions>
+		<dropColumn tableName="borrowing_product" columnName="gl_code" />
+	</changeSet>
+	<changeSet author="1.0.0.8" id="4" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="borrowing_product" columnName="gl_code" />
+			</not>
+		</preConditions>
+		<addColumn tableName="borrowing_product">
+			<column name="gl_code" type="VARCHAR(18)" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="5">
+		<preConditions onFail="MARK_RAN">
+			<columnExists tableName="loan_account_property"
+				columnName="resolution_number" />
+		</preConditions>
+		<dropColumn tableName="loan_account_property" columnName="resolution_number" />
+	</changeSet>
+	<changeSet author="1.0.0.8" id="6" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="loan_account_property"
+					columnName="resolution_number" />
+			</not>
+		</preConditions>
+		<addColumn tableName="loan_account_property">
+			<column name="resolution_number" type="VARCHAR(20)" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="7">
+		<dropPrimaryKey constraintName="loan_repayment_schedule_pmr_key"
+			tableName="loan_repayment_schedule" />
+	</changeSet>
+	<changeSet author="1.0.0.8" id="8">
+		<addPrimaryKey columnNames="line_of_credit_id,installment_number"
+			constraintName="loan_repayment_schedule_pmr_key" tableName="loan_repayment_schedule" />
+	</changeSet>
+	<changeSet author="1.0.0.8" id="9">
+		<preConditions onFail="MARK_RAN">
+			<columnExists tableName="charges_master" columnName="charges_receivable_gl" />
+		</preConditions>
+		<dropColumn tableName="charges_master" columnName="charges_receivable_gl" />
+	</changeSet>
+	<changeSet author="1.0.0.8" id="10">
+		<preConditions onFail="MARK_RAN">
+			<columnExists tableName="charges_master" columnName="charges_received_gl" />
+		</preConditions>
+		<dropColumn tableName="charges_master" columnName="charges_received_gl" />
+	</changeSet>
+	<changeSet author="1.0.0.8" id="11" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="pacs_gl_mapping" columnName="charges_received_gl" />
+			</not>
+		</preConditions>
+		<addColumn tableName="pacs_gl_mapping">
+			<column name="charges_received_gl" type="VARCHAR(18)" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="12" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="pacs_gl_mapping" columnName="charges_receivable_gl" />
+			</not>
+		</preConditions>
+		<addColumn tableName="pacs_gl_mapping">
+			<column name="charges_receivable_gl" type="VARCHAR(18)" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="13">
+		<preConditions onFail="MARK_RAN">
+			<columnExists tableName="pacs_gl_mapping" columnName="charges_receivable_gl" />
+		</preConditions>
+		<dropColumn tableName="pacs_gl_mapping" columnName="charges_receivable_gl" />
+	</changeSet>
+	<changeSet author="1.0.0.8" id="14">
+		<preConditions onFail="MARK_RAN">
+			<columnExists tableName="pacs_gl_mapping" columnName="charges_received_gl" />
+		</preConditions>
+		<dropColumn tableName="pacs_gl_mapping" columnName="charges_received_gl" />
+	</changeSet>
+	<changeSet author="1.0.0.8" id="15" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="charges_master" columnName="charges_received_gl" />
+			</not>
+		</preConditions>
+		<addColumn tableName="charges_master">
+			<column name="charges_received_gl" type="VARCHAR(18)" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="16" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="charges_master" columnName="charges_receivable_gl" />
+			</not>
+		</preConditions>
+		<addColumn tableName="charges_master">
+			<column name="charges_receivable_gl" type="VARCHAR(18)" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="17" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="charges_master" columnName="pacs_id" />
+			</not>
+		</preConditions>
+		<addColumn tableName="charges_master">
+			<column name="pacs_id" type="INT4" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="18" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="pacs_gl_mapping" columnName="processing_fee_gl" />
+			</not>
+		</preConditions>
+		<addColumn tableName="pacs_gl_mapping">
+			<column name="processing_fee_gl" type="VARCHAR(18)" />
+		</addColumn>
+	</changeSet>
+
+	<changeSet author="1.0.0.8" id="19" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="charges_debit" columnName="voucher_number" />
+			</not>
+		</preConditions>
+		<addColumn tableName="charges_debit">
+			<column name="voucher_number" type="INT4" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="20" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="charges_debit" columnName="business_date" />
+			</not>
+		</preConditions>
+		<addColumn tableName="charges_debit">
+			<column name="business_date" type="date" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="21">
+		<preConditions onFail="MARK_RAN">
+			<columnExists tableName="current_transaction"
+				columnName="remarks" />
+		</preConditions>
+		<dropColumn tableName="current_transaction" columnName="remarks" />
+	</changeSet>
+	<changeSet author="1.0.0.8" id="22" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="current_transaction"
+					columnName="remarks" />
+			</not>
+		</preConditions>
+		<addColumn tableName="current_transaction">
+			<column name="remarks" type="VARCHAR(255)" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="23">
+		<preConditions onFail="MARK_RAN">
+			<columnExists tableName="transaction_history"
+				columnName="remarks" />
+		</preConditions>
+		<dropColumn tableName="transaction_history" columnName="remarks" />
+	</changeSet>
+	<changeSet author="1.0.0.8" id="24" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="transaction_history"
+					columnName="remarks" />
+			</not>
+		</preConditions>
+		<addColumn tableName="transaction_history">
+			<column name="remarks" type="VARCHAR(255)" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="25" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="pacs_gl_mapping" columnName="insurance_gl" />
+			</not>
+		</preConditions>
+		<addColumn tableName="pacs_gl_mapping">
+			<column name="insurance_gl" type="VARCHAR(18)" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="26" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="pacs" columnName="cash_gl" />
+			</not>
+		</preConditions>
+		<addColumn tableName="pacs">
+			<column name="cash_gl" type="VARCHAR(18)" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="27">
+		<preConditions onFail="MARK_RAN">
+			<columnExists tableName="product" columnName="processing_fee" />
+		</preConditions>
+		<dropColumn tableName="product" columnName="processing_fee" />
+	</changeSet>
+	<changeSet author="1.0.0.8" id="28" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="product" columnName="processing_fee" />
+			</not>
+		</preConditions>
+		<addColumn tableName="product">
+			<column name="processing_fee" type="numeric(22,6)" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="29" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="pacs_gl_mapping" columnName="margin_gl" />
+			</not>
+		</preConditions>
+		<addColumn tableName="pacs_gl_mapping">
+			<column name="margin_gl" type="VARCHAR(18)" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="30">
+		<preConditions onFail="MARK_RAN">
+			<columnExists tableName="account" columnName="account_number" />
+		</preConditions>
+		<dropColumn tableName="account" columnName="account_number" />
+	</changeSet>
+	<changeSet author="1.0.0.8" id="31" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="account" columnName="account_number" />
+			</not>
+		</preConditions>
+		<addColumn tableName="account">
+			<column name="account_number" type="VARCHAR(18)" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="32">
+		<preConditions onFail="MARK_RAN">
+			<columnExists tableName="current_transaction"
+				columnName="account_number" />
+		</preConditions>
+		<dropColumn tableName="current_transaction" columnName="account_number" />
+	</changeSet>
+	<changeSet author="1.0.0.8" id="33" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="current_transaction"
+					columnName="account_number" />
+			</not>
+		</preConditions>
+		<addColumn tableName="current_transaction">
+			<column name="account_number" type="VARCHAR(18)" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="34">
+		<preConditions onFail="MARK_RAN">
+			<columnExists tableName="transaction_history"
+				columnName="account_number" />
+		</preConditions>
+		<dropColumn tableName="transaction_history" columnName="account_number" />
+	</changeSet>
+	<changeSet author="1.0.0.8" id="35" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="transaction_history"
+					columnName="account_number" />
+			</not>
+		</preConditions>
+		<addColumn tableName="transaction_history">
+			<column name="account_number" type="VARCHAR(18)" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="36">
+		<preConditions onFail="MARK_RAN">
+			<columnExists tableName="calendar_setup" columnName="pacs_id" />
+		</preConditions>
+		<dropColumn tableName="calendar_setup" columnName="pacs_id" />
+	</changeSet>
+	<changeSet author="1.0.0.8" id="37" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="calendar_setup" columnName="pacs_id" />
+			</not>
+		</preConditions>
+		<addColumn tableName="calendar_setup">
+			<column name="pacs_id" type="INT4" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="38">
+		<preConditions onFail="MARK_RAN">
+			<columnExists tableName="calendar_setup" columnName="branch_id" />
+		</preConditions>
+		<dropColumn tableName="calendar_setup" columnName="branch_id" />
+	</changeSet>
+	<changeSet author="1.0.0.8" id="39" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="calendar_setup" columnName="branch_id" />
+			</not>
+		</preConditions>
+		<addColumn tableName="calendar_setup">
+			<column name="branch_id" type="INT4" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="40">
+		<preConditions onFail="MARK_RAN">
+			<columnExists tableName="calendar" columnName="description" />
+		</preConditions>
+		<dropColumn tableName="calendar" columnName="description" />
+	</changeSet>
+	<changeSet author="1.0.0.8" id="41" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="calendar" columnName="description" />
+			</not>
+		</preConditions>
+		<addColumn tableName="calendar">
+			<column name="description" type="VARCHAR(255)" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="42" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="bank_parameter" columnName="borrowing_transaction_method" />
+			</not>
+		</preConditions>
+		<addColumn tableName="bank_parameter">
+			<column name="borrowing_transaction_method" type="VARCHAR(1)" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="43" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="pacs_gl_mapping" columnName="closing_charges_gl" />
+			</not>
+		</preConditions>
+		<addColumn tableName="pacs_gl_mapping">
+			<column name="closing_charges_gl" type="VARCHAR(18)" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="44" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="pacs" columnName="margin_gl" />
+			</not>
+		</preConditions>
+		<addColumn tableName="pacs">
+			<column name="margin_gl" type="VARCHAR(18)" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="45" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="pacs" columnName="voucher_reset_frequency" />
+			</not>
+		</preConditions>
+		<addColumn tableName="pacs">
+			<column name="voucher_reset_frequency" type="VARCHAR(1)" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="46">
+		<preConditions onFail="MARK_RAN">
+			<columnExists tableName="pacs_loan_app_document"
+				columnName="document_authority" />
+		</preConditions>
+		<dropColumn tableName="pacs_loan_app_document" columnName="document_authority" />
+	</changeSet>
+	<changeSet author="1.0.0.8" id="47" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="pacs_loan_app_document"
+					columnName="id" />
+			</not>
+		</preConditions>
+		<addColumn tableName="pacs_loan_app_document">
+			<column name="id" type="INT8" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="48">
+		<preConditions onFail="MARK_RAN">
+			<columnExists tableName="pacs_loan_app_document"
+				columnName="expiry_date" />
+		</preConditions>
+		<dropColumn tableName="pacs_loan_app_document" columnName="expiry_date" />
+	</changeSet>
+	<changeSet author="1.0.0.8" id="49">
+		<preConditions onFail="MARK_RAN">
+			<columnExists tableName="pacs_loan_app_document"
+				columnName="document_date " />
+		</preConditions>
+		<dropColumn tableName="pacs_loan_app_document" columnName="document_date " />
+	</changeSet>
+
+	<changeSet author="1.0.0.8" id="50" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="pacs_loan_app_document"
+					columnName="valid_upto" />
+			</not>
+		</preConditions>
+		<addColumn tableName="pacs_loan_app_document">
+			<column name="valid_upto" type="date" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="51">
+		<preConditions onFail="MARK_RAN">
+			<columnExists tableName="sbnxtnos" columnName="pacsid" />
+		</preConditions>
+		<dropColumn tableName="sbnxtnos" columnName="pacsid" />
+	</changeSet>
+	<changeSet author="1.0.0.8" id="52" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="sbnxtnos" columnName="pacs_id" />
+			</not>
+		</preConditions>
+		<addColumn tableName="sbnxtnos">
+			<column name="pacs_id" type="INT4" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="53" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="pacs" columnName="inventory_implemented" />
+			</not>
+		</preConditions>
+		<addColumn tableName="pacs">
+			<column name="inventory_implemented" type="VARCHAR(3)" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="54">
+		<preConditions onFail="MARK_RAN">
+			<columnExists tableName="charges_debit" columnName="voucher_number" />
+		</preConditions>
+		<dropColumn tableName="charges_debit" columnName="voucher_number" />
+	</changeSet>
+	<changeSet author="1.0.0.8" id="55" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="charges_debit" columnName="voucher_number" />
+			</not>
+		</preConditions>
+		<addColumn tableName="charges_debit">
+			<column name="voucher_number" type="VARCHAR(10)" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="56" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="pacs_loan_disbursement"
+					columnName="amt_deducted_from" />
+			</not>
+		</preConditions>
+		<addColumn tableName="pacs_loan_disbursement">
+			<column name="amt_deducted_from" type="VARCHAR(1)" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="57" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="pacs_loan_disbursement"
+					columnName="pacs_suvikas_voucher_num" />
+			</not>
+		</preConditions>
+		<addColumn tableName="pacs_loan_disbursement">
+			<column name="pacs_suvikas_voucher_num" type="VARCHAR(10)" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="58" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="pacs_loan_disbursement"
+					columnName="pacs_suvikas_voucher_dt" />
+			</not>
+		</preConditions>
+		<addColumn tableName="pacs_loan_disbursement">
+			<column name="pacs_suvikas_voucher_dt" type="date" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="59">
+		<preConditions onFail="MARK_RAN">
+			<columnExists tableName="current_transaction"
+				columnName="voucher_number" />
+		</preConditions>
+		<dropColumn tableName="current_transaction" columnName="voucher_number" />
+	</changeSet>
+	<changeSet author="1.0.0.8" id="60" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="current_transaction"
+					columnName="voucher_number" />
+			</not>
+		</preConditions>
+		<addColumn tableName="current_transaction">
+			<column name="voucher_number" type="VARCHAR(10)" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="61">
+		<preConditions onFail="MARK_RAN">
+			<columnExists tableName="transaction_history"
+				columnName="voucher_number" />
+		</preConditions>
+		<dropColumn tableName="transaction_history" columnName="voucher_number" />
+	</changeSet>
+	<changeSet author="1.0.0.8" id="62" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="transaction_history"
+					columnName="voucher_number" />
+			</not>
+		</preConditions>
+		<addColumn tableName="transaction_history">
+			<column name="voucher_number" type="VARCHAR(10)" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="63" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="pacs" columnName="bank_pacs_acc_number" />
+			</not>
+		</preConditions>
+		<addColumn tableName="pacs">
+			<column name="bank_pacs_acc_number" type="VARCHAR(20)" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="64" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="pacs_loan_application"
+					columnName="moratorium_principle_period" />
+			</not>
+		</preConditions>
+		<addColumn tableName="pacs_loan_application">
+			<column name="moratorium_principle_period" type="INT4" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="65" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="pacs_loan_application"
+					columnName="moratorium_interest_period" />
+			</not>
+		</preConditions>
+		<addColumn tableName="pacs_loan_application">
+			<column name="moratorium_interest_period" type="INT4" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="66" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="pacs_loan_application"
+					columnName="processing_fee" />
+			</not>
+		</preConditions>
+		<addColumn tableName="pacs_loan_application">
+			<column name="processing_fee" type="numeric(22,6)" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="67" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="borrowing_product_gl_mapping"
+					columnName="penal_interest_payable_gl_code" />
+			</not>
+		</preConditions>
+		<addColumn tableName="borrowing_product_gl_mapping">
+			<column name="penal_interest_payable_gl_code" type="VARCHAR(18)" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="68" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="borrowing_product_gl_mapping"
+					columnName="penal_interest_paid_gl_code" />
+			</not>
+		</preConditions>
+		<addColumn tableName="borrowing_product_gl_mapping">
+			<column name="penal_interest_paid_gl_code" type="VARCHAR(18)" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="69" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="season_parameter" columnName="pacs_id" />
+			</not>
+		</preConditions>
+		<addColumn tableName="season_parameter">
+			<column name="pacs_id" type="INT4" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="70" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="document" columnName="validation_rule" />
+			</not>
+		</preConditions>
+		<addColumn tableName="document">
+			<column name="validation_rule" type="VARCHAR(64)" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="71" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="document" columnName="is_document_no_required" />
+			</not>
+		</preConditions>
+		<addColumn tableName="document">
+			<column name="is_document_no_required" type="boolean"
+				defaultValue="false" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="72" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="line_of_credit" columnName="close_date" />
+			</not>
+		</preConditions>
+		<addColumn tableName="line_of_credit">
+			<column name="close_date" type="date" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="73" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="product" columnName="as_and_when_implemented" />
+			</not>
+		</preConditions>
+		<addColumn tableName="product">
+			<column name="as_and_when_implemented" type="boolean"
+				defaultValue="false" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="74" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="loan_disbursement_entry"
+					columnName="customer_id" />
+			</not>
+		</preConditions>
+		<addColumn tableName="loan_disbursement_entry">
+			<column name="customer_id" type="INT8" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="75" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="loan_disbursement_entry"
+					columnName="status" />
+			</not>
+		</preConditions>
+		<addColumn tableName="loan_disbursement_entry">
+			<column name="status" type="INT4" defaultValue="1" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="76" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="loan_disbursement_entry"
+					columnName="loan_type" />
+			</not>
+		</preConditions>
+		<addColumn tableName="loan_disbursement_entry">
+			<column name="loan_type" type="VARCHAR(1)" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="77" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="borrowing_product_gl_mapping"
+					columnName="bank_interest_receivable_gl" />
+			</not>
+		</preConditions>
+		<addColumn tableName="borrowing_product_gl_mapping">
+			<column name="bank_interest_receivable_gl" type="VARCHAR(18)" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="78" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="borrowing_product_gl_mapping"
+					columnName="bank_interest_received_gl" />
+			</not>
+		</preConditions>
+		<addColumn tableName="borrowing_product_gl_mapping">
+			<column name="bank_interest_received_gl" type="VARCHAR(18)" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="79" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="pacs" columnName="cash_in_transit_gl" />
+			</not>
+		</preConditions>
+		<addColumn tableName="pacs">
+			<column name="cash_in_transit_gl" type="VARCHAR(18)" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="80" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="borrowing_product_gl_mapping"
+					columnName="bank_penal_interest_receivable_gl" />
+			</not>
+		</preConditions>
+		<addColumn tableName="borrowing_product_gl_mapping">
+			<column name="bank_penal_interest_receivable_gl" type="VARCHAR(18)" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="81" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="borrowing_product_gl_mapping"
+					columnName="bank_penal_interest_received_gl" />
+			</not>
+		</preConditions>
+		<addColumn tableName="borrowing_product_gl_mapping">
+			<column name="bank_penal_interest_received_gl" type="VARCHAR(18)" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="82">
+		<modifyDataType columnName="mode_of_disbursement"
+			newDataType="VARCHAR(1)" tableName="pacs_loan_disbursement" />
+	</changeSet>
+	<changeSet author="1.0.0.8" id="83" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="pacs"
+					columnName="gl_extract_upload" />
+			</not>
+		</preConditions>
+		<addColumn tableName="pacs">
+			<column name="gl_extract_upload" type="VARCHAR(1)" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="84" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="pacs"
+					columnName="is_borrowing_trans_required_in_gl_extract" />
+			</not>
+		</preConditions>
+		<addColumn tableName="pacs">
+			<column name="is_borrowing_trans_required_in_gl_extract" type="VARCHAR(1)" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="1.0.0.8" id="85" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="pacs"
+					columnName="is_interest_paid_editable" />
+			</not>
+		</preConditions>
+		<addColumn tableName="pacs">
+			<column name="is_interest_paid_editable" type="boolean" defaultValue="false"/>
+		</addColumn>
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="86" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="loan_disbursement_entry"
+					columnName="insurance_amount" />
+			</not>
+		</preConditions>
+		<addColumn tableName="loan_disbursement_entry">
+			<column name="insurance_amount" type="numeric(22,6)"/>
+		</addColumn>
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="87" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="loan_disbursement_entry"
+					columnName="share_amount" />
+			</not>
+		</preConditions>
+		<addColumn tableName="loan_disbursement_entry">
+			<column name="share_amount" type="numeric(22,6)"/>
+		</addColumn>
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="88" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="pacs"
+					columnName="land_validation" />
+			</not>
+		</preConditions>
+		<addColumn tableName="pacs">
+			<column name="land_validation" type="VARCHAR(1)"/>
+		</addColumn>
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="89" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="bank_parameter"
+					columnName="is_offline_required" />
+			</not>
+		</preConditions>
+		<addColumn tableName="bank_parameter">
+			<column name="is_offline_required" type="VARCHAR(1)"/>
+		</addColumn>
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="90" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="bank_parameter"
+					columnName="cash_gl" />
+			</not>
+		</preConditions>
+		<addColumn tableName="bank_parameter">
+			<column name="cash_gl" type="VARCHAR(45)" />
+		</addColumn>
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="91" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="pacs"
+					columnName="cash_in_transit_accno" />
+			</not>
+		</preConditions>
+		<addColumn tableName="pacs">
+			<column name="cash_in_transit_accno" type="VARCHAR(20)"/>
+		</addColumn>
+	</changeSet>
+
+	<changeSet author="1.0.0.8" id="92" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="subsidy_interest_amounts"
+					columnName="subsidy_paid" />
+			</not>
+		</preConditions>
+		<addColumn tableName="subsidy_interest_amounts">
+			<column name="subsidy_paid" type="numeric(22,6)"/>
+		</addColumn>
+	</changeSet>
+
+	<changeSet author="1.0.0.8" id="93" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="loan_disbursement_entry"
+					columnName="passing_date" />
+			</not>
+		</preConditions>
+		<addColumn tableName="loan_disbursement_entry">
+			<column name="passing_date" type="date"/>
+		</addColumn>
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="94" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="loan_disbursement_entry"
+					columnName="voucher_number" />
+			</not>
+		</preConditions>
+		<addColumn tableName="loan_disbursement_entry">
+			<column name="voucher_number" type="VARCHAR(10)"/>
+		</addColumn>
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="95" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="cust_land_detail"
+					columnName="available_cul_land" />
+			</not>
+		</preConditions>
+		<addColumn tableName="cust_land_detail">
+			<column name="available_cul_land" type="double"/>
+		</addColumn>
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="96" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="season_definition"
+					columnName="drawal_end_duration" />
+			</not>
+		</preConditions>
+		<addColumn tableName="season_definition">
+			<column name="drawal_end_duration" type="INT4"/>
+		</addColumn>
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="97" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="season_definition"
+					columnName="loan_overdue_duration" />
+			</not>
+		</preConditions>
+		<addColumn tableName="season_definition">
+			<column name="loan_overdue_duration" type="INT4"/>
+		</addColumn>
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="98" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="charges_master" columnName="bank_charges_receivable_gl" />
+			</not>
+		</preConditions>
+		<addColumn tableName="charges_master">
+			<column name="bank_charges_receivable_gl" type="VARCHAR(45)" />
+		</addColumn>
+	</changeSet>
+
+	<changeSet author="1.0.0.8" id="99" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="charges_master" columnName="bank_charges_received_gl" />
+			</not>
+		</preConditions>
+		<addColumn tableName="charges_master">
+			<column name="bank_charges_received_gl" type="VARCHAR(45)" />
+		</addColumn>
+	</changeSet>
+
+	<changeSet author="1.0.0.8" id="100" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="product_charges_mapping"
+					columnName="bankpercentage" />
+			</not>
+		</preConditions>
+		<addColumn tableName="product_charges_mapping">
+			<column name="bankpercentage" type="INT8" />
+		</addColumn>
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="101" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="charges_debit" columnName="balance_amount" />
+			</not>
+		</preConditions>
+		<addColumn tableName="charges_debit">
+			<column name="balance_amount" type="numeric(22,6)" />
+		</addColumn>
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="102" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<columnExists tableName="charges_master" columnName="charges_receivable_gl" />
+		</preConditions>
+		<modifyDataType columnName="charges_receivable_gl"
+			newDataType="VARCHAR(45)" tableName="charges_master" />
+	</changeSet>
+
+	<changeSet author="1.0.0.8" id="103" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<columnExists tableName="charges_master" columnName="charges_received_gl" />
+		</preConditions>
+		<modifyDataType columnName="charges_received_gl"
+			newDataType="VARCHAR(45)" tableName="charges_master" />
+	</changeSet>
+
+	<changeSet author="1.0.0.8" id="104" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="product"
+					columnName="scheme_id" />
+			</not>
+		</preConditions>
+		<addColumn tableName="product">
+			<column name="scheme_id" type="INT4" />
+		</addColumn>
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="105">
+		<preConditions onFail="MARK_RAN">
+			<columnExists tableName="scheme" columnName="product_id" />
+		</preConditions>
+		<dropColumn tableName="scheme" columnName="product_id" />
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="106" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="pacs_loan_application_hdr"
+					columnName="product_id" />
+			</not>
+		</preConditions>
+		<addColumn tableName="pacs_loan_application_hdr">
+			<column name="product_id" type="INT4" />
+		</addColumn>
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="107">
+		<preConditions onFail="MARK_RAN">
+			<columnExists tableName="bank_parameter" columnName="is_offline_required" />
+		</preConditions>
+		<dropColumn tableName="bank_parameter" columnName="is_offline_required" />
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="108" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="bank_parameter"
+					columnName="cbs_integration_method" />
+			</not>
+		</preConditions>
+		<addColumn tableName="bank_parameter">
+			<column name="cbs_integration_method" type="VARCHAR(1)" defaultValue="P"  />
+		</addColumn>
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="109" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="bank_parameter"
+					columnName="other_cbs" />
+			</not>
+		</preConditions>
+		<addColumn tableName="bank_parameter">
+			<column name="other_cbs" type="VARCHAR(2)" defaultValue="N"  />
+		</addColumn>
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="110" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="cust_land_detail"
+					columnName="land_value" />
+			</not>
+		</preConditions>
+		<addColumn tableName="cust_land_detail">
+			<column name="land_value" type="numeric(22,6)" defaultValue="0"  />
+		</addColumn>
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="111" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="cust_land_detail"
+					columnName="water_facility" />
+			</not>
+		</preConditions>
+		<addColumn tableName="cust_land_detail">
+			<column name="water_facility" type="character varying(1)" defaultValue="B"  />
+		</addColumn>
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="112" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="cust_land_detail"
+					columnName="land_category" />
+			</not>
+		</preConditions>
+		<addColumn tableName="cust_land_detail">
+			<column name="land_category" type="character varying(2)" defaultValue="RW"  />
+		</addColumn>
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="113" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="cust_land_detail"
+					columnName="land_units" />
+			</not>
+		</preConditions>
+		<addColumn tableName="cust_land_detail">
+			<column name="land_units" type="character varying(1)" defaultValue="G"  />
+		</addColumn>
+	</changeSet>
+	
+	
+	<changeSet author="1.0.0.8" id="114" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="cust_land_detail"
+					columnName="taluka_id" />
+			</not>
+		</preConditions>
+		<addColumn tableName="cust_land_detail">
+			<column name="taluka_id" type="INT8" defaultValue="1"  />
+		</addColumn>
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="115" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="cust_land_detail"
+					columnName="mortgazed_bank_name" />
+			</not>
+		</preConditions>
+		<addColumn tableName="cust_land_detail">
+			<column name="mortgazed_bank_name" type="character varying(64)" defaultValue="abc"  />
+		</addColumn>
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="116" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="cust_land_detail"
+					columnName="mortgazed_charged_amount" />
+			</not>
+		</preConditions>
+		<addColumn tableName="cust_land_detail">
+			<column name="mortgazed_charged_amount" type="numeric(22,6)" defaultValue="0"  />
+		</addColumn>
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="117" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="cust_land_detail"
+					columnName="mortgazed_charged_date" />
+			</not>
+		</preConditions>
+		<addColumn tableName="cust_land_detail">
+			<column name="mortgazed_charged_date" type="date"  />
+		</addColumn>
+	</changeSet>
+	
+		<changeSet author="1.0.0.8" id="118" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="cust_land_detail"
+					columnName="charged_bank_name" />
+			</not>
+		</preConditions>
+		<addColumn tableName="cust_land_detail">
+			<column name="charged_bank_name" type="character varying(50)" defaultValue="abc"  />
+		</addColumn>
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="119" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="cust_land_detail"
+					columnName="charged_amount" />
+			</not>
+		</preConditions>
+		<addColumn tableName="cust_land_detail">
+			<column name="charged_amount" type="numeric(22,6)" defaultValue="0"  />
+		</addColumn>
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="120" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="cust_land_detail"
+					columnName="charged_date" />
+			</not>
+		</preConditions>
+		<addColumn tableName="cust_land_detail">
+			<column name="charged_date" type="date"  />
+		</addColumn>
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="121" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="cust_land_detail"
+					columnName="is_member" />
+			</not>
+		</preConditions>
+		<addColumn tableName="cust_land_detail">
+			<column name="is_member" type="character varying(1)" defaultValue="Y"  />
+		</addColumn>
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="122" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="cust_land_detail"
+					columnName="total_land" />
+			</not>
+		</preConditions>
+		<addColumn tableName="cust_land_detail">
+			<column name="total_land" type="numeric(10,6)" defaultValue="0"  />
+		</addColumn>
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="123" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="cust_land_detail"
+					columnName="total_land_units" />
+			</not>
+		</preConditions>
+		<addColumn tableName="cust_land_detail">
+			<column name="total_land_units" type="character varying(1)" defaultValue="G"  />
+		</addColumn>
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="124" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="cust_land_detail"
+					columnName="total_decimal_land" />
+			</not>
+		</preConditions>
+		<addColumn tableName="cust_land_detail">
+			<column name="total_decimal_land" type="numeric(10,6)" defaultValue="0"  />
+		</addColumn>
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="125" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="cust_land_detail"
+					columnName="total_decimal_land_units" />
+			</not>
+		</preConditions>
+		<addColumn tableName="cust_land_detail">
+			<column name="total_decimal_land_units" type="character varying(1)" defaultValue="G"  />
+		</addColumn>
+	</changeSet>
+	
+		<changeSet author="1.0.0.8" id="126" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="cust_land_detail"
+					columnName="cultivated_land" />
+			</not>
+		</preConditions>
+		<addColumn tableName="cust_land_detail">
+			<column name="cultivated_land" type="numeric(10,6)" defaultValue="0"  />
+		</addColumn>
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="127" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="cust_land_detail"
+					columnName="cultivated_land_units" />
+			</not>
+		</preConditions>
+		<addColumn tableName="cust_land_detail">
+			<column name="cultivated_land_units" type="character varying(1)" defaultValue="G"  />
+		</addColumn>
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="128" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="cust_land_detail"
+					columnName="cultivated_decimal_land" />
+			</not>
+		</preConditions>
+		<addColumn tableName="cust_land_detail">
+			<column name="cultivated_decimal_land" type="numeric(10,6)" defaultValue="0"  />
+		</addColumn>
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="129" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="cust_land_detail"
+					columnName="cultivated_decimal_land_units" />
+			</not>
+		</preConditions>
+		<addColumn tableName="cust_land_detail">
+			<column name="cultivated_decimal_land_units" type="character varying(1)" defaultValue="G"  />
+		</addColumn>
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="130" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="cust_land_detail"
+					columnName="mortgage_type" />
+			</not>
+		</preConditions>
+		<addColumn tableName="cust_land_detail">
+			<column name="mortgage_type" type="character varying(45)" />
+		</addColumn>
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="131" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="cust_land_detail"
+					columnName="charge_type" />
+			</not>
+		</preConditions>
+		<addColumn tableName="cust_land_detail">
+			<column name="charge_type" type="character varying(45)" />
+		</addColumn>
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="132" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="cust_land_detail"
+					columnName="land_owner_details_id" />
+			</not>
+		</preConditions>
+		<addColumn tableName="cust_land_detail">
+			<column name="land_owner_details_id" type="numeric" />
+		</addColumn>
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="133" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="tenant_land_details"
+					columnName="period" />
+			</not>
+		</preConditions>
+		<addColumn tableName="tenant_land_details">
+			<column name="period" type="INT8" />
+		</addColumn>
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="134" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="tenant_land_details"
+					columnName="land_owner_details_id" />
+			</not>
+		</preConditions>
+		<addColumn tableName="tenant_land_details">
+			<column name="land_owner_details_id" type="numeric" />
+		</addColumn>
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="135" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="land_type"
+					columnName="land_value" />
+			</not>
+		</preConditions>
+		<addColumn tableName="land_type">
+			<column name="land_value" type="numeric(22,6)"  defaultValue="0"/>
+		</addColumn>
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="136" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="land_type"
+					columnName="units" />
+			</not>
+		</preConditions>
+		<addColumn tableName="land_type">
+			<column name="units" type="character varying(2)" defaultValue="G"  />
+		</addColumn>
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="137" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="pacs_loan_application_dtl"
+					columnName="total_land_units" />
+			</not>
+		</preConditions>
+		<addColumn tableName="pacs_loan_application_dtl">
+			<column name="total_land_units" type="character varying(1)" defaultValue="G"  />
+		</addColumn>
+	</changeSet>
+	
+	
+	<changeSet author="1.0.0.8" id="138" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="pacs_loan_application_dtl"
+					columnName="total_decimal_land" />
+			</not>
+		</preConditions>
+		<addColumn tableName="pacs_loan_application_dtl">
+			<column name="total_decimal_land" type="numeric(10,6)" defaultValue="0" />
+		</addColumn>
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="139" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="pacs_loan_application_dtl"
+					columnName="total_decimal_land_units" />
+			</not>
+		</preConditions>
+		<addColumn tableName="pacs_loan_application_dtl">
+			<column name="total_decimal_land_units" type="character varying(1)" defaultValue="G"  />
+		</addColumn>
+	</changeSet>
+	
+</databaseChangeLog>

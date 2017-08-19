@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<customer name="chandra" cust_id="CUS01" member_srl_no="ME01" cbs_cust_id="CBS01" member_type="MEM01" village_id="1"/>
+</dataset>

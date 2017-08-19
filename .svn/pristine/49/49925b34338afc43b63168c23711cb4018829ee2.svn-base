@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<dataset>
+	<district id='101' name='SEC' dcc_bank_code='004' />
+	<taluka id='1001' name="ABCD" dist_id='101' />
+	<village id="10001" name="SECUNDERABAD" taluka_id='1001' />
+</dataset>

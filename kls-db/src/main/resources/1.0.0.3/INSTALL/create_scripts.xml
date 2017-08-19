@@ -1,0 +1,885 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.2.xsd http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+	<changeSet author="sponnam" id="1407821326889-1">
+		<createSequence sequenceName="account_id_seq" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-2">
+		<createSequence sequenceName="account_property_id_seq" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-3">
+		<createSequence sequenceName="bank_id_seq" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-4">
+		<createSequence sequenceName="branch_id_seq" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-5">
+		<createSequence sequenceName="crop_id_seq" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-6">
+		<createSequence sequenceName="current_txn_id_seq" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-7">
+		<createSequence sequenceName="customer_id_seq" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-8">
+		<createSequence sequenceName="district_id_seq"/>
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-9">
+		<createSequence sequenceName="interest_category_id_seq" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-10">
+		<createSequence sequenceName="land_detail_id_seq" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-11">
+		<createSequence sequenceName="land_type_id_seq" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-12">
+		<createSequence sequenceName="loan_appl_dtl_id_seq" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-13">
+		<createSequence sequenceName="loc_id_seq" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-14">
+		<createSequence sequenceName="pacs_id_seq" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-15">
+		<createSequence sequenceName="pacs_loan_appl_hdr_id_seq" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-16">
+		<createSequence sequenceName="pacsgl_id_seq" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-17">
+		<createSequence sequenceName="product_id_seq" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-18">
+		<createSequence sequenceName="product_type_id_seq" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-19">
+		<createSequence sequenceName="scale_of_finance_id_seq" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-20">
+		<createSequence sequenceName="scheme_id_seq" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-21">
+		<createSequence sequenceName="season_definition_id_seq" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-22">
+		<createSequence sequenceName="season_id_seq" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-23">
+		<createSequence sequenceName="slabwiseinterest_id_seq" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-24">
+		<createSequence sequenceName="taluka_id_seq" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-25">
+		<createSequence sequenceName="txn_history_id_seq" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-26">
+		<createSequence sequenceName="village_id_seq" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-27">
+		<createTable tableName="account">
+			<column name="id" type="INT8">
+				<constraints nullable="false" />
+			</column>
+			<column name="account_number" type="VARCHAR(20)" />
+			<column name="close_date" type="date" />
+			<column name="open_date" type="date" />
+			<column name="status" type="VARCHAR(1)" />
+			<column name="account_property_id" type="INT8" />
+		</createTable>
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-28">
+		<createTable tableName="account_property">
+			<column name="id" type="INT8">
+				<constraints nullable="false" />
+			</column>
+			<column name="branch_id" type="INT4" />
+			<column name="customer_id" type="INT8" />
+			<column name="pacs_id" type="INT4" />
+			<column name="product_id" type="INT4" />
+		</createTable>
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-29">
+		<createTable tableName="bank_parameter">
+			<column name="id" type="INT4">
+				<constraints nullable="false" />
+			</column>
+			<column name="bank_code" type="VARCHAR(5)" />
+			<column name="bank_name" type="VARCHAR(45)" />
+			<column name="process_status" type="VARCHAR(1)" />
+			<column name="close_date" type="date" />
+			<column name="loan_limit_per_farmer" type="numeric(22, 6)" />
+			<column name="district_id" type="INT4" />
+		</createTable>
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-30">
+		<createTable tableName="branch">
+			<column name="id" type="INT4">
+				<constraints nullable="false" />
+			</column>
+			<column name="rbi_code" type="VARCHAR(4)" />
+			<column name="address1" type="VARCHAR(60)" />
+			<column name="name" type="VARCHAR(45)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-31">
+		<createTable tableName="crop">
+			<column name="id" type="INT4">
+				<constraints nullable="false" />
+			</column>
+			<column name="name" type="VARCHAR(45)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-32">
+		<createTable tableName="crop_type_mast">
+			<column name="crop_type_code" type="VARCHAR(5)">
+				<constraints nullable="false" />
+			</column>
+			<column name="crop_type_name" type="VARCHAR(45)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-33">
+		<createTable tableName="current_transaction">
+			<column name="id" type="INT8">
+				<constraints nullable="false" />
+			</column>
+			<column name="account_number" type="VARCHAR(20)" />
+			<column name="business_date" type="date" />
+			<column name="channel_type" type="VARCHAR(1)" />
+			<column name="crdr" type="INT4" />
+			<column name="opening_balance" type="numeric(22, 6)" />
+			<column name="status" type="INT4" />
+			<column name="remarks" type="VARCHAR(60)" />
+			<column name="trans_amt" type="numeric(22, 6)" />
+			<column name="tran_code" type="INT4" />
+			<column name="trans_type" type="VARCHAR(1)" />
+			<column name="voucher_number" type="INT4" />
+			<column name="account_id" type="INT8">
+				<constraints nullable="false" />
+			</column>
+			<column name="line_of_credit_id" type="INT8">
+				<constraints nullable="false" />
+			</column>
+			<column name="pacs_id" type="INT4">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-34">
+		<createTable tableName="cust_land_detail">
+			<column name="id" type="INT8">
+				<constraints nullable="false" />
+			</column>
+			<column name="area_cultivated" type="double" />
+			<column name="area_owned" type="double" />
+			<column name="bsr_no" type="VARCHAR(20)" />
+			<column name="charged_remarks" type="VARCHAR(45)" />
+			<column name="cust_id" type="VARCHAR(45)" />
+			<column name="is_charged" type="VARCHAR(1)" />
+			<column name="is_mortgazed" type="VARCHAR(1)" />
+			<column name="mortgazed_remarks" type="VARCHAR(45)" />
+			<column name="rsr_no" type="VARCHAR(20)" />
+			<column name="sub_village_name" type="VARCHAR(45)" />
+			<column name="survey_no" type="VARCHAR(20)" />
+			<column name="land_type_id" type="INT4">
+				<constraints nullable="false" />
+			</column>
+			<column name="village_id" type="INT4">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-35">
+		<createTable tableName="customer">
+			<column name="id" type="INT8">
+				<constraints nullable="false" />
+			</column>
+			<column name="cbs_cust_id" type="VARCHAR(16)" />
+			<column name="cust_id" type="VARCHAR(16)" />
+			<column name="member_srl_no" type="VARCHAR(6)" />
+			<column name="member_type" type="VARCHAR(5)" />
+			<column name="name" type="VARCHAR(45)" />
+			<column name="village_id" type="INT4" />
+		</createTable>
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-36">
+		<createTable tableName="district">
+			<column name="id" type="INT4">
+				<constraints nullable="false" />
+			</column>
+			<column name="dcc_bank_code" type="VARCHAR(5)">
+				<constraints nullable="false" />
+			</column>
+			<column name="name" type="VARCHAR(45)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-37">
+		<createTable tableName="interest_category">
+			<column name="id" type="INT4">
+				<constraints nullable="false" />
+			</column>
+			<column name="description" type="VARCHAR(45)" />
+		</createTable>
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-38">
+		<createTable tableName="land_type">
+			<column name="id" type="INT4">
+				<constraints nullable="false" />
+			</column>
+			<column name="name" type="VARCHAR(45)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-39">
+		<createTable tableName="line_of_credit">
+			<column name="id" type="INT8">
+				<constraints nullable="false" />
+			</column>
+			<column name="current_balance" type="numeric(22, 6)" />
+			<column name="drawal_priority" type="INT4" />
+			<column name="interest_due" type="numeric(22, 6)" />
+			<column name="last_int_cal_date" type="date" />
+			<column name="overdue_interest" type="numeric(22, 6)" />
+			<column name="sanctioned_limit" type="numeric(22, 6)" />
+			<column name="sanctioned_date" type="date" />
+			<column name="account_id" type="INT8">
+				<constraints nullable="false" />
+			</column>
+			<column name="crop_id" type="INT4">
+				<constraints nullable="false" />
+			</column>
+			<column name="interest_category_id" type="INT4">
+				<constraints nullable="false" />
+			</column>
+			<column name="scheme_id" type="INT4">
+				<constraints nullable="false" />
+			</column>
+			<column name="season_id" type="INT8">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-40">
+		<createTable tableName="pacs">
+			<column name="id" type="INT4">
+				<constraints nullable="false" />
+			</column>
+			<column name="address1" type="VARCHAR(60)" />
+			<column name="name" type="VARCHAR(45)" />
+			<column name="secretary_name" type="VARCHAR(45)" />
+			<column name="branch_id" type="INT4">
+				<constraints nullable="false" />
+			</column>
+			<column name="village_id" type="INT4">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-41">
+		<createTable tableName="pacs_gl">
+			<column name="id" type="INT8">
+				<constraints nullable="false" />
+			</column>
+			<column name="entered_by" type="VARCHAR(45)" />
+			<column name="entered_date" type="date" />
+			<column name="gl_code" type="VARCHAR(12)" />
+			<column name="name" type="VARCHAR(45)">
+				<constraints nullable="false" />
+			</column>
+			<column name="gltype" type="VARCHAR(1)">
+				<constraints nullable="false" />
+			</column>
+			<column name="pacs_id" type="INT4">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-42">
+		<createTable tableName="pacs_loan_application_dtl">
+			<column name="id" type="INT8">
+				<constraints nullable="false" />
+			</column>
+			<column name="application_status" type="INT4" />
+			<column name="calculated_amount" type="numeric(22, 6)" />
+			<column name="entered_remarks" type="VARCHAR(60)" />
+			<column name="inspected_by" type="VARCHAR(45)" />
+			<column name="inspected_date" type="date" />
+			<column name="inspection_amount" type="numeric(22, 6)" />
+			<column name="inspection_remarks" type="VARCHAR(60)" />
+			<column name="land_area" type="numeric(22, 2)" />
+			<column name="loan_application_no" type="VARCHAR(15)" />
+			<column name="priority" type="INT4" />
+			<column name="recommended_amount" type="numeric(22, 6)" />
+			<column name="required_amount" type="numeric(22, 6)" />
+			<column name="sanctioned_amount" type="numeric(22, 6)" />
+			<column name="sanctioned_by" type="VARCHAR(45)" />
+			<column name="sanctioned_date" type="date" />
+			<column name="sanctioned_remarks" type="VARCHAR(60)" />
+			<column name="crop_id" type="INT4">
+				<constraints nullable="false" />
+			</column>
+			<column name="customer_id" type="INT8">
+				<constraints nullable="false" />
+			</column>
+			<column name="header_id" type="INT8">
+				<constraints nullable="false" />
+			</column>
+			<column name="land_type_id" type="INT4">
+				<constraints nullable="false" />
+			</column>
+			<column name="season_id" type="INT8">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-43">
+		<createTable tableName="pacs_loan_application_hdr">
+			<column name="id" type="INT8">
+				<constraints nullable="false" />
+			</column>
+			<column name="application_date" type="date" />
+			<column name="application_type" type="VARCHAR(1)" />
+			<column name="financial_year" type="VARCHAR(10)" />
+			<column name="process_status" type="VARCHAR(1)" />
+			<column name="crop_id" type="INT4">
+				<constraints nullable="false" />
+			</column>
+			<column name="pacs_id" type="INT4">
+				<constraints nullable="false" />
+			</column>
+			<column name="scheme_id" type="INT4">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-44">
+		<createTable tableName="product">
+			<column name="id" type="INT4">
+				<constraints nullable="false" />
+			</column>
+			<column name="atm_applicable" type="VARCHAR(1)" />
+			<column name="last_int_post_date" type="date" />
+			<column name="name" type="VARCHAR(45)" />
+			<column name="released_date" type="date" />
+			<column name="released" type="VARCHAR(1)" />
+			<column name="short_name" type="VARCHAR(45)" />
+			<column name="interest_category_id" type="INT4">
+				<constraints nullable="false" />
+			</column>
+			<column name="product_type_id" type="INT4">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-45">
+		<createTable tableName="product_type">
+			<column name="id" type="INT4">
+				<constraints nullable="false" />
+			</column>
+			<column name="atm_applicable" type="VARCHAR(1)" />
+			<column name="description" type="VARCHAR(45)" />
+			<column name="interest_category_id" type="INT4">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-46">
+		<createTable tableName="scale_of_finance">
+			<column name="id" type="INT4">
+				<constraints nullable="false" />
+			</column>
+			<column name="area_type" type="VARCHAR(1)" />
+			<column name="area_type_id" type="INT4" />
+			<column name="max_loan_per_acre" type="numeric(22, 6)" />
+			<column name="crop_id" type="INT4">
+				<constraints nullable="false" />
+			</column>
+			<column name="land_type_id" type="INT4">
+				<constraints nullable="false" />
+			</column>
+			<column name="season_id" type="INT8">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-47">
+		<createTable tableName="scheme">
+			<column name="id" type="INT4">
+				<constraints nullable="false" />
+			</column>
+			<column name="name" type="VARCHAR(45)" />
+			<column name="product_id" type="INT4">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-48">
+		<createTable tableName="season">
+			<column name="id" type="INT8">
+				<constraints nullable="false" />
+			</column>
+			<column name="drawal_end" type="date" />
+			<column name="drawal_start" type="date" />
+			<column name="name" type="VARCHAR(45)" />
+			<column name="overdue_date" type="date" />
+			<column name="process_status" type="VARCHAR(1)" />
+		</createTable>
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-49">
+		<createTable tableName="season_definition">
+			<column name="id" type="INT4">
+				<constraints nullable="false" />
+			</column>
+			<column name="drawal_end_day" type="INT4" />
+			<column name="drawal_end_month" type="INT4" />
+			<column name="drawal_start_day" type="INT4" />
+			<column name="drawal_start_month" type="INT4" />
+			<column name="loan_overdue_day" type="INT4" />
+			<column name="loan_overdue_month" type="INT4" />
+			<column name="name" type="VARCHAR(45)" />
+		</createTable>
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-50">
+		<createTable tableName="slabwise_interest_rate">
+			<column name="id" type="INT8">
+				<constraints nullable="false" />
+			</column>
+			<column name="effective_date" type="date" />
+			<column name="from_period" type="INT4">
+				<constraints nullable="false" />
+			</column>
+			<column name="from_slab" type="numeric(22, 6)" />
+			<column name="penal_roi" type="numeric(22, 2)" />
+			<column name="roi" type="numeric(22, 2)" />
+			<column name="to_period" type="INT4">
+				<constraints nullable="false" />
+			</column>
+			<column name="to_slab" type="numeric(22, 6)" />
+			<column name="interest_category_id" type="INT4">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-51">
+		<createTable tableName="taluka">
+			<column name="id" type="INT4">
+				<constraints nullable="false" />
+			</column>
+			<column name="name" type="VARCHAR(45)" />
+			<column name="dist_id" type="INT4">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-52">
+		<createTable tableName="transaction_history">
+			<column name="id" type="INT8">
+				<constraints nullable="false" />
+			</column>
+			<column name="account_number" type="VARCHAR(20)" />
+			<column name="business_date" type="date" />
+			<column name="channel_type" type="VARCHAR(1)" />
+			<column name="crdr" type="INT4" />
+			<column name="opening_balance" type="numeric(22, 6)" />
+			<column name="status" type="INT4" />
+			<column name="remarks" type="VARCHAR(60)" />
+			<column name="trans_amt" type="numeric(22, 6)" />
+			<column name="tran_code" type="INT4" />
+			<column name="trans_type" type="VARCHAR(1)" />
+			<column name="voucher_number" type="INT4" />
+			<column name="account_id" type="INT8">
+				<constraints nullable="false" />
+			</column>
+			<column name="line_of_credit_id" type="INT8">
+				<constraints nullable="false" />
+			</column>
+			<column name="pacs_id" type="INT4">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-53">
+		<createTable tableName="village">
+			<column name="id" type="INT4">
+				<constraints nullable="false" />
+			</column>
+			<column name="name" type="VARCHAR(45)" />
+			<column name="pin" type="INT4" />
+			<column name="taluka_id" type="INT4">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-54">
+		<addPrimaryKey columnNames="id" constraintName="account_pkey"
+			tableName="account" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-55">
+		<addPrimaryKey columnNames="id" constraintName="account_property_pkey"
+			tableName="account_property" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-56">
+		<addPrimaryKey columnNames="id" constraintName="bank_parameter_pkey"
+			tableName="bank_parameter" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-57">
+		<addPrimaryKey columnNames="id" constraintName="branch_pkey"
+			tableName="branch" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-58">
+		<addPrimaryKey columnNames="id" constraintName="crop_pkey"
+			tableName="crop" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-59">
+		<addPrimaryKey columnNames="crop_type_code"
+			constraintName="crop_type_mast_pkey" tableName="crop_type_mast" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-60">
+		<addPrimaryKey columnNames="id" constraintName="current_transaction_pkey"
+			tableName="current_transaction" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-61">
+		<addPrimaryKey columnNames="id" constraintName="cust_land_detail_pkey"
+			tableName="cust_land_detail" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-62">
+		<addPrimaryKey columnNames="id" constraintName="customer_pkey"
+			tableName="customer" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-63">
+		<addPrimaryKey columnNames="id" constraintName="district_pkey"
+			tableName="district" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-64">
+		<addPrimaryKey columnNames="id" constraintName="interest_category_pkey"
+			tableName="interest_category" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-65">
+		<addPrimaryKey columnNames="id" constraintName="land_type_pkey"
+			tableName="land_type" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-66">
+		<addPrimaryKey columnNames="id" constraintName="line_of_credit_pkey"
+			tableName="line_of_credit" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-67">
+		<addPrimaryKey columnNames="id" constraintName="pacs_gl_pkey"
+			tableName="pacs_gl" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-68">
+		<addPrimaryKey columnNames="id"
+			constraintName="pacs_loan_application_dtl_pkey" tableName="pacs_loan_application_dtl" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-69">
+		<addPrimaryKey columnNames="id"
+			constraintName="pacs_loan_application_hdr_pkey" tableName="pacs_loan_application_hdr" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-70">
+		<addPrimaryKey columnNames="id" constraintName="pacs_pkey"
+			tableName="pacs" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-71">
+		<addPrimaryKey columnNames="id" constraintName="product_pkey"
+			tableName="product" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-72">
+		<addPrimaryKey columnNames="id" constraintName="product_type_pkey"
+			tableName="product_type" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-73">
+		<addPrimaryKey columnNames="id" constraintName="scale_of_finance_pkey"
+			tableName="scale_of_finance" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-74">
+		<addPrimaryKey columnNames="id" constraintName="scheme_pkey"
+			tableName="scheme" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-75">
+		<addPrimaryKey columnNames="id" constraintName="season_definition_pkey"
+			tableName="season_definition" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-76">
+		<addPrimaryKey columnNames="id" constraintName="season_pkey"
+			tableName="season" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-77">
+		<addPrimaryKey columnNames="id" constraintName="slabwise_interest_rate_pkey"
+			tableName="slabwise_interest_rate" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-78">
+		<addPrimaryKey columnNames="id" constraintName="taluka_pkey"
+			tableName="taluka" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-79">
+		<addPrimaryKey columnNames="id" constraintName="transaction_history_pkey"
+			tableName="transaction_history" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-80">
+		<addPrimaryKey columnNames="id" constraintName="village_pkey"
+			tableName="village" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-81">
+		<addUniqueConstraint columnNames="account_property_id"
+			constraintName="account_account_property_id_key" deferrable="false"
+			disabled="false" initiallyDeferred="false" tableName="account" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-82">
+		<addUniqueConstraint columnNames="product_id"
+			constraintName="scheme_product_id_key" deferrable="false" disabled="false"
+			initiallyDeferred="false" tableName="scheme" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-83">
+		<addForeignKeyConstraint baseColumnNames="product_type_id"
+			baseTableName="product" constraintName="fk185958cf992bd20d"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="product_type" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-84">
+		<addForeignKeyConstraint baseColumnNames="interest_category_id"
+			baseTableName="product" constraintName="fk185958cfcce1b8db"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="interest_category" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-85">
+		<addForeignKeyConstraint baseColumnNames="village_id"
+			baseTableName="pacs" constraintName="fk3462213bd8888e" deferrable="false"
+			initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+			referencedColumnNames="id" referencedTableName="village" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-86">
+		<addForeignKeyConstraint baseColumnNames="branch_id"
+			baseTableName="pacs" constraintName="fk346221a5175a6" deferrable="false"
+			initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+			referencedColumnNames="id" referencedTableName="branch" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-87">
+		<addForeignKeyConstraint baseColumnNames="taluka_id"
+			baseTableName="village" constraintName="fk463c308c13e1566"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="taluka" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-88">
+		<addForeignKeyConstraint baseColumnNames="village_id"
+			baseTableName="cust_land_detail" constraintName="fk507bc9393bd8888e"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="village" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-89">
+		<addForeignKeyConstraint baseColumnNames="land_type_id"
+			baseTableName="cust_land_detail" constraintName="fk507bc9397da509dd"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="land_type" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-90">
+		<addForeignKeyConstraint baseColumnNames="pacs_id"
+			baseTableName="transaction_history" constraintName="fk59d6a0332df8c46"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="pacs" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-91">
+		<addForeignKeyConstraint baseColumnNames="account_id"
+			baseTableName="transaction_history" constraintName="fk59d6a033c970c28f"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="account" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-92">
+		<addForeignKeyConstraint baseColumnNames="line_of_credit_id"
+			baseTableName="transaction_history" constraintName="fk59d6a033ef9e8313"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="line_of_credit" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-93">
+		<addForeignKeyConstraint baseColumnNames="header_id"
+			baseTableName="pacs_loan_application_dtl" constraintName="fk6677fc3c56492ead"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id"
+			referencedTableName="pacs_loan_application_hdr" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-94">
+		<addForeignKeyConstraint baseColumnNames="crop_id"
+			baseTableName="pacs_loan_application_dtl" constraintName="fk6677fc3c70d301e6"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="crop" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-95">
+		<addForeignKeyConstraint baseColumnNames="land_type_id"
+			baseTableName="pacs_loan_application_dtl" constraintName="fk6677fc3c7da509dd"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="land_type" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-96">
+		<addForeignKeyConstraint baseColumnNames="customer_id"
+			baseTableName="pacs_loan_application_dtl" constraintName="fk6677fc3cb2f36126"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="customer" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-97">
+		<addForeignKeyConstraint baseColumnNames="season_id"
+			baseTableName="pacs_loan_application_dtl" constraintName="fk6677fc3cc1ece206"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="season" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-98">
+		<addForeignKeyConstraint baseColumnNames="interest_category_id"
+			baseTableName="slabwise_interest_rate" constraintName="fk71d6e234cce1b8db"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="interest_category" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-99">
+		<addForeignKeyConstraint baseColumnNames="district_id"
+			baseTableName="bank_parameter" constraintName="fk7c38196659428326"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="district" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-100">
+		<addForeignKeyConstraint baseColumnNames="pacs_id"
+			baseTableName="pacs_loan_application_hdr" constraintName="fk91f6e1962df8c46"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="pacs" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-101">
+		<addForeignKeyConstraint baseColumnNames="scheme_id"
+			baseTableName="pacs_loan_application_hdr" constraintName="fk91f6e1964c58d2c6"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="scheme" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-102">
+		<addForeignKeyConstraint baseColumnNames="crop_id"
+			baseTableName="pacs_loan_application_hdr" constraintName="fk91f6e19670d301e6"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="crop" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-103">
+		<addForeignKeyConstraint baseColumnNames="crop_id"
+			baseTableName="scale_of_finance" constraintName="fk948d8b8770d301e6"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="crop" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-104">
+		<addForeignKeyConstraint baseColumnNames="land_type_id"
+			baseTableName="scale_of_finance" constraintName="fk948d8b877da509dd"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="land_type" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-105">
+		<addForeignKeyConstraint baseColumnNames="season_id"
+			baseTableName="scale_of_finance" constraintName="fk948d8b87c1ece206"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="season" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-106">
+		<addForeignKeyConstraint baseColumnNames="pacs_id"
+			baseTableName="current_transaction" constraintName="fkacf381182df8c46"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="pacs" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-107">
+		<addForeignKeyConstraint baseColumnNames="account_id"
+			baseTableName="current_transaction" constraintName="fkacf38118c970c28f"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="account" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-108">
+		<addForeignKeyConstraint baseColumnNames="line_of_credit_id"
+			baseTableName="current_transaction" constraintName="fkacf38118ef9e8313"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="line_of_credit" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-109">
+		<addForeignKeyConstraint baseColumnNames="account_property_id"
+			baseTableName="account" constraintName="fkb9d38a2db0bffaca"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="account_property" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-110">
+		<addForeignKeyConstraint baseColumnNames="interest_category_id"
+			baseTableName="product_type" constraintName="fkc85b10aacce1b8db"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="interest_category" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-111">
+		<addForeignKeyConstraint baseColumnNames="product_id"
+			baseTableName="scheme" constraintName="fkc9e135a53d05fdae"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="product" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-112">
+		<addForeignKeyConstraint baseColumnNames="dist_id"
+			baseTableName="taluka" constraintName="fkcb7bec8c6d51520e"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="district" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-113">
+		<addForeignKeyConstraint baseColumnNames="scheme_id"
+			baseTableName="line_of_credit" constraintName="fkcf58f3d64c58d2c6"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="scheme" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-114">
+		<addForeignKeyConstraint baseColumnNames="crop_id"
+			baseTableName="line_of_credit" constraintName="fkcf58f3d670d301e6"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="crop" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-115">
+		<addForeignKeyConstraint baseColumnNames="season_id"
+			baseTableName="line_of_credit" constraintName="fkcf58f3d6c1ece206"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="season" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-116">
+		<addForeignKeyConstraint baseColumnNames="account_id"
+			baseTableName="line_of_credit" constraintName="fkcf58f3d6c970c28f"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="account" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-117">
+		<addForeignKeyConstraint baseColumnNames="interest_category_id"
+			baseTableName="line_of_credit" constraintName="fkcf58f3d6cce1b8db"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="interest_category" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-118">
+		<addForeignKeyConstraint baseColumnNames="pacs_id"
+			baseTableName="pacs_gl" constraintName="fkcfe8cfc32df8c46"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="pacs" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-119">
+		<addForeignKeyConstraint baseColumnNames="pacs_id"
+			baseTableName="account_property" constraintName="fkf5a3a7a72df8c46"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="pacs" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-120">
+		<addForeignKeyConstraint baseColumnNames="product_id"
+			baseTableName="account_property" constraintName="fkf5a3a7a73d05fdae"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="product" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-121">
+		<addForeignKeyConstraint baseColumnNames="branch_id"
+			baseTableName="account_property" constraintName="fkf5a3a7a7a5175a6"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="branch" />
+	</changeSet>
+	<changeSet author="sponnam" id="1407821326889-122">
+		<addForeignKeyConstraint baseColumnNames="customer_id"
+			baseTableName="account_property" constraintName="fkf5a3a7a7b2f36126"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="customer" />
+	</changeSet>
+</databaseChangeLog>

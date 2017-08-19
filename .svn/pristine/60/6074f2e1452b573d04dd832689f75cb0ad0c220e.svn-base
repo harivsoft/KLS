@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet author="1.0.0.3" id="1" runOnChange="true">
+		 
+		<comment>check if record exists and then insert if not</comment>
+		<insert tableName="district">
+			<column name="id" value="1" />
+			<column name="dcc_bank_code" value="DCC01" />
+			<column name="name" value="Karimnagar"></column>
+		</insert>
+	</changeSet>
+
+	<changeSet author="1.0.0.3" id="2" runOnChange="true">
+		<comment>check if record exists and then insert if not</comment>
+		<insert tableName="bank_parameter">
+			<column name="id" value="1" />
+			<column name="bank_code" value="DCC01" />
+			<column name="bank_name" value="VSoft DCC" />
+			<column name="process_status" value="1" />
+			<column name="loan_limit_per_farmer" value="20000" />
+			<column name="district_id" value="1" />
+			<!-- <column name="priority_order" value="1" />
+			<column name="max_share_amount" value="1500" />
+			<column name="business_date" value="${now}" />
+			<column name="max_days_for_inconsistency" value="9999" /> -->
+		</insert>
+	</changeSet>
+</databaseChangeLog>

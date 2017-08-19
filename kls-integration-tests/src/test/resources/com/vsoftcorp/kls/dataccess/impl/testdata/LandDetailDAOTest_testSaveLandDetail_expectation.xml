@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<dataset>
+	<cust_land_detail customer_id='1' village_id="1" sub_village_name="subvillage 1" survey_no="SUR01" bsr_no="BSRNO1" rsr_no="RSRNO1" land_type_id="50" area_owned="13" area_cultivated="11" is_mortgazed="Y" mortgazed_remarks="Mortgaged remarks" is_charged="Y" charged_remarks="Charged Remarks"/>
+</dataset>

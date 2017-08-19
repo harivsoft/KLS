@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<dataset>
+	<product id="50" name="PROD1" short_name="PRO" released="Y"
+		released_date="2014-01-01" last_int_post_date="2014-02-15"
+		atm_applicable="Y" interest_category_id="1" product_type_id="50"
+		recovery_sequence_id="50" share_percentage="2" is_penal_interest_allowed="Y"
+		penal_interest_on="OS" />
+		<!-- int_receivable_gl="1" int_received_gl="2"
+		penal_int_receivable_gl="3" penal_int_received_gl="4"
+		charges_receivable_gl="5" charges_received_gl="6" -->
+</dataset>

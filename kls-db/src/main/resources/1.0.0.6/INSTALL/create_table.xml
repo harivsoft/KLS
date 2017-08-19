@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.2.xsd http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+
+	<changeSet author="1.0.0.6" id="1" runOnChange="true">
+
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="charges" />
+			</not>
+		</preConditions>
+		<createTable tableName="charges">
+			<column name="id" type="INT8">
+				<constraints primaryKey="true" nullable="false"
+					primaryKeyName="charges_pmr_key" />
+			</column>
+			<column name="pacs_loan_application_dtl_id" type="INT8" />
+			<column name="account_id" type="INT8">
+				<constraints nullable="false" />
+			</column>
+			<column name="charge_type" type="VARCHAR(45)" />
+			<column name="charge_amount" type="numeric(22, 6)" />
+			<column name="season_id" type="INT4" />
+		</createTable>
+	</changeSet>
+
+
+	<changeSet author="1.0.0.6" id="2">
+
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="inconsistency_audit_trail" />
+			</not>
+		</preConditions>
+		<createTable tableName="inconsistency_audit_trail">
+			<column name="id" type="INT8">
+				<constraints primaryKey="true" nullable="false"
+					primaryKeyName="inconsistency_audit_trail_pmr_key" />
+			</column>
+
+			<column name="account_id" type="INT8">
+				<constraints nullable="false" />
+			</column>
+			<column name="business_date" type="date" />
+			<column name="line_of_credit_id" type="INT8">
+				<constraints nullable="false" />
+			</column>
+			<column name="transaction_balance" type="numeric(22, 6)" />
+			<column name="loc_balance " type="numeric(22, 6)" />
+			<column name="status" type="VARCHAR(1)" />
+
+		</createTable>
+	</changeSet>
+
+
+	<changeSet author="1.0.0.6" id="3">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="event_type" />
+			</not>
+		</preConditions>
+		<createTable tableName="event_type">
+			<column name="id" type="INT4">
+				<constraints nullable="false" primaryKey="true"
+					primaryKeyName="event_type_pkey" />
+			</column>
+			<column name="recovery_order_id" type="INT4" />
+			<column name="recovery_sequence" type="INT4" />
+			<column name="event_type_def_id" type="INT4">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+
+	<changeSet author="1.0.0.6" id="4">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="event_type_definition" />
+			</not>
+		</preConditions>
+		<createTable tableName="event_type_definition">
+			<column name="id" type="INT4">
+				<constraints nullable="false" primaryKey="true"
+					primaryKeyName="event_type_definition_pkey" />
+			</column>
+			<column name="name" type="VARCHAR(45)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+
+	<changeSet author="1.0.0.6" id="5">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="sanctioned_component_detail" />
+			</not>
+		</preConditions>
+		<createTable tableName="sanctioned_component_detail">
+			<column name="id" type="INT4">
+				<constraints nullable="false" primaryKey="true"
+					primaryKeyName="sanctioned_component_pkey" />
+			</column>
+			<column name="season_id" type="INT4" />
+			<column name="kind_percentage " type="numeric(5, 2)" />
+			<column name="description" type="VARCHAR(45)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="1.0.0.6" id="6" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="borrowings_account" />
+			</not>
+		</preConditions>
+		<createTable tableName="borrowings_account">
+			<column name="id" type="INT4">
+				<constraints nullable="false" primaryKey="true"
+					primaryKeyName="borrowings_account_pkey" />
+			</column>
+			<column name="bank_code" type="VARCHAR(20)" />
+			<column name="branch_id" type="INT4" />
+			<column name="pacs_id" type="INT4" />
+			<column name="product_id" type="INT4" />
+			<column name="account_no" type="VARCHAR(20)" />
+		</createTable>
+	</changeSet>
+
+	<changeSet author="1.0.0.6" id="7" runOnChange="true">
+	<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="bank_pacs_gl_map" />
+			</not>
+		</preConditions>
+		<createTable tableName="bank_pacs_gl_map">
+			<column name="id" type="INT4">
+				<constraints nullable="false" primaryKey="true"
+					primaryKeyName="bank_pacs_gl_map_pkey" />
+			</column>
+			<column name="bank_code" type="VARCHAR(20)" />
+			<column name="branch_id" type="INT4" />
+			<column name="pacs_id" type="INT4" />
+			<column name="pos_device_no" type="VARCHAR(20)" />
+			<column name="account_no" type="VARCHAR(20)" />
+		</createTable>
+	</changeSet>
+
+	<changeSet author="1.0.0.6" id="8">
+	<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="season_parameter" />
+			</not>
+		</preConditions>
+		<createTable tableName="season_parameter">
+			<column name="id" type="INT4">
+				<constraints nullable="false" primaryKey="true"
+					primaryKeyName="season_parameter_map_pkey" />
+			</column>
+			<column name="season_id" type="INT8" />
+			<column name="crop_id" type="INT4" />
+			<column name="insurance_gl" type="VARCHAR(20)" />
+			<column name="insurance_by_farmer" type="numeric(5, 2)" />
+			<column name="insurance_subsidy" type="numeric(5, 2)" />
+		</createTable>
+	</changeSet>
+
+</databaseChangeLog>

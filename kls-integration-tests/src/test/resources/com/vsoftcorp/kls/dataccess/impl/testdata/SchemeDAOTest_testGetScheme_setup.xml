@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<dataset>
+	<product id="50" name="Product1" />
+	<scheme id='100' name="Scheme1" product_id='50' />
+</dataset>

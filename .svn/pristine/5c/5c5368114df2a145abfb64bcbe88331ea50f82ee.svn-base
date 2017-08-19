@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<dataset>
+<district id='22' name="Hyderabad" dcc_bank_code="TS1" />
+	<taluka id="23" name="ABC" dist_id="22"/>
+	<village id="25" name="HYDERABAD" taluka_id='23' />
+	<land_type id="52" name="LANDTYPE" />
+	<customer id="1" name="chandram" cust_id="CUS01" member_srl_no="ME01" cbs_cust_id="CBS01" member_type="MEM01" village_id="25"/>
+	<cust_land_detail id="15" customer_id="1" village_id="25" sub_village_name="subvillage 1" survey_no="SUR01" bsr_no="BSRNO2" rsr_no="RSRNO2" land_type_id="52" area_owned="131" area_cultivated="111" is_mortgazed="Y" mortgazed_remarks="Mortgaged remarks" is_charged="Y" charged_remarks="Charged Remarks"/>
+</dataset>

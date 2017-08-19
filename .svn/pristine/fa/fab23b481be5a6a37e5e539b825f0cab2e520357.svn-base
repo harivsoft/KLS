@@ -1,0 +1,7 @@
+db.type=postgres
+driver.class=org.postgresql.Driver
+connection.url=jdbc:postgresql://192.168.1.193/kls_integration_test
+connection.username=postgres
+connection.password=postgres
+connection.schema=kls_schema
+dtd.file=kls.dtd

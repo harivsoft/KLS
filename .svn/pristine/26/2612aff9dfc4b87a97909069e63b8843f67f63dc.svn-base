@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<dataset>
+	<interest_category id="1" description="INCAT" />
+	<product_type id='50' description="PRODTYPEDESC"
+		atm_applicable='Y' interest_category_id='1' />
+	<!-- <district id='10' name="Hyderabad" dcc_bank_code="TS1" />
+	<taluka id="100" name="ABC" dist_id="10" />
+	<village id="12" name="HYDERABAD" taluka_id='100' />
+	<branch id='50' rbi_code="OR03" name="Cuttack" address1="Patnaik Nagar" />
+	<pacs id='1' name="PAC" address1="HYD" secretary_name="AAA"
+		branch_id='50' village_id='12' /> -->
+	<event_type_definition id="50" name="IPCP" />
+	<!-- <pacs_gl id='1' gl_code="00000001" name="PACSGL1" gltype="E"
+		entered_by="kls1" entered_date="2014-08-07 00:00:00" pacs_id="1" />
+	<pacs_gl id='2' gl_code="00000002" name="PACSGL2" gltype="E"
+		entered_by="kls1" entered_date="2014-08-07 00:00:00" pacs_id="1" />
+	<pacs_gl id='3' gl_code="00000003" name="PACSGL3" gltype="E"
+		entered_by="kls1" entered_date="2014-08-07 00:00:00" pacs_id="1" />
+	<pacs_gl id='4' gl_code="00000004" name="PACSGL4" gltype="E"
+		entered_by="kls1" entered_date="2014-08-07 00:00:00" pacs_id="1" />
+	<pacs_gl id='5' gl_code="00000005" name="PACSGL5" gltype="E"
+		entered_by="kls1" entered_date="2014-08-07 00:00:00" pacs_id="1" />
+	<pacs_gl id='6' gl_code="00000006" name="PACSGL" gltype="E"
+		entered_by="kls1" entered_date="2014-08-07 00:00:00" pacs_id="1" /> -->
+	<product id="101" name="PRODUC" short_name="PRO" released="Y"
+		released_date="2014-01-01 00:00:00" last_int_post_date="2014-02-15 00:00:00"
+		atm_applicable="Y" interest_category_id="1" product_type_id="50"
+		share_percentage="2" is_penal_interest_allowed="Y" penal_interest_on="OS"
+		recovery_sequence_id="50"/>
+		
+		<!-- int_receivable_gl="1" int_received_gl="2"
+		penal_int_receivable_gl="3" penal_int_received_gl="4"
+		charges_receivable_gl="5" charges_received_gl="6" -->
+</dataset>

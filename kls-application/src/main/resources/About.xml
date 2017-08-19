@@ -1,0 +1,21 @@
+<xml>
+	<company img="">Vsoft Technologies Pvt Lmt</company>
+	<product>KLS</product>
+	<release>
+		<version>1.3.0.4</version>
+		<build>1.3.0.4</build>
+		<date format="dd MMM yyyy">26 Jul 2017</date>
+	</release>
+	<!--<servicepack>
+		<version>4.5.0.SP02</version>
+		<build></build>
+		<date format="dd MMM yyyy">05 May 2016</date>
+	</servicepack>
+
+	<hotfixes>
+		<hotfix>
+			<version hotfixtype="HF61">HF61</version>
+			<date format="dd MMM yyyy">16 Dec 2016</date>
+		</hotfix>
+	</hotfixes>-->
+</xml>

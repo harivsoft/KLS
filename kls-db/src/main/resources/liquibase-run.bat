@@ -1,0 +1,1 @@
+liquibase --changeLogFile=./1.0.0.6/install.xml --defaultsFile=liquibase.properties update

@@ -1,0 +1,603 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.2.xsd http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet author="1.0.0.7" id="1" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="activity"></tableExists>
+			</not>
+		</preConditions>
+		<createTable tableName="activity">
+			<column name="id" type="INT4">
+				<constraints primaryKey="true" nullable="false"
+					primaryKeyName="activity_pmr_key" />
+			</column>
+			<column name="activity_name" type="VARCHAR(45)">
+				<constraints nullable="false" />
+			</column>
+			<column name="unit_id" type="INT4" />
+			<column name="unit_cost" type="numeric(22, 6)">
+				<constraints nullable="false" />
+			</column>
+			<column name="marginal_percentage" type="numeric(5, 2)" />
+			<column name="remarks" type="VARCHAR(255)" />
+			<column name="maximum_limit" type="numeric(22, 6)" />
+		</createTable>
+	</changeSet>
+
+	<changeSet author="1.0.0.7" id="2" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="unit"></tableExists>
+			</not>
+		</preConditions>
+		<createTable tableName="unit">
+			<column name="id" type="INT4">
+				<constraints primaryKey="true" nullable="false"
+					primaryKeyName="unit_pmr_key" />
+			</column>
+			<column name="unit" type="VARCHAR(45)">
+				<constraints nullable="false" />
+			</column>
+			<column name="remarks" type="VARCHAR(255)" />
+		</createTable>
+	</changeSet>
+
+
+	<changeSet author="1.0.0.7" id="3" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="charges_debit"></tableExists>
+			</not>
+		</preConditions>
+		<createTable tableName="charges_debit">
+			<column name="id" type="numeric">
+				<constraints primaryKey="true" nullable="false"
+					primaryKeyName="charges_debit_pmr_key" />
+			</column>
+			<column name="line_of_credit_id" type="INT8" />
+			<column name="charges_master_id" type="INT8" />
+			<column name="amount" type="numeric(22, 6)" />
+			<column name="remarks" type="VARCHAR(250)" />
+		</createTable>
+	</changeSet>
+
+	<changeSet author="1.0.0.7" id="4" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="charges_master"></tableExists>
+			</not>
+		</preConditions>
+		<createTable tableName="charges_master">
+			<column name="id" type="numeric">
+				<constraints primaryKey="true" nullable="false"
+					primaryKeyName="charges_master_pmr_key" />
+			</column>
+			<column name="charges_description" type="VARCHAR(40)" />
+			<column name="charges_code" type="VARCHAR(10)" />
+			<column name="min_amount" type="numeric(22, 6)" />
+			<column name="max_amount" type="numeric(22, 6)" />
+			<column name="charges_type" type="VARCHAR(1)" />
+			<column name="charges_receivable_gl" type="VARCHAR(20)" />
+			<column name="charges_received_gl" type="VARCHAR(20)" />
+		</createTable>
+	</changeSet>
+
+	<changeSet author="1.0.0.7" id="5" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="document"></tableExists>
+			</not>
+		</preConditions>
+		<createTable tableName="document">
+			<column name="id" type="numeric">
+				<constraints primaryKey="true" nullable="false"
+					primaryKeyName="document_pmr_key" />
+			</column>
+			<column name="name" type="VARCHAR(45)">
+				<constraints nullable="false" />
+			</column>
+			<column name="remarks" type="VARCHAR(255)" />
+		</createTable>
+	</changeSet>
+	<changeSet author="1.0.0.7" id="6" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="document_mapping"></tableExists>
+			</not>
+		</preConditions>
+		<createTable tableName="document_mapping">
+			<column name="id" type="INT8">
+				<constraints primaryKey="true" nullable="false"
+					primaryKeyName="document_mapping_pmr_key" />
+			</column>
+			<column name="product_id" type="INT8" />
+			<column name="document_id" type="INT8" />
+			<column name="loan_type" type="VARCHAR(2)" />
+		</createTable>
+	</changeSet>
+
+	<changeSet author="1.0.0.7" id="7" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="loan_account_property"></tableExists>
+			</not>
+		</preConditions>
+		<createTable tableName="loan_account_property">
+			<column name="id" type="INT4">
+				<constraints primaryKey="true" nullable="false"
+					primaryKeyName="loan_account_property_pmr_key" />
+			</column>
+			<column name="branch_id" type="INT4" />
+			<column name="pacs_id" type="INT4" />
+			<column name="product_id" type="INT4" />
+			<column name="customer_id" type="INT8" />
+			<column name="savings_account_number" type="VARCHAR(20)" />
+			<column name="account_type" type="VARCHAR(2)" />
+			<column name="operator_type" type="VARCHAR(2)" />
+			<column name="operating_instructions_type" type="VARCHAR(2)" />
+			<column name="resolution_date" type="date" />
+			<column name="resolution_number" type="INT4" />
+			<column name="account_id" type="INT8" />
+			<column name="remarks" type="VARCHAR(60)" />
+			<column name="bank_code" type="VARCHAR(5)" />
+			<column name="name" type="VARCHAR(20)" />
+			<column name="lender_name" type="VARCHAR(20)" />
+			<column name="borrowing_type" type="VARCHAR(2)" />
+			<column name="ccb_account_number" type="VARCHAR(20)" />
+			<column name="purpose_id" type="INT4" />
+			<column name="account_property_type" type="VARCHAR(1)" />
+			<column name="borrowing_product_id" type="INT4" />
+			<column name="interest_category_id" type="INT4" />
+			<column name="sanctioned_limit" type="numeric(22, 6)" />
+			<column name="sanctioned_date" type="date" />
+			<column name="sanction_authority" type="VARCHAR(20)" />
+		</createTable>
+	</changeSet>
+	<changeSet author="1.0.0.7" id="8" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="loan_disbursement_schedule"></tableExists>
+			</not>
+		</preConditions>
+		<createTable tableName="loan_disbursement_schedule">
+			<column name="line_of_credit_id" type="INT8">
+				<constraints nullable="false" />
+			</column>
+			<column name="no_of_disbursement" type="INT4">
+				<constraints nullable="false" />
+			</column>
+			<column name="disbursement_date" type="date">
+				<constraints nullable="false" />
+			</column>
+			<column name="disbursement_amount" type="numeric(22, 6)">
+				<constraints nullable="false" />
+			</column>
+			<column name="remaining_loc_balance" type="numeric(22, 6)">
+				<constraints nullable="false" />
+			</column>
+			<column name="disbursed_amount" type="numeric(22, 6)">
+				<constraints nullable="false" />
+			</column>
+			<column name="remarks" type="VARCHAR(60)" />
+		</createTable>
+	</changeSet>
+	<changeSet author="1.0.0.7" id="9" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="loan_product_purpose_mapping"></tableExists>
+			</not>
+		</preConditions>
+		<createTable tableName="loan_product_purpose_mapping">
+			<column name="id" type="INT8">
+				<constraints primaryKey="true" nullable="false"
+					primaryKeyName="loan_product_purpose_mapping_pmr_key" />
+			</column>
+			<column name="product_id" type="INT4">
+				<constraints nullable="false" />
+			</column>
+			<column name="purpose_id" type="INT4">
+				<constraints nullable="false" />
+			</column>
+			<column name="sub_purpose_id" type="INT4" />
+			<column name="activity_id" type="INT4">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="1.0.0.7" id="10" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="loan_repayment_schedule"></tableExists>
+			</not>
+		</preConditions>
+		<createTable tableName="loan_repayment_schedule">
+			<column name="line_of_credit_id" type="INT8">
+				<constraints primaryKey="true" nullable="false"
+					primaryKeyName="loan_repayment_schedule_pmr_key" />
+			</column>
+			<column name="installment_number" type="INT4">
+				<constraints nullable="false" />
+			</column>
+			<column name="installment_date" type="date">
+				<constraints nullable="false" />
+			</column>
+			<column name="installment_amount" type="numeric(22, 6)">
+				<constraints nullable="false" />
+			</column>
+			<column name="principal_amount" type="numeric(22, 6)">
+				<constraints nullable="false" />
+			</column>
+			<column name="interest_amount" type="numeric(22, 6)">
+				<constraints nullable="false" />
+			</column>
+			<column name="loan_outstanding_amount" type="numeric(22, 6)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="1.0.0.7" id="11" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="pacs_loan_app_activity"></tableExists>
+			</not>
+		</preConditions>
+		<createTable tableName="pacs_loan_app_activity">
+			<column name="application_id" type="INT8">
+				<constraints nullable="false" />
+			</column>
+			<column name="no_of_units" type="INT4">
+				<constraints nullable="false" />
+			</column>
+			<column name="requested_amount" type="numeric(22, 6)">
+				<constraints nullable="false" />
+			</column>
+			<column name="amt_as_per_unit_cost" type="numeric(22, 6)">
+				<constraints nullable="false" />
+			</column>
+			<column name="activity_id" type="INT4" />
+		</createTable>
+	</changeSet>
+	<changeSet author="1.0.0.7" id="12" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="pacs_loan_app_document"></tableExists>
+			</not>
+		</preConditions>
+		<createTable tableName="pacs_loan_app_document">
+			<column name="application_id" type="INT8">
+				<constraints nullable="false" />
+			</column>
+			<column name="document_id" type="INT4">
+				<constraints nullable="false" />
+			</column>
+			<column name="document_number" type="VARCHAR(64)" />
+			<column name="document_date" type="date" />
+			<column name="document_authority" type="VARCHAR(255)" />
+			<column name="expiry_date" type="date" />
+			<column name="image_link" type="VARCHAR(255)" />
+			<column name="remarks" type="VARCHAR(255)" />
+		</createTable>
+	</changeSet>
+	<changeSet author="1.0.0.7" id="13" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="pacs_loan_app_guarantor"></tableExists>
+			</not>
+		</preConditions>
+		<createTable tableName="pacs_loan_app_guarantor">
+			<column name="application_id" type="INT8" />
+			<column name="guarantor_id" type="INT8" />
+			<column name="remarks" type="VARCHAR(50)" />
+		</createTable>
+	</changeSet>
+	<changeSet author="1.0.0.7" id="14" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="pacs_loan_application"></tableExists>
+			</not>
+		</preConditions>
+		<createTable tableName="pacs_loan_application">
+			<column name="id" type="INT8">
+				<constraints primaryKey="true" nullable="false"
+					primaryKeyName="pacs_loan_application_pmr_key" />
+			</column>
+			<column name="app_date" type="date">
+				<constraints nullable="false" />
+			</column>
+			<column name="master_app_id" type="numeric" />
+			<column name="customer_id" type="INT8">
+				<constraints nullable="false" />
+			</column>
+			<column name="product_id" type="INT4">
+				<constraints nullable="false" />
+			</column>
+			<column name="purpose_id" type="INT4">
+				<constraints nullable="false" />
+			</column>
+			<column name="total_number_of_units" type="INT4" />
+			<column name="total_requested_amount" type="numeric(22, 6)" />
+			<column name="total_amount_as_per_unit_cost" type="numeric(22, 6)" />
+			<column name="total_recommended_amount" type="numeric(22, 6)" />
+			<column name="remarks" type="VARCHAR(255)" />
+			<column name="inspection_amount" type="numeric(22, 6)" />
+			<column name="inspection_remarks" type="VARCHAR(60)" />
+			<column name="scrutiny_amount" type="numeric(22, 6)" />
+			<column name="scrutiny_remarks" type="VARCHAR(60)" />
+			<column name="sanction_date" type="date" />
+			<column name="inspection_date" type="date" />
+			<column name="marginal_percentage" type="numeric(22, 2)" />
+			<column name="marginal_amount" type="numeric(22, 6)" />
+			<column name="sanction_amount" type="numeric(22, 6)" />
+			<column name="sanction_remarks" type="VARCHAR(60)" />
+			<column name="loan_period" type="INT4" />
+			<column name="no_of_installments" type="INT4" />
+			<column name="interest_category_id" type="INT4" />
+			<column name="recommended_amount" type="numeric(22, 6)" />
+			<column name="application_status" type="INT4" />
+			<column name="scheme_id" type="INT4" />
+			<column name="installment_frequency" type="INT4" />
+			<column name="sub_purpose_id" type="INT4" />
+		</createTable>
+	</changeSet>
+
+	<changeSet author="1.0.0.7" id="15" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="pacs_loan_disbursement"></tableExists>
+			</not>
+		</preConditions>
+		<createTable tableName="pacs_loan_disbursement">
+			<column name="id" type="INT8">
+				<constraints primaryKey="true" nullable="false"
+					primaryKeyName="pacs_loan_disbursement_pmr_key" />
+			</column>
+			<column name="disbursement_date" type="date" />
+			<column name="line_of_credit_id" type="INT8" />
+			<column name="disbursed_amount" type="numeric(22, 6)" />
+			<column name="mode_of_disbursement" type="INT4" />
+			<column name="to_account_number" type="VARCHAR(25)" />
+			<column name="remarks" type="VARCHAR(255)" />
+		</createTable>
+	</changeSet>
+
+	<changeSet author="1.0.0.7" id="16" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="product_charges_mapping"></tableExists>
+			</not>
+		</preConditions>
+		<createTable tableName="product_charges_mapping">
+			<column name="id" type="numeric">
+				<constraints primaryKey="true" nullable="false"
+					primaryKeyName="product_charges_mapping_pmr_key" />
+			</column>
+			<column name="product_id" type="INT4" />
+			<column name="charges_master_id" type="INT8" />
+		</createTable>
+	</changeSet>
+
+	<changeSet author="1.0.0.7" id="17" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="purpose"></tableExists>
+			</not>
+		</preConditions>
+		<createTable tableName="purpose">
+			<column name="id" type="INT4">
+				<constraints primaryKey="true" nullable="false"
+					primaryKeyName="purpose_pmr_key" />
+			</column>
+			<column name="purpose" type="VARCHAR(45)" />
+			<column name="sub_purpose_req" type="VARCHAR(1)">
+				<constraints nullable="false" />
+			</column>
+			<column name="activity_req" type="VARCHAR(1)">
+				<constraints nullable="false" />
+			</column>
+			<column name="master_app_req" type="VARCHAR(1)">
+				<constraints nullable="false" />
+			</column>
+			<column name="remarks" type="VARCHAR(255)" />
+		</createTable>
+	</changeSet>
+
+	<changeSet author="1.0.0.7" id="18" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="status"></tableExists>
+			</not>
+		</preConditions>
+		<createTable tableName="status">
+			<column name="id" type="INT4">
+				<constraints primaryKey="true" nullable="false"
+					primaryKeyName="status_pmr_key" />
+			</column>
+			<column name="status" type="VARCHAR(45)" />
+			<column name="remarks" type="VARCHAR(255)" />
+		</createTable>
+	</changeSet>
+	<changeSet author="1.0.0.7" id="19" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="sub_purpose"></tableExists>
+			</not>
+		</preConditions>
+		<createTable tableName="sub_purpose">
+			<column name="id" type="INT4">
+				<constraints primaryKey="true" nullable="false"
+					primaryKeyName="sub_purpose_pmr_key" />
+			</column>
+			<column name="sub_purpose_name" type="VARCHAR(45)" />
+			<column name="remarks" type="VARCHAR(255)" />
+		</createTable>
+	</changeSet>
+
+	<changeSet author="1.0.0.7" id="20" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="temp_loan_repayment_schedule"></tableExists>
+			</not>
+		</preConditions>
+		<createTable tableName="temp_loan_repayment_schedule">
+			<column name="line_of_credit_id" type="INT8">
+				<constraints nullable="false" />
+			</column>
+			<column name="installment_number" type="INT4">
+				<constraints nullable="false" />
+			</column>
+			<column name="installment_date" type="date">
+				<constraints nullable="false" />
+			</column>
+			<column name="installment_amount" type="numeric(22, 6)">
+				<constraints nullable="false" />
+			</column>
+			<column name="principal_amount" type="numeric(22, 6)">
+				<constraints nullable="false" />
+			</column>
+			<column name="interest_amount" type="numeric(22, 6)">
+				<constraints nullable="false" />
+			</column>
+			<column name="loan_outstanding_amount" type="numeric(22, 6)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+
+
+	<changeSet author="1.0.0.7" id="21" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="borrowing_product"></tableExists>
+			</not>
+		</preConditions>
+		<createTable tableName="borrowing_product">
+			<column name="id" type="INT4">
+				<constraints primaryKey="true" nullable="false"
+					primaryKeyName="borrowing_product_pmr_key" />
+			</column>
+			<column name="code" type="VARCHAR(45)">
+				<constraints nullable="false" />
+			</column>
+			<column name="name" type="VARCHAR(45)">
+				<constraints nullable="false" />
+			</column>
+			<column name="short_name" type="VARCHAR(45)" />
+			<column name="product_type_id" type="INT4">
+				<constraints nullable="false" />
+			</column>
+			<column name="release_date" type="date">
+				<constraints nullable="false" />
+			</column>
+			<column name="interest_category_id" type="INT4">
+				<constraints nullable="false" />
+			</column>
+			<column name="gl_name" type="VARCHAR(45)">
+				<constraints nullable="false" />
+			</column>
+			<column name="scheme_id" type="INT4">
+				<constraints nullable="false" />
+			</column>
+			<column name="gl_code" type="VARCHAR(12)">
+				<constraints nullable="false" />
+			</column>
+			<column name="interest_paid_gl_code" type="VARCHAR(45)">
+				<constraints nullable="false" />
+			</column>
+			<column name="interest_payable_gl_code" type="VARCHAR(45)">
+				<constraints nullable="false" />
+			</column>
+			<column name="principle_subsidy" type="VARCHAR(45)">
+				<constraints nullable="false" />
+			</column>
+			<column name="interest_subsidy" type="VARCHAR(45)">
+				<constraints nullable="false" />
+			</column>
+			<column name="interest_frequency" type="VARCHAR(1)">
+				<constraints nullable="false" />
+			</column>
+			<column name="min_period" type="INT4">
+				<constraints nullable="false" />
+			</column>
+			<column name="max_period" type="INT4">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+
+	<changeSet author="1.0.0.7" id="22" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="borrowings_account"></tableExists>
+			</not>
+		</preConditions>
+		<createTable tableName="borrowings_account">
+			<column name="id" type="INT4">
+				<constraints primaryKey="true" nullable="false"
+					primaryKeyName="borrowings_account_pmr_key" />
+			</column>
+			<column name="pacs_id" type="INT4" />
+			<column name="product_id" type="INT4" />
+			<column name="account_no" type="VARCHAR(20)" />
+			<column name="bank_code" type="VARCHAR(20)" />
+			<column name="branch_id" type="INT4" />
+			<column name="pacs_account_no" type="VARCHAR(20)" />
+			<column name="line_of_credit_id" type="INT4" />
+		</createTable>
+	</changeSet>
+	<changeSet author="1.0.0.7" id="23" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="loan_recovery"></tableExists>
+			</not>
+		</preConditions>
+		<createTable tableName="loan_recovery">
+			<column name="id" type="INT8">
+				<constraints primaryKey="true" nullable="false"
+					primaryKeyName="loan_recovery_pmr_key" />
+			</column>
+			<column name="line_of_credit_id" type="INT8" />
+			<column name="outstanding_balance" type="numeric(22,6)" />
+			<column name="installment_amount" type="numeric(22,6)" />
+			<column name="total_principal_receivable" type="numeric(22,6)" />
+			<column name="total_interest_receivable" type="numeric(22,6)" />
+			<column name="total_penal_interest_receivable" type="numeric(22,6)" />
+			<column name="total_charges_receivable" type="numeric(22,6)" />
+			<column name="total_receivable_amount" type="numeric(22,6)" />
+			<column name="principal_paid" type="numeric(22,6)" />
+			<column name="interest_paid" type="numeric(22,6)" />
+			<column name="penal_interest_paid" type="numeric(22,6)" />
+			<column name="charges_paid" type="numeric(22,6)" />
+			<column name="amount_paid" type="numeric(22,6)" />
+			<column name="mode_of_payment" type="VARCHAR(45)" />
+			<column name="savings_account_number" type="VARCHAR(45)" />
+			<column name="recovered_date" type="date" />
+			<column name="recovered_by" type="VARCHAR(20)" />
+			<column name="customer_number" type="VARCHAR(45)" />
+			<column name="remarks" type="VARCHAR(45)" />
+		</createTable>
+	</changeSet>
+	
+	<changeSet author="1.0.0.7" id="24" runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="pacs_gl_mapping"></tableExists>
+			</not>
+		</preConditions>
+		<createTable tableName="pacs_gl_mapping">
+			<column name="id" type="INT4">
+				<constraints primaryKey="true" nullable="false"
+					primaryKeyName="pacs_gl_mapping_pkey" />
+			</column>
+			<column name="pacs_id" type="INT4" />
+			<column name="product_id" type="INT4" />
+			<column name="gl_code" type="VARCHAR(18)" />
+			<column name="int_receivable_gl" type="VARCHAR(18)" />
+			<column name="int_received_gl" type="VARCHAR(18)" />
+			<column name="penal_int_receivable_gl" type="VARCHAR(18)" />
+			<column name="penal_int_received_gl" type="VARCHAR(18)" />
+		</createTable>
+	</changeSet>
+</databaseChangeLog>

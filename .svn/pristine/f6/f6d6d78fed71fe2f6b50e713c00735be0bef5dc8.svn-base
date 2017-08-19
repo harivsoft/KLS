@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.2.xsd http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+	<changeSet author="a1621" id="1">
+		<sql>
+			DROP FUNCTION IF EXISTS kls_schema.sbnxtnos_for_pacs() CASCADE;
+		</sql>
+	</changeSet>
+	<changeSet author="a1621" id="2">
+		<sql splitStatements="false">
+			CREATE OR REPLACE FUNCTION kls_schema.sbnxtnos_for_pacs()
+			RETURNS
+			trigger AS
+			$BODY$
+			BEGIN
+			SELECT count(*) into NEW.id FROM
+			kls_schema.sbnxtnos ;
+			insert into kls_schema.sbnxtnos (SELECT
+			NEW.id+1,'V','D',0,max(id) FROM
+			kls_schema.pacs);
+			insert into
+			kls_schema.sbnxtnos (SELECT NEW.id+2,'V','W',0,max(id) FROM
+			kls_schema.pacs);
+			insert into kls_schema.sbnxtnos (SELECT
+			NEW.id+3,'V','T',0,max(id) FROM
+			kls_schema.pacs);
+			insert into
+			kls_schema.sbnxtnos (SELECT NEW.id+4,'V','B',0,max(id) FROM
+			kls_schema.pacs);
+			return NEW;
+			END;
+			$BODY$
+			LANGUAGE plpgsql VOLATILE
+			COST
+			100;
+			ALTER FUNCTION kls_schema.sbnxtnos_for_pacs()
+			OWNER TO postgres;
+		</sql>
+	</changeSet>
+	<changeSet author="a1621" id="3">
+		<sql>
+			DROP TRIGGER IF EXISTS sbnxtnos_with_pacs ON kls_schema.pacs;
+		</sql>
+	</changeSet>
+	<changeSet author="a1621" id="4">
+		<sql>
+			CREATE TRIGGER sbnxtnos_with_pacs
+			AFTER INSERT
+			ON kls_schema.pacs
+			FOR EACH ROW
+			EXECUTE PROCEDURE kls_schema.sbnxtnos_for_pacs();
+		</sql>
+	</changeSet>
+
+</databaseChangeLog>

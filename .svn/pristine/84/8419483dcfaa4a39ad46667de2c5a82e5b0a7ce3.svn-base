@@ -1,0 +1,208 @@
+<!ELEMENT dataset (
+	crop,crop_type_mast,village,taluka,district,season_definition,season,branch,pacs,pacs_gl,product,product_type,land_type,interest_category,pacs_loan_application_dtl,customer,scheme,pacs_loan_application_hdr,cust_land_detail,event_type_definition*
+    )>
+
+<!ELEMENT crop EMPTY>
+<!ATTLIST crop
+    id CDATA #IMPLIED
+    name CDATA #IMPLIED
+>
+
+<!ELEMENT crop_type_mast EMPTY>
+<!ATTLIST crop_type_mast
+    crop_type_code CDATA #IMPLIED
+    crop_type_name CDATA #IMPLIED
+>
+
+<!ELEMENT village EMPTY>
+<!ATTLIST village
+    id CDATA #IMPLIED
+    name CDATA #IMPLIED
+    taluka_id CDATA #IMPLIED
+    pin CDATA #IMPLIED 
+>
+
+
+<!ELEMENT taluka EMPTY>
+<!ATTLIST taluka
+    id CDATA #IMPLIED
+    name CDATA #IMPLIED
+    dist_id CDATA #IMPLIED 
+>
+<!ELEMENT district EMPTY>
+<!ATTLIST district
+    id CDATA #IMPLIED
+    name CDATA #IMPLIED
+    dcc_bank_code CDATA #IMPLIED 
+>
+<!ELEMENT season_definition EMPTY>
+<!ATTLIST season_definition
+    id CDATA #IMPLIED
+    name CDATA #IMPLIED
+    drawal_start_month CDATA #IMPLIED
+    drawal_start_day CDATA #IMPLIED
+    drawal_end_month CDATA #IMPLIED
+    drawal_end_day CDATA #IMPLIED
+    loan_overdue_day CDATA #IMPLIED
+    loan_overdue_month CDATA #IMPLIED
+>
+<!ELEMENT branch EMPTY>
+<!ATTLIST branch
+    id CDATA #IMPLIED
+    name CDATA #IMPLIED
+    rbi_code CDATA #IMPLIED
+    address1 CDATA #IMPLIED 
+>
+
+<!ELEMENT pacs EMPTY>
+<!ATTLIST pacs
+    id CDATA #IMPLIED
+    name CDATA #IMPLIED
+    address1 CDATA #IMPLIED
+    secretary_name CDATA #IMPLIED
+    branch_id CDATA #IMPLIED
+    village_id CDATA #IMPLIED
+    pacs_bank_acc_number CDATA #IMPLIED
+>
+
+<!ELEMENT pacs_gl EMPTY>
+<!ATTLIST pacs_gl
+    id CDATA #IMPLIED
+    gl_code CDATA #IMPLIED
+    name CDATA #IMPLIED
+    gltype CDATA #IMPLIED
+    entered_by CDATA #IMPLIED
+    entered_date CDATA #IMPLIED
+    pacs_id CDATA #IMPLIED
+>
+
+<!ELEMENT product EMPTY>
+<!ATTLIST product
+    id CDATA #IMPLIED
+    name CDATA #IMPLIED
+    short_name CDATA #IMPLIED
+    released CDATA #IMPLIED
+    released_date CDATA #IMPLIED
+    last_int_post_date CDATA #IMPLIED
+    atm_applicable CDATA #IMPLIED
+    interest_category_id CDATA #IMPLIED
+    product_type_id CDATA #IMPLIED
+    share_percentage CDATA #IMPLIED
+    is_penal_interest_allowed CDATA #IMPLIED
+    penal_interest_on CDATA #IMPLIED
+    recovery_sequence_id CDATA #IMPLIED
+>
+<!--  int_receivable_gl CDATA #IMPLIED
+    int_received_gl CDATA #IMPLIED
+    penal_int_receivable_gl CDATA #IMPLIED
+    penal_int_received_gl CDATA #IMPLIED
+    charges_receivable_gl CDATA #IMPLIED
+    charges_received_gl CDATA #IMPLIED-->
+
+<!ELEMENT product_type EMPTY>
+<!ATTLIST product_type
+    id CDATA #IMPLIED
+    description CDATA #IMPLIED
+    atm_applicable CDATA #IMPLIED
+    interest_category_id CDATA #IMPLIED
+>
+
+<!ELEMENT land_type EMPTY>
+<!ATTLIST land_type
+    id CDATA #IMPLIED
+    name CDATA #IMPLIED
+>
+
+<!ELEMENT interest_category EMPTY>
+<!ATTLIST interest_category
+    id CDATA #IMPLIED
+    description CDATA #IMPLIED
+>
+
+<!ELEMENT pacs_loan_application_dtl EMPTY>
+<!ATTLIST pacs_loan_application_dtl
+	id CDATA #IMPLIED
+	header_id CDATA #IMPLIED
+	customer_id CDATA #IMPLIED
+	crop_id CDATA #IMPLIED
+	season_id CDATA #IMPLIED
+	land_type_id CDATA #IMPLIED
+	land_area CDATA #IMPLIED
+	priority CDATA #IMPLIED
+	required_amount CDATA #IMPLIED
+	loan_application_no CDATA #IMPLIED
+	calculated_amount CDATA #IMPLIED
+	recommended_amount CDATA #IMPLIED
+	entered_remarks CDATA #IMPLIED
+	inspection_amount CDATA #IMPLIED
+	inspection_remarks CDATA #IMPLIED
+	sanctioned_amount CDATA #IMPLIED
+	application_status CDATA #IMPLIED
+	sanctioned_date CDATA #IMPLIED
+	sanctioned_by CDATA #IMPLIED
+>
+
+<!ELEMENT customer EMPTY>
+<!ATTLIST customer
+  	id CDATA #IMPLIED
+	cust_id CDATA #IMPLIED
+	member_srl_no CDATA #IMPLIED
+	cbs_cust_id CDATA #IMPLIED
+	name CDATA #IMPLIED
+	village_id CDATA #IMPLIED
+	member_type CDATA #IMPLIED
+>
+
+<!ELEMENT scheme EMPTY>
+<!ATTLIST scheme
+	id CDATA #IMPLIED
+	name CDATA #IMPLIED
+	product_id CDATA #IMPLIED
+	insurance_percentage CDATA #IMPLIED
+>
+
+<!ELEMENT season EMPTY>
+<!ATTLIST season
+	id CDATA #IMPLIED
+	name CDATA #IMPLIED
+	drawal_start CDATA #IMPLIED
+	drawal_end CDATA #IMPLIED
+	overdue_date CDATA #IMPLIED
+	process_status CDATA #IMPLIED
+>
+
+<!ELEMENT pacs_loan_application_hdr EMPTY>
+<!ATTLIST pacs_loan_application_hdr
+
+	id CDATA #IMPLIED
+	pacs_id CDATA #IMPLIED
+	application_date CDATA #IMPLIED
+	application_type CDATA #IMPLIED
+	financial_year CDATA #IMPLIED
+	crop_id CDATA #IMPLIED
+	scheme_id CDATA #IMPLIED
+	process_status CDATA #IMPLIED
+>
+<!ELEMENT cust_land_detail EMPTY>
+<!ATTLIST cust_land_detail
+    id CDATA #IMPLIED
+    customer_id CDATA #IMPLIED
+	village_id CDATA #IMPLIED
+	sub_village_name CDATA #IMPLIED
+	survey_no CDATA #IMPLIED
+	bsr_no CDATA #IMPLIED
+	rsr_no CDATA #IMPLIED
+	land_type_id CDATA #IMPLIED
+	area_owned CDATA #IMPLIED
+	area_cultivated CDATA #IMPLIED
+	is_mortgazed CDATA #IMPLIED
+	mortgazed_remarks CDATA #IMPLIED
+	is_charged CDATA #IMPLIED
+	charged_remarks CDATA #IMPLIED
+>
+
+<!ELEMENT event_type_definition EMPTY>
+<!ATTLIST event_type_definition
+    id CDATA #IMPLIED
+    name CDATA #IMPLIED
+>

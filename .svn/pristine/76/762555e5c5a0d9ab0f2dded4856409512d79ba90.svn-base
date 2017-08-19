@@ -1,0 +1,25 @@
+To use or not: http://blog.frankel.ch/tag/dozer - Dozer for helper convrsions from data to business object
+
+Balance and Transaction - AccountingMoney
+Amount - Money
+
+@TypeDefs({ 
+	@TypeDef(name = "money", typeClass = com.vsoftcorp.finance.hibernate.types.MoneyUserType.class, parameters = { @Parameter(name = "defaultISOCurrencyCode", value = "INR"),@Parameter(name = "isDebitNegative", value = "true") }),
+	@TypeDef(name = "accountingMoney", typeClass = com.vsoftcorp.accounting.hibernate.types.AccountingMoneyUserType.class, parameters = { @Parameter(name = "defaultISOCurrencyCode", value = "INR"),@Parameter(name = "isDebitNegative", value = "true") }),
+	@TypeDef(name = "com.vsoftcorp.time.Date", typeClass = com.vsoftcorp.time.hibernate.types.InstantUserType.class, parameters = { @Parameter(name = "precision", value = "DAY") })
+})
+
+
+
+----- For Criteria
+ @Override
+    public Collection<Role> listRoles(String search) {
+        Session session = (Session) this.roleHome.getEntityManager().getDelegate();
+        Criteria crit = session.createCriteria(Role.class);
+        
+        if(!search.isEmpty()){
+            crit.add(Restrictions.like("name", search));
+        }
+        
+        return crit.list();
+    }

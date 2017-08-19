@@ -1,0 +1,1550 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="accountStatementReport" language="groovy" pageWidth="2182" pageHeight="792" orientation="Landscape" columnWidth="2142" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+    <property name="ireport.zoom" value="1.0"/>
+    <property name="ireport.x" value="0"/>
+    <property name="ireport.y" value="0"/>
+    <parameter name="bankName" class="java.lang.String"/>
+    <parameter name="pacName" class="java.lang.String"/>
+    <parameter name="customerId" class="java.lang.String"/>
+    <parameter name="address" class="java.lang.String"/>
+    <parameter name="villageName" class="java.lang.String"/>
+    <parameter name="contactNo" class="java.lang.String"/>
+    <parameter name="accNo" class="java.lang.String"/>
+    <parameter name="fromDate" class="java.lang.String"/>
+    <parameter name="toDate" class="java.lang.String"/>
+    <parameter name="includeInterest" class="java.lang.String"/>
+    <parameter name="includePerticulars" class="java.lang.String"/>
+    <parameter name="includeCharges" class="java.lang.String"/>
+    <parameter name="openingBalance" class="java.lang.String"/>
+    <parameter name="custName" class="java.lang.String"/>
+    <parameter name="shareBalance" class="java.lang.String"/>
+    <parameter name="userName" class="java.lang.String"/>
+    <parameter name="businessDate" class="java.lang.String"/>
+    <field name="locNo" class="java.lang.String"/>
+    <field name="cropSeasonYear" class="java.lang.String"/>
+    <field name="businessDate" class="java.lang.String"/>
+    <field name="principalDebit" class="java.math.BigDecimal"/>
+    <field name="principalCredit" class="java.math.BigDecimal"/>
+    <field name="principalBalance" class="java.lang.String"/>
+    <field name="principalParticulars" class="java.lang.String"/>
+    <field name="interestDebit" class="java.math.BigDecimal"/>
+    <field name="interestCredit" class="java.math.BigDecimal"/>
+    <field name="interestBalance" class="java.lang.String"/>
+    <field name="interestParticulars" class="java.lang.String"/>
+    <field name="chargesDebit" class="java.math.BigDecimal"/>
+    <field name="chargesCredit" class="java.math.BigDecimal"/>
+    <field name="chargesBalance" class="java.lang.String"/>
+    <field name="chargesParticulars" class="java.lang.String"/>
+    <field name="kindDebit" class="java.math.BigDecimal"/>
+    <field name="kindCredit" class="java.math.BigDecimal"/>
+    <field name="kindBalance" class="java.lang.String"/>
+    <field name="kindParticulars" class="java.lang.String"/>
+    <variable name="principleDebitTotal" class="java.math.BigDecimal" calculation="Sum">
+        <variableExpression><![CDATA[$F{principalDebit}]]></variableExpression>
+    </variable>
+    <variable name="principleCreditTotal" class="java.math.BigDecimal" calculation="Sum">
+        <variableExpression><![CDATA[$F{principalCredit}]]></variableExpression>
+    </variable>
+    <variable name="InterestDebitTotal" class="java.math.BigDecimal" calculation="Sum">
+        <variableExpression><![CDATA[$F{interestDebit}]]></variableExpression>
+    </variable>
+    <variable name="interestCreditTotal" class="java.math.BigDecimal" calculation="Sum">
+        <variableExpression><![CDATA[$F{interestCredit}]]></variableExpression>
+    </variable>
+    <variable name="chargesDebitTotal" class="java.math.BigDecimal" calculation="Sum">
+        <variableExpression><![CDATA[$F{chargesDebit}]]></variableExpression>
+    </variable>
+    <variable name="chargeCreditTotal" class="java.math.BigDecimal" calculation="Sum">
+        <variableExpression><![CDATA[$F{chargesCredit}]]></variableExpression>
+    </variable>
+    <variable name="kindDebitTotal" class="java.math.BigDecimal" calculation="Sum">
+        <variableExpression><![CDATA[$F{kindDebit}]]></variableExpression>
+    </variable>
+    <variable name="kindCreditTotal" class="java.math.BigDecimal" calculation="Sum"/>
+    <title>
+        <band height="332" splitType="Stretch">
+            <staticText>
+                <reportElement x="320" y="0" width="270" height="28"/>
+                <textElement textAlignment="Center">
+                    <font fontName="SansSerif" size="16" isBold="true"/>
+                </textElement>
+                <text><![CDATA[KCC Account Statement]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="0" y="93" width="122" height="20"/>
+                <textElement>
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Member Number]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="0" y="113" width="122" height="20"/>
+                <textElement>
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Address Line 1      ]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="0" y="133" width="122" height="20"/>
+                <textElement>
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Village                       ]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="0" y="153" width="122" height="20"/>
+                <textElement>
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Contact No               ]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="0" y="173" width="122" height="18"/>
+                <textElement>
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Account No]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="0" y="191" width="298" height="22"/>
+                <textElement>
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Account Statement for the Period of ]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="298" y="191" width="108" height="20"/>
+                <textElement>
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[From Date:]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="547" y="191" width="69" height="20"/>
+                <textElement>
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[To Date:]]></text>
+            </staticText>
+            <textField isBlankWhenNull="true">
+                <reportElement x="163" y="93" width="174" height="20"/>
+                <textElement>
+                    <font size="12"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{customerId}]]></textFieldExpression>
+            </textField>
+            <textField isBlankWhenNull="true">
+                <reportElement x="163" y="113" width="215" height="20"/>
+                <textElement>
+                    <font size="12"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{address}]]></textFieldExpression>
+            </textField>
+            <textField isBlankWhenNull="true">
+                <reportElement x="163" y="133" width="215" height="20"/>
+                <textElement>
+                    <font size="12"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{villageName}]]></textFieldExpression>
+            </textField>
+            <textField isBlankWhenNull="true">
+                <reportElement x="163" y="153" width="215" height="20"/>
+                <textElement>
+                    <font size="12"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{contactNo}]]></textFieldExpression>
+            </textField>
+            <textField isBlankWhenNull="true">
+                <reportElement x="163" y="173" width="215" height="18"/>
+                <textElement>
+                    <font size="12"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{accNo}]]></textFieldExpression>
+            </textField>
+            <textField isBlankWhenNull="true">
+                <reportElement x="447" y="191" width="100" height="20"/>
+                <textElement>
+                    <font size="12"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{fromDate}]]></textFieldExpression>
+            </textField>
+            <textField isBlankWhenNull="true">
+                <reportElement x="657" y="191" width="99" height="20"/>
+                <textElement>
+                    <font size="12"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{toDate}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="0" y="213" width="122" height="18"/>
+                <textElement>
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Opening Balance     ]]></text>
+            </staticText>
+            <textField isBlankWhenNull="true">
+                <reportElement x="163" y="213" width="135" height="18"/>
+                <textElement>
+                    <font size="12" isStrikeThrough="false"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{openingBalance}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="122" y="93" width="41" height="20"/>
+                <textElement>
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[   :]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="122" y="113" width="41" height="20"/>
+                <textElement>
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[   :]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="122" y="133" width="41" height="20"/>
+                <textElement>
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[   :]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="122" y="153" width="41" height="20"/>
+                <textElement>
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[   :]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="122" y="173" width="41" height="18"/>
+                <textElement>
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[   :]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="122" y="213" width="41" height="18"/>
+                <textElement>
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[   :]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="337" y="93" width="108" height="20"/>
+                <textElement>
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Member Name]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="486" y="93" width="344" height="20"/>
+                <textElement>
+                    <font size="12"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{custName}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement stretchType="RelativeToTallestObject" x="147" y="297" width="157" height="20"/>
+                <box>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Crop /Season Year]]></text>
+            </staticText>
+            <staticText>
+                <reportElement stretchType="RelativeToTallestObject" x="528" y="297" width="73" height="20"/>
+                <box>
+                    <pen lineWidth="1.0"/>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Credit]]></text>
+            </staticText>
+            <staticText>
+                <reportElement stretchType="RelativeToTallestObject" x="322" y="297" width="91" height="20"/>
+                <box>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[BusinessDate]]></text>
+            </staticText>
+            <staticText>
+                <reportElement stretchType="RelativeToTallestObject" x="619" y="297" width="86" height="20"/>
+                <box>
+                    <pen lineWidth="1.0"/>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Particulars]]></text>
+            </staticText>
+            <staticText>
+                <reportElement stretchType="RelativeToTallestObject" x="723" y="297" width="71" height="20">
+                    <printWhenExpression><![CDATA[$P{includePerticulars}.equals("Yes")]]></printWhenExpression>
+                </reportElement>
+                <box>
+                    <pen lineWidth="1.0"/>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Balance]]></text>
+            </staticText>
+            <staticText>
+                <reportElement stretchType="RelativeToTallestObject" x="1195" y="297" width="63" height="20">
+                    <printWhenExpression><![CDATA[$P{includeCharges}.equals("Yes")||$P{includeInterest}.equals("Yes")]]></printWhenExpression>
+                </reportElement>
+                <box>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Debit]]></text>
+            </staticText>
+            <staticText>
+                <reportElement stretchType="RelativeToTallestObject" x="1276" y="297" width="66" height="20">
+                    <printWhenExpression><![CDATA[$P{includeCharges}.equals("Yes")||$P{includeInterest}.equals("Yes")]]></printWhenExpression>
+                </reportElement>
+                <box>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Credit]]></text>
+            </staticText>
+            <staticText>
+                <reportElement stretchType="RelativeToTallestObject" x="1360" y="297" width="156" height="20">
+                    <printWhenExpression><![CDATA[$P{includePerticulars}.equals("Yes")&&($P{includeInterest}.equals("Yes")||$P{includeCharges}.equals("Yes"))]]></printWhenExpression>
+                </reportElement>
+                <box>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Particulars]]></text>
+            </staticText>
+            <staticText>
+                <reportElement stretchType="RelativeToTallestObject" x="1539" y="297" width="67" height="20">
+                    <printWhenExpression><![CDATA[$P{includeInterest}.equals("Yes")&&$P{includeCharges}.equals("Yes")]]></printWhenExpression>
+                </reportElement>
+                <box>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Debit]]></text>
+            </staticText>
+            <staticText>
+                <reportElement stretchType="RelativeToTallestObject" x="1624" y="297" width="76" height="20">
+                    <printWhenExpression><![CDATA[$P{includeInterest}.equals("Yes")&&$P{includeCharges}.equals("Yes")]]></printWhenExpression>
+                </reportElement>
+                <box>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Credit]]></text>
+            </staticText>
+            <staticText>
+                <reportElement stretchType="RelativeToTallestObject" x="1718" y="297" width="143" height="20">
+                    <printWhenExpression><![CDATA[$P{includeInterest}.equals("Yes")&&$P{includeCharges}.equals("Yes")&&$P{includePerticulars}.equals("Yes")]]></printWhenExpression>
+                </reportElement>
+                <box>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Particulars]]></text>
+            </staticText>
+            <staticText>
+                <reportElement stretchType="RelativeToTallestObject" x="436" y="297" width="74" height="20"/>
+                <box>
+                    <pen lineWidth="1.0"/>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Debit]]></text>
+            </staticText>
+            <staticText>
+                <reportElement stretchType="RelativeToTallestObject" x="79" y="297" width="50" height="20"/>
+                <box>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[LOC No]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="436" y="259" width="736" height="19"/>
+                <box>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Principle]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="22" y="259" width="391" height="38"/>
+                <box>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[]]></text>
+            </staticText>
+            <textField isBlankWhenNull="true">
+                <reportElement x="1195" y="259" width="321" height="38">
+                    <printWhenExpression><![CDATA[$P{includeCharges}.equals("Yes")||$P{includeInterest}.equals("Yes")]]></printWhenExpression>
+                </reportElement>
+                <box>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="10" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{includeInterest}.equals("Yes")?"Interest":"Charges"]]></textFieldExpression>
+            </textField>
+            <textField isBlankWhenNull="true">
+                <reportElement x="1539" y="259" width="322" height="38">
+                    <printWhenExpression><![CDATA[$P{includeInterest}.equals("Yes")&&$P{includeCharges}.equals("Yes")]]></printWhenExpression>
+                </reportElement>
+                <box>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="10" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{includeInterest}.equals("Yes")&&$P{includeCharges}.equals("Yes")?"Charges":""]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="198" y="55" width="122" height="20"/>
+                <textElement>
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Pacs ]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="198" y="35" width="122" height="20"/>
+                <textElement>
+                    <font fontName="SansSerif" size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Bank ]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="320" y="35" width="41" height="20"/>
+                <textElement>
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[   :]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="361" y="35" width="346" height="20"/>
+                <textElement/>
+                <textFieldExpression><![CDATA[$P{bankName}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="361" y="55" width="346" height="20"/>
+                <textElement/>
+                <textFieldExpression><![CDATA[$P{pacName}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="320" y="55" width="41" height="20"/>
+                <textElement>
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[   :]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="298" y="211" width="108" height="20"/>
+                <textElement>
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Share Balance  ]]></text>
+            </staticText>
+            <textField isBlankWhenNull="true">
+                <reportElement x="447" y="211" width="100" height="20"/>
+                <textElement>
+                    <font size="12"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{shareBalance}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement stretchType="RelativeToTallestObject" x="812" y="297" width="84" height="20"/>
+                <box>
+                    <pen lineWidth="1.0"/>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Debit]]></text>
+            </staticText>
+            <staticText>
+                <reportElement stretchType="RelativeToTallestObject" x="1006" y="297" width="166" height="20">
+                    <printWhenExpression><![CDATA[$P{includePerticulars}.equals("Yes")]]></printWhenExpression>
+                </reportElement>
+                <box>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Particulars]]></text>
+            </staticText>
+            <staticText>
+                <reportElement stretchType="RelativeToTallestObject" x="914" y="297" width="74" height="20"/>
+                <box>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Credit]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="436" y="278" width="358" height="19"/>
+                <box>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Cash]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="812" y="278" width="360" height="19"/>
+                <box>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Kind]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="445" y="93" width="41" height="20"/>
+                <textElement>
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[   :]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="406" y="191" width="41" height="20"/>
+                <textElement>
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[   :]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="406" y="211" width="41" height="20"/>
+                <textElement>
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[   :]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="616" y="191" width="41" height="20"/>
+                <textElement>
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[   :]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="-394" y="-23" width="38" height="20">
+                    <printWhenExpression><![CDATA[new Boolean(false)]]></printWhenExpression>
+                </reportElement>
+                <box>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement verticalAlignment="Middle">
+                    <font size="12" isBold="false"/>
+                </textElement>
+                <text><![CDATA[S.NO]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="-394" y="-23" width="38" height="20">
+                    <printWhenExpression><![CDATA[new Boolean(false)]]></printWhenExpression>
+                </reportElement>
+                <box>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement verticalAlignment="Middle">
+                    <font size="12" isBold="false"/>
+                </textElement>
+                <text><![CDATA[S.NO]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="22" y="297" width="39" height="20"/>
+                <box>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[S.NO]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="946" y="135" width="15" height="18"/>
+                <textElement textAlignment="Center">
+                    <font size="14"/>
+                </textElement>
+                <text><![CDATA[]]></text>
+            </staticText>
+            <staticText>
+                <reportElement stretchType="RelativeToBandHeight" x="0" y="247" width="2110" height="12"/>
+                <textElement>
+                    <font fontName="Courier New" size="8" pdfFontName="Courier"/>
+                </textElement>
+                <text><![CDATA[------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="61" y="297" width="18" height="20"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Courier New" size="14"/>
+                </textElement>
+                <text><![CDATA[|]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="129" y="297" width="18" height="20"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Courier New" size="14"/>
+                </textElement>
+                <text><![CDATA[|]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="-1" y="259" width="23" height="58"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Courier New" size="14"/>
+                </textElement>
+                <text><![CDATA[|]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="304" y="297" width="18" height="20"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Courier New" size="14"/>
+                </textElement>
+                <text><![CDATA[|]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="413" y="259" width="23" height="58"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Courier New" size="14"/>
+                </textElement>
+                <text><![CDATA[|]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="510" y="297" width="18" height="20"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Courier New" size="14"/>
+                </textElement>
+                <text><![CDATA[|]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="601" y="297" width="18" height="20"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Courier New" size="14"/>
+                </textElement>
+                <text><![CDATA[|]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="705" y="297" width="18" height="20"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Courier New" size="14"/>
+                </textElement>
+                <text><![CDATA[|]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="794" y="278" width="18" height="39"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Courier New" size="14"/>
+                </textElement>
+                <text><![CDATA[|]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="896" y="297" width="18" height="20"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Courier New" size="14"/>
+                </textElement>
+                <text><![CDATA[|]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="988" y="297" width="18" height="20"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Courier New" size="14"/>
+                </textElement>
+                <text><![CDATA[|]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="1172" y="259" width="23" height="58"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Courier New" size="14"/>
+                </textElement>
+                <text><![CDATA[|]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="1258" y="297" width="18" height="20"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Courier New" size="14"/>
+                </textElement>
+                <text><![CDATA[|]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="1342" y="297" width="18" height="20"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Courier New" size="14"/>
+                </textElement>
+                <text><![CDATA[|]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="1516" y="259" width="23" height="58"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Courier New" size="14"/>
+                </textElement>
+                <text><![CDATA[|]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="1861" y="259" width="23" height="58"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Courier New" size="14"/>
+                </textElement>
+                <text><![CDATA[|]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="1606" y="297" width="18" height="20"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Courier New" size="14"/>
+                </textElement>
+                <text><![CDATA[|]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="1700" y="297" width="18" height="20"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Courier New" size="14"/>
+                </textElement>
+                <text><![CDATA[|]]></text>
+            </staticText>
+            <staticText>
+                <reportElement stretchType="RelativeToBandHeight" x="0" y="320" width="2110" height="12"/>
+                <textElement>
+                    <font fontName="Courier New" size="8" pdfFontName="Courier"/>
+                </textElement>
+                <text><![CDATA[------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------]]></text>
+            </staticText>
+        </band>
+    </title>
+    <detail>
+        <band height="20" splitType="Stretch">
+            <textField isStretchWithOverflow="true" pattern="dd/MM/yyyy" isBlankWhenNull="true">
+                <reportElement stretchType="RelativeToTallestObject" x="322" y="0" width="91" height="20"/>
+                <box>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement verticalAlignment="Middle">
+                    <font size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{businessDate}]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true" isBlankWhenNull="true">
+                <reportElement stretchType="RelativeToTallestObject" x="436" y="0" width="74" height="20"/>
+                <box>
+                    <pen lineWidth="1.0"/>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement textAlignment="Right" verticalAlignment="Middle">
+                    <font size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{principalDebit}]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true" isBlankWhenNull="true">
+                <reportElement stretchType="RelativeToTallestObject" x="528" y="0" width="73" height="20"/>
+                <box>
+                    <pen lineWidth="1.0"/>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement textAlignment="Right" verticalAlignment="Middle">
+                    <font size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{principalCredit}]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true" isBlankWhenNull="true">
+                <reportElement stretchType="RelativeToTallestObject" x="79" y="0" width="50" height="20"/>
+                <box>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement verticalAlignment="Middle">
+                    <font size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{locNo}]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true" isBlankWhenNull="true">
+                <reportElement stretchType="RelativeToTallestObject" x="147" y="0" width="157" height="20"/>
+                <box>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement verticalAlignment="Middle">
+                    <font size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{cropSeasonYear}]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+                <reportElement stretchType="RelativeToTallestObject" x="723" y="0" width="71" height="20">
+                    <printWhenExpression><![CDATA[$P{includePerticulars}.equals("Yes")]]></printWhenExpression>
+                </reportElement>
+                <box>
+                    <pen lineWidth="1.0"/>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement textAlignment="Right" verticalAlignment="Middle">
+                    <font size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{principalBalance}]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true" isBlankWhenNull="true">
+                <reportElement stretchType="RelativeToTallestObject" x="1195" y="0" width="63" height="20">
+                    <printWhenExpression><![CDATA[$P{includeCharges}.equals("Yes")||$P{includeInterest}.equals("Yes")]]></printWhenExpression>
+                </reportElement>
+                <box>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement textAlignment="Right" verticalAlignment="Middle">
+                    <font size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{includeInterest}.equals("Yes")?$F{interestDebit}:$F{chargesDebit}]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true" isBlankWhenNull="true">
+                <reportElement stretchType="RelativeToTallestObject" x="1276" y="0" width="66" height="20">
+                    <printWhenExpression><![CDATA[$P{includeCharges}.equals("Yes")||$P{includeInterest}.equals("Yes")]]></printWhenExpression>
+                </reportElement>
+                <box>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement textAlignment="Right" verticalAlignment="Middle">
+                    <font size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{includeInterest}.equals("Yes")?$F{interestCredit}:$F{chargesCredit}]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true" isBlankWhenNull="true">
+                <reportElement stretchType="RelativeToTallestObject" x="1360" y="0" width="156" height="20">
+                    <printWhenExpression><![CDATA[$P{includePerticulars}.equals("Yes")&&($P{includeInterest}.equals("Yes")||$P{includeCharges}.equals("Yes"))]]></printWhenExpression>
+                </reportElement>
+                <box>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement verticalAlignment="Middle">
+                    <font size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{includePerticulars}.equals("Yes")?$P{includeInterest}.equals("Yes")?$F{interestParticulars}:$F{chargesParticulars}:""]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true" isBlankWhenNull="true">
+                <reportElement stretchType="RelativeToTallestObject" x="1539" y="0" width="67" height="20">
+                    <printWhenExpression><![CDATA[$P{includeInterest}.equals("Yes")&&$P{includeCharges}.equals("Yes")]]></printWhenExpression>
+                </reportElement>
+                <box>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement textAlignment="Right" verticalAlignment="Middle">
+                    <font size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{includeInterest}.equals("Yes")&&$P{includeCharges}.equals("Yes")?$F{chargesDebit}:""]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true" isBlankWhenNull="true">
+                <reportElement stretchType="RelativeToTallestObject" x="1624" y="0" width="76" height="20">
+                    <printWhenExpression><![CDATA[$P{includeInterest}.equals("Yes")&&$P{includeCharges}.equals("Yes")]]></printWhenExpression>
+                </reportElement>
+                <box>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement textAlignment="Right" verticalAlignment="Middle">
+                    <font size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{includeInterest}.equals("Yes")&&$P{includeCharges}.equals("Yes")?$F{chargesCredit}:""]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true" isBlankWhenNull="true">
+                <reportElement stretchType="RelativeToTallestObject" isPrintRepeatedValues="false" x="1718" y="0" width="143" height="20">
+                    <printWhenExpression><![CDATA[$P{includeInterest}.equals("Yes")&&$P{includeCharges}.equals("Yes")&&$P{includePerticulars}.equals("Yes")]]></printWhenExpression>
+                </reportElement>
+                <box>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement verticalAlignment="Middle">
+                    <font size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{includePerticulars}.equals("Yes")&&$P{includeInterest}.equals("Yes")&&$P{includeCharges}.equals("Yes")?$F{chargesParticulars}:""]]></textFieldExpression>
+            </textField>
+            <textField isBlankWhenNull="true">
+                <reportElement stretchType="RelativeToTallestObject" x="619" y="0" width="86" height="20"/>
+                <box>
+                    <pen lineWidth="1.0"/>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement textAlignment="Right" verticalAlignment="Middle">
+                    <font size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{includePerticulars}.equals("Yes")?$F{principalParticulars}:""]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true" isBlankWhenNull="true">
+                <reportElement stretchType="RelativeToTallestObject" x="817" y="0" width="79" height="20"/>
+                <box>
+                    <pen lineWidth="1.0"/>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement textAlignment="Right" verticalAlignment="Middle">
+                    <font size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{kindDebit}]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true" isBlankWhenNull="true">
+                <reportElement stretchType="RelativeToTallestObject" x="914" y="0" width="74" height="20"/>
+                <box>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement textAlignment="Right" verticalAlignment="Middle">
+                    <font size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{kindCredit}]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true" isBlankWhenNull="true">
+                <reportElement stretchType="RelativeToTallestObject" x="1006" y="0" width="166" height="20">
+                    <printWhenExpression><![CDATA[$P{includePerticulars}.equals("Yes")]]></printWhenExpression>
+                </reportElement>
+                <box>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$P{includePerticulars}.equals("Yes")?$F{kindParticulars}:""]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true">
+                <reportElement stretchType="RelativeToTallestObject" x="22" y="0" width="39" height="20"/>
+                <box>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement verticalAlignment="Middle">
+                    <font size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="-1" y="0" width="23" height="20"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Courier New" size="14"/>
+                </textElement>
+                <text><![CDATA[|]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="61" y="0" width="18" height="20"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Courier New" size="14"/>
+                </textElement>
+                <text><![CDATA[|]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="129" y="0" width="18" height="20"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Courier New" size="14"/>
+                </textElement>
+                <text><![CDATA[|]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="304" y="0" width="18" height="20"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Courier New" size="14"/>
+                </textElement>
+                <text><![CDATA[|]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="413" y="0" width="23" height="20"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Courier New" size="14"/>
+                </textElement>
+                <text><![CDATA[|]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="510" y="0" width="18" height="20"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Courier New" size="14"/>
+                </textElement>
+                <text><![CDATA[|]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="601" y="0" width="18" height="20"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Courier New" size="14"/>
+                </textElement>
+                <text><![CDATA[|]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="705" y="0" width="18" height="20"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Courier New" size="14"/>
+                </textElement>
+                <text><![CDATA[|]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="794" y="0" width="23" height="20"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Courier New" size="14"/>
+                </textElement>
+                <text><![CDATA[|]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="896" y="0" width="18" height="20"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Courier New" size="14"/>
+                </textElement>
+                <text><![CDATA[|]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="988" y="0" width="18" height="20"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Courier New" size="14"/>
+                </textElement>
+                <text><![CDATA[|]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="1172" y="0" width="23" height="20"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Courier New" size="14"/>
+                </textElement>
+                <text><![CDATA[|]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="1258" y="0" width="18" height="20"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Courier New" size="14"/>
+                </textElement>
+                <text><![CDATA[|]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="1516" y="0" width="23" height="20"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Courier New" size="14"/>
+                </textElement>
+                <text><![CDATA[|]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="1606" y="0" width="18" height="20"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Courier New" size="14"/>
+                </textElement>
+                <text><![CDATA[|]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="1700" y="0" width="18" height="20"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Courier New" size="14"/>
+                </textElement>
+                <text><![CDATA[|]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="1861" y="0" width="23" height="20"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Courier New" size="14"/>
+                </textElement>
+                <text><![CDATA[|]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="1342" y="0" width="18" height="20"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Courier New" size="14"/>
+                </textElement>
+                <text><![CDATA[|]]></text>
+            </staticText>
+        </band>
+    </detail>
+    <summary>
+        <band height="97">
+            <staticText>
+                <reportElement stretchType="RelativeToTallestObject" x="22" y="12" width="414" height="20"/>
+                <box>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Total ]]></text>
+            </staticText>
+            <textField isStretchWithOverflow="true" isBlankWhenNull="true">
+                <reportElement stretchType="RelativeToTallestObject" x="436" y="12" width="74" height="20"/>
+                <box>
+                    <pen lineWidth="1.0"/>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement textAlignment="Right" verticalAlignment="Middle">
+                    <font size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$V{principleDebitTotal}]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true" isBlankWhenNull="true">
+                <reportElement stretchType="RelativeToTallestObject" x="528" y="12" width="73" height="20"/>
+                <box>
+                    <pen lineWidth="1.0"/>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement textAlignment="Right" verticalAlignment="Middle">
+                    <font size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$V{principleCreditTotal}]]></textFieldExpression>
+            </textField>
+            <textField isBlankWhenNull="true">
+                <reportElement stretchType="RelativeToTallestObject" x="1195" y="12" width="63" height="20">
+                    <printWhenExpression><![CDATA[$P{includeCharges}.equals("Yes")||$P{includeInterest}.equals("Yes")]]></printWhenExpression>
+                </reportElement>
+                <box>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement textAlignment="Right" verticalAlignment="Middle">
+                    <font size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{includeInterest}.equals("Yes")?$V{InterestDebitTotal}:$V{chargesDebitTotal}]]></textFieldExpression>
+            </textField>
+            <textField isBlankWhenNull="true">
+                <reportElement stretchType="RelativeToTallestObject" x="1276" y="12" width="66" height="20">
+                    <printWhenExpression><![CDATA[$P{includeCharges}.equals("Yes")||$P{includeInterest}.equals("Yes")]]></printWhenExpression>
+                </reportElement>
+                <box>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement textAlignment="Right" verticalAlignment="Middle">
+                    <font size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{includeInterest}.equals("Yes")?$V{interestCreditTotal}:$V{chargeCreditTotal}]]></textFieldExpression>
+            </textField>
+            <textField isBlankWhenNull="true">
+                <reportElement stretchType="RelativeToTallestObject" x="1539" y="12" width="67" height="20">
+                    <printWhenExpression><![CDATA[$P{includeInterest}.equals("Yes")&&$P{includeCharges}.equals("Yes")]]></printWhenExpression>
+                </reportElement>
+                <box>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement textAlignment="Right" verticalAlignment="Middle">
+                    <font size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{includeInterest}.equals("Yes")&&$P{includeCharges}.equals("Yes")?$V{chargesDebitTotal}:""]]></textFieldExpression>
+            </textField>
+            <textField isBlankWhenNull="true">
+                <reportElement stretchType="RelativeToTallestObject" x="1624" y="12" width="76" height="20">
+                    <printWhenExpression><![CDATA[$P{includeInterest}.equals("Yes")&&$P{includeCharges}.equals("Yes")]]></printWhenExpression>
+                </reportElement>
+                <box>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement textAlignment="Right" verticalAlignment="Middle">
+                    <font size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{includeInterest}.equals("Yes")&&$P{includeCharges}.equals("Yes")?$F{chargesCredit}:""]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement stretchType="RelativeToTallestObject" x="619" y="12" width="175" height="20"/>
+                <box>
+                    <pen lineWidth="1.0"/>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[]]></text>
+            </staticText>
+            <staticText>
+                <reportElement stretchType="RelativeToTallestObject" x="1360" y="12" width="156" height="20">
+                    <printWhenExpression><![CDATA[$P{includeCharges}.equals("Yes")||$P{includeInterest}.equals("Yes")]]></printWhenExpression>
+                </reportElement>
+                <box>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[]]></text>
+            </staticText>
+            <staticText>
+                <reportElement stretchType="RelativeToTallestObject" x="1718" y="12" width="143" height="20">
+                    <printWhenExpression><![CDATA[$P{includeInterest}.equals("Yes")&&$P{includeCharges}.equals("Yes")]]></printWhenExpression>
+                </reportElement>
+                <box>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[]]></text>
+            </staticText>
+            <textField isStretchWithOverflow="true" isBlankWhenNull="true">
+                <reportElement stretchType="RelativeToTallestObject" x="817" y="12" width="79" height="20"/>
+                <box>
+                    <pen lineWidth="1.0"/>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement textAlignment="Right" verticalAlignment="Middle">
+                    <font size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$V{kindDebitTotal}]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true" isBlankWhenNull="true">
+                <reportElement stretchType="RelativeToTallestObject" x="914" y="12" width="74" height="20"/>
+                <box>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement textAlignment="Right" verticalAlignment="Middle">
+                    <font size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$V{kindCreditTotal}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement stretchType="RelativeToTallestObject" x="1006" y="12" width="166" height="20">
+                    <printWhenExpression><![CDATA[$P{includeCharges}.equals("Yes")||$P{includeInterest}.equals("Yes")]]></printWhenExpression>
+                </reportElement>
+                <box>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[]]></text>
+            </staticText>
+            <staticText>
+                <reportElement key="staticText" x="0" y="44" width="122" height="20"/>
+                <box>
+                    <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement>
+                    <font size="12" isBold="false" isItalic="true"/>
+                </textElement>
+                <text><![CDATA[Report generated on]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="265" y="44" width="148" height="20"/>
+                <textElement>
+                    <font size="12" isItalic="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{userName}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement key="staticText" x="247" y="44" width="18" height="20"/>
+                <box>
+                    <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement>
+                    <font size="12" isBold="false" isItalic="true"/>
+                </textElement>
+                <text><![CDATA[by]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="122" y="44" width="125" height="20"/>
+                <textElement>
+                    <font size="12" isItalic="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{businessDate}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement key="staticText" x="812" y="76" width="184" height="20"/>
+                <box>
+                    <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement>
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Authorized Signature]]></text>
+            </staticText>
+            <staticText>
+                <reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="2110" height="12"/>
+                <textElement>
+                    <font fontName="Courier New" size="8" pdfFontName="Courier"/>
+                </textElement>
+                <text><![CDATA[------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="510" y="12" width="18" height="20"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Courier New" size="14"/>
+                </textElement>
+                <text><![CDATA[|]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="601" y="12" width="18" height="20"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Courier New" size="14"/>
+                </textElement>
+                <text><![CDATA[|]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="-1" y="12" width="23" height="20"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Courier New" size="14"/>
+                </textElement>
+                <text><![CDATA[|]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="794" y="12" width="23" height="20"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Courier New" size="14"/>
+                </textElement>
+                <text><![CDATA[|]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="896" y="12" width="18" height="20"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Courier New" size="14"/>
+                </textElement>
+                <text><![CDATA[|]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="988" y="12" width="18" height="20"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Courier New" size="14"/>
+                </textElement>
+                <text><![CDATA[|]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="1172" y="12" width="23" height="20"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Courier New" size="14"/>
+                </textElement>
+                <text><![CDATA[|]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="1258" y="12" width="18" height="20"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Courier New" size="14"/>
+                </textElement>
+                <text><![CDATA[|]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="1342" y="12" width="18" height="20"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Courier New" size="14"/>
+                </textElement>
+                <text><![CDATA[|]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="1516" y="12" width="23" height="20"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Courier New" size="14"/>
+                </textElement>
+                <text><![CDATA[|]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="1606" y="12" width="18" height="20"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Courier New" size="14"/>
+                </textElement>
+                <text><![CDATA[|]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="1700" y="12" width="18" height="20"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Courier New" size="14"/>
+                </textElement>
+                <text><![CDATA[|]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="1861" y="12" width="23" height="20"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Courier New" size="14"/>
+                </textElement>
+                <text><![CDATA[|]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="0" y="32" width="1884" height="12"/>
+                <textElement>
+                    <font fontName="Courier New" size="14"/>
+                </textElement>
+                <text><![CDATA[---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------]]></text>
+            </staticText>
+        </band>
+    </summary>
+</jasperReport>

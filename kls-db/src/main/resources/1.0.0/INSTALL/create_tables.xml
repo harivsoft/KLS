@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+
+	<changeSet author="1.0.0.1" id="1">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="dist_mast"></tableExists>
+			</not>
+		</preConditions>
+		<comment>Create Table for District Master</comment>
+		<createTable tableName="dist_mast">
+			<column name="dist_code" type="java.sql.Types.VARCHAR(5)"
+				defaultValue="">
+				<constraints nullable="false" primaryKey="true" />
+			</column>
+			<column name="dist_name" type="java.sql.Types.VARCHAR(45)"
+				defaultValue="">
+				<constraints nullable="false" />
+			</column>
+			<column name="dcc_bank_code" type="java.sql.Types.VARCHAR(5)"
+				defaultValue="" />
+		</createTable>
+	</changeSet>
+
+	<changeSet author="1.0.0.1" id="2">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="taluka_mast"></tableExists>
+			</not>
+		</preConditions>
+		<comment>Create Table for Taluka Master</comment>
+		<createTable tableName="taluka_mast">
+			<column name="taluka_code" type="java.sql.Types.VARCHAR(5)"
+				defaultValue="">
+				<constraints nullable="false" primaryKey="true" />
+			</column>
+			<column name="taluka_name" type="java.sql.Types.VARCHAR(45)"
+				defaultValue="">
+				<constraints nullable="false" />
+			</column>
+			<column name="dist_code" type="java.sql.Types.VARCHAR(5)"
+				defaultValue="">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+
+	<changeSet author="1.0.0.1" id="3">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="village_mast"></tableExists>
+			</not>
+		</preConditions>
+		<comment>Create Table for Village Master</comment>
+		<createTable tableName="village_mast">
+			<column name="village_code" type="java.sql.Types.VARCHAR(5)"
+				defaultValue="">
+				<constraints nullable="false" primaryKey="true" />
+			</column>
+			<column name="village_name" type="java.sql.Types.VARCHAR(45)" />
+			<column name="taluka_code" type="java.sql.Types.VARCHAR(5)" />
+			<column name="pin" type="java.sql.Types.INTEGER" />
+		</createTable>
+	</changeSet>
+
+
+
+	<changeSet author="1.0.0.1" id="4">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="crop_mast"></tableExists>
+			</not>
+		</preConditions>
+		<comment>Create Table for Crop Master</comment>
+		<createTable tableName="crop_mast">
+			<column name="crop_code" type="java.sql.Types.VARCHAR(5)">
+				<constraints nullable="false" primaryKey="true" />
+			</column>
+			<column name="crop_name" type="java.sql.Types.VARCHAR(45)" />
+		</createTable>
+	</changeSet>
+
+	<changeSet author="1.0.0.1" id="5">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="crop_type_mast"></tableExists>
+			</not>
+		</preConditions>
+		<comment>Create Table for Crop Type Master</comment>
+		<createTable tableName="crop_type_mast">
+			<column name="crop_type_code" type="java.sql.Types.VARCHAR(5)">
+				<constraints nullable="false" primaryKey="true" />
+			</column>
+			<column name="crop_type_name" type="java.sql.Types.VARCHAR(45)" />
+		</createTable>
+	</changeSet>
+
+
+	<!-- Sprint -2 Scripts Start -->
+
+	<changeSet author="1.0.0.1" id="6">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="bank_parameters"></tableExists>
+			</not>
+		</preConditions>
+		<comment>Create Table for Bank Parameters</comment>
+		<createTable tableName="bank_parameters">
+			<column name="bank_code" type="java.sql.Types.VARCHAR(3)">
+				<constraints nullable="false" primaryKey="true" />
+			</column>
+			<column name="bank_name" type="java.sql.Types.VARCHAR(45)" />
+			<column name="dist_code" type="java.sql.Types.VARCHAR(5)" />
+		</createTable>
+	</changeSet>
+
+	<changeSet author="1.0.0.1" id="7">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="branch_master" />
+			</not>
+		</preConditions>
+		<comment>Create Table for Branch Parameters</comment>
+
+		<createTable tableName="branch_master">
+			<column name="bank_code" type="java.sql.Types.VARCHAR(3)"
+				defaultValue="">
+				<constraints nullable="false" />
+			</column>
+			<column name="branch_code" type="java.sql.Types.VARCHAR(4)"
+				defaultValue="">
+				<constraints nullable="false" />
+			</column>
+			<column name="branch_name" type="java.sql.Types.VARCHAR(45)"
+				defaultValue="" />
+			<column name="location" type="java.sql.Types.VARCHAR(60)"
+				defaultValue="" />
+		</createTable>
+		<addPrimaryKey tableName="branch_master" columnNames="bank_code,branch_code" />
+	</changeSet>
+
+	<changeSet author="1.0.0.1" id="8">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="pacs_mast" />
+			</not>
+		</preConditions>
+		<comment>Create Table for PACS Master</comment>
+
+		<createTable tableName="pacs_mast">
+			<column name="bank_code" type="java.sql.Types.VARCHAR(3)"
+				defaultValue="">
+				<constraints nullable="false" />
+			</column>
+			<column name="branch_code" type="java.sql.Types.VARCHAR(4)"
+				defaultValue="">
+				<constraints nullable="false" />
+			</column>
+			<column name="pacs_code" type="java.sql.Types.VARCHAR(5)"
+				defaultValue="">
+				<constraints nullable="false" />
+			</column>
+			<column name="pacs_name" type="java.sql.Types.VARCHAR(45)"
+				defaultValue="" />
+			<column name="location" type="java.sql.Types.VARCHAR(60)"
+				defaultValue="" />
+			<column name="secretary_name" type="java.sql.Types.VARCHAR(45)"
+				defaultValue="" />
+		</createTable>
+		<addPrimaryKey tableName="pacs_mast"
+			columnNames="bank_code,branch_code,pacs_code" />
+	</changeSet>
+
+	<changeSet author="1.0.0.1" id="9">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="season" />
+			</not>
+		</preConditions>
+		<comment>Create Table for Season Master</comment>
+
+		<createTable tableName="season">
+			<column name="bank_code" type="java.sql.Types.VARCHAR(3)" defaultValue="">
+				<constraints nullable="false" />
+			</column>
+			<column name="season_code" type="java.sql.Types.VARCHAR(5)" defaultValue="">
+				<constraints nullable="false" />
+			</column>
+			<column name="season_name" type="java.sql.Types.VARCHAR(45)"  defaultValue=""/>
+			<column name="drawal_start_month" type="java.sql.Types.SMALLINT" />
+			<column name="drawal_start_day" type="java.sql.Types.SMALLINT" />
+			<column name="drawal_end_month" type="java.sql.Types.SMALLINT" />
+			<column name="drawal_end_day" type="java.sql.Types.SMALLINT" />
+			<column name="season_due_day" type="java.sql.Types.SMALLINT" />
+			<column name="season_due_month" type="java.sql.Types.SMALLINT" />
+		</createTable>
+		<addPrimaryKey tableName="season" columnNames="bank_code,season_code" />
+	</changeSet>
+
+
+	<changeSet author="1.0.0.1" id="10">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="gl_mast" />
+			</not>
+		</preConditions>
+		<comment>Create Table for GL Master</comment>
+
+		<createTable tableName="gl_mast">
+			<column name="gl_code" type="java.sql.Types.VARCHAR(25)" defaultValue="">
+				<constraints nullable="false" />
+			</column>
+			<column name="bank_code" type="java.sql.Types.VARCHAR(3)" defaultValue="">
+				<constraints nullable="false" />
+			</column>
+			<column name="pacs_code" type="java.sql.Types.VARCHAR(5)" defaultValue="">
+				<constraints nullable="false" />
+			</column>
+			<column name="gl_name" type="java.sql.Types.VARCHAR(45)" defaultValue="">
+				<constraints nullable="false" />
+			</column>
+			<column name="gl_type" type="java.sql.Types.VARCHAR(1)" defaultValue="">
+				<constraints nullable="false" />
+			</column>
+			<column name="branch_code" type="java.sql.Types.VARCHAR(4)" defaultValue="">
+				<constraints nullable="false" />
+			</column>
+			<column name="entered_by" type="java.sql.Types.VARCHAR(45)" />
+			<column name="entered_date" type="java.sql.Types.DATE" />
+		</createTable>
+		<addPrimaryKey tableName="gl_mast" columnNames="gl_code" />
+	</changeSet>
+
+
+	<changeSet author="1.0.0.1" id="11">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="interest_category"></tableExists>
+			</not>
+		</preConditions>
+		<comment>Create Table for interest category Master</comment>
+		<createTable tableName="interest_category">
+			<column name="int_category_code" type="java.sql.Types.VARCHAR(5)">
+				<constraints nullable="false" primaryKey="true" />
+			</column>
+			<column name="bank_code" type="java.sql.Types.VARCHAR(3)">
+				<constraints nullable="false" />
+			</column>
+			<column name="int_category_desc" type="java.sql.Types.VARCHAR(45)" />
+		</createTable>
+	</changeSet>
+
+	<changeSet author="1.0.0.1" id="12">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="land_types"></tableExists>
+			</not>
+		</preConditions>
+		<comment>Create Table for Land Type Master</comment>
+		<createTable tableName="land_types">
+			<column name="land_type_code" type="java.sql.Types.VARCHAR(5)"
+				defaultValue="">
+				<constraints nullable="false" primaryKey="true" />
+			</column>
+			<column name="land_type_desc" type="java.sql.Types.VARCHAR(45)" />
+		</createTable>
+	</changeSet>
+
+	<changeSet author="1.0.0.1" id="13">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="product_types"></tableExists>
+			</not>
+		</preConditions>
+		<comment>Create Table for Product Type Master</comment>
+		<createTable tableName="product_types">
+			<column name="bank_code" type="java.sql.Types.VARCHAR(3)"
+				defaultValue="">
+				<constraints nullable="false" />
+			</column>
+			<column name="product_type_code" type="java.sql.Types.VARCHAR(2)"
+				defaultValue="">
+				<constraints nullable="false" />
+			</column>
+			<column name="product_type_desc" type="java.sql.Types.VARCHAR(45)" />
+			<column name="atm_applicable" type="java.sql.Types.VARCHAR(1)" defaultValue="N"/>
+			<column name="int_category_code" type="java.sql.Types.VARCHAR(5)" />
+		</createTable>
+		<addPrimaryKey tableName="product_types" columnNames="bank_code,product_type_code" />
+	</changeSet>
+
+	<changeSet author="1.0.0.1" id="14">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="products"></tableExists>
+			</not>
+		</preConditions>
+		<comment>Create Table for Product Master</comment>
+		<createTable tableName="products">
+			<column name="bank_code" type="java.sql.Types.VARCHAR(3)"
+				defaultValue="">
+				<constraints nullable="false" />
+			</column>
+			<column name="prd_code" type="java.sql.Types.VARCHAR(5)"
+				defaultValue="">
+				<constraints nullable="false" />
+			</column>
+			<column name="product_type_code" type="java.sql.Types.VARCHAR(2)" />
+			<column name="prd_name" type="java.sql.Types.VARCHAR(45)" />
+			<column name="prd_short_name" type="java.sql.Types.VARCHAR(45)" />
+			<column name="released" type="java.sql.Types.VARCHAR(1)" defaultValue="N"/>
+			<column name="released_date" type="java.sql.Types.DATE" />
+			<column name="last_int_post_date" type="java.sql.Types.DATE" />
+			<column name="atm_applicable" type="java.sql.Types.VARCHAR(1)" defaultValue="N"/>
+			<column name="int_category_code" type="java.sql.Types.VARCHAR(5)" />
+			<column name="gl_code" type="java.sql.Types.VARCHAR(25)" />
+			<column name="pacs_code" type="java.sql.Types.VARCHAR(5)" />
+		</createTable>
+		<addPrimaryKey tableName="products" columnNames="bank_code,prd_code" />
+	</changeSet>
+
+	<changeSet author="1.0.0.1" id="15">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="slabwise_int_rates"></tableExists>
+			</not>
+		</preConditions>
+		<comment>Create Table for Slab wise interest Master</comment>
+		<createTable tableName="slabwise_int_rates">
+			<column name="id" type="java.sql.Types.BIGINT">
+				<constraints nullable="false" primaryKey="true" />
+			</column>
+			<column name="bank_code" type="java.sql.Types.VARCHAR(3)" />
+			<column name="int_category_code" type="java.sql.Types.VARCHAR(5)" />
+			<column name="effective_date" type="java.sql.Types.DATE" />
+			<column name="from_slab" type="Decimal(22,6)" defaultValue="0.00" />
+			<column name="to_slab" type="Decimal(22,6)" defaultValue="0.00" />
+			<column name="from_period" type="java.sql.Types.INTEGER" />
+			<column name="to_period" type="java.sql.Types.INTEGER" />
+			<column name="roi" type="Decimal(9,6)" defaultValue="0.00" />
+			<column name="penal_roi" type="Decimal(9,6)" defaultValue="0.00" />
+		</createTable>
+	</changeSet>
+
+	<changeSet author="1.0.0.1" id="16">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="scale_of_finance"></tableExists>
+			</not>
+		</preConditions>
+		<comment>Create Table for Scale of Finance Master</comment>
+		<createTable tableName="scale_of_finance">
+			<column name="bank_code" type="java.sql.Types.VARCHAR(5)">
+				<constraints nullable="false" />
+			</column>
+			<column name="area_type" type="java.sql.Types.VARCHAR(1)" />
+			<column name="area_type_code" type="java.sql.Types.VARCHAR(5)" />
+			<column name="season_code" type="java.sql.Types.VARCHAR(5)" />
+			<column name="crop_code" type="java.sql.Types.VARCHAR(5)" />
+			<column name="land_type_code" type="java.sql.Types.VARCHAR(5)" />
+			<column name="rate_per_acre" type="Decimal(22,6)" />
+		</createTable>
+		<addPrimaryKey tableName="scale_of_finance"
+			columnNames="bank_code,area_type,area_type_code,crop_code,land_type_code" />
+	</changeSet>
+
+</databaseChangeLog>

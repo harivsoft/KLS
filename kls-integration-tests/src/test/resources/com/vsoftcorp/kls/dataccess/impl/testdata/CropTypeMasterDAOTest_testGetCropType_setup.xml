@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<dataset>
+	<crop_type_mast crop_type_code="CT001" crop_type_name="CASH CROP" />
+	<crop_type_mast crop_type_code="CT002" crop_type_name="CERALS" />
+</dataset>

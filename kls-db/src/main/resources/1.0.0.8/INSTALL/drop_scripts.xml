@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet author="1.0.0.8" id="1">
+		<preConditions onFail="MARK_RAN">
+			<foreignKeyConstraintExists
+				foreignKeyTableName="current_transaction" foreignKeyName="fkacf38118c970c28f" />
+		</preConditions>
+		<dropForeignKeyConstraint baseTableName="current_transaction"
+			constraintName="fkacf38118c970c28f" />
+	</changeSet>
+	<changeSet author="1.0.0.8" id="2">
+		<preConditions onFail="MARK_RAN">
+			<foreignKeyConstraintExists
+				foreignKeyTableName="current_transaction" foreignKeyName="fkacf38118ef9e8313" />
+		</preConditions>
+		<dropForeignKeyConstraint baseTableName="current_transaction"
+			constraintName="fkacf38118ef9e8313" />
+	</changeSet>
+	<changeSet author="1.0.0.8" id="3">
+		<preConditions onFail="MARK_RAN">
+			<foreignKeyConstraintExists
+				foreignKeyTableName="transaction_history" foreignKeyName="fk59d6a033c970c28f" />
+		</preConditions>
+		<dropForeignKeyConstraint baseTableName="transaction_history"
+			constraintName="fk59d6a033c970c28f" />
+	</changeSet>
+	<changeSet author="1.0.0.8" id="4">
+		<preConditions onFail="MARK_RAN">
+			<foreignKeyConstraintExists
+				foreignKeyTableName="transaction_history" foreignKeyName="fk59d6a033ef9e8313" />
+		</preConditions>
+		<dropForeignKeyConstraint baseTableName="transaction_history"
+			constraintName="fk59d6a033ef9e8313" />
+	</changeSet>
+	<changeSet author="1.0.0.8" id="5">
+		<preConditions onFail="MARK_RAN">
+			<columnExists tableName="line_of_credit" columnName="borrowing_loc_id" />
+		</preConditions>
+		<dropColumn tableName="line_of_credit" columnName="borrowing_loc_id" />
+	</changeSet>
+	<changeSet author="1.0.0.8" id="6">
+		<dropNotNullConstraint columnDataType="INT4"
+			columnName="crop_id" tableName="line_of_credit" />
+	</changeSet>
+	<changeSet author="1.0.0.8" id="7">
+		<dropNotNullConstraint columnDataType="INT4"
+			columnName="scheme_id" tableName="line_of_credit" />
+	</changeSet>
+	<changeSet author="1.0.0.8" id="8">
+		<dropNotNullConstraint columnDataType="INT8"
+			columnName="season_id" tableName="line_of_credit" />
+	</changeSet>
+	<changeSet author="1.0.0.8" id="9" runOnChange="true">
+		<dropNotNullConstraint columnDataType="INT8"
+			columnName="account_id" tableName="current_transaction" />
+	</changeSet>
+	<changeSet author="1.0.0.8" id="10">
+		<dropNotNullConstraint columnDataType="INT8"
+			columnName="line_of_credit_id" tableName="current_transaction" />
+	</changeSet>
+	<changeSet author="1.0.0.8" id="11">
+		<dropNotNullConstraint columnDataType="INT4"
+			columnName="pacs_id" tableName="current_transaction" />
+	</changeSet>
+	<changeSet author="1.0.0.8" id="12">
+		<dropNotNullConstraint columnDataType="INT8"
+			columnName="account_id" tableName="transaction_history" />
+	</changeSet>
+	<changeSet author="1.0.0.8" id="13">
+		<dropNotNullConstraint columnDataType="INT8"
+			columnName="line_of_credit_id" tableName="transaction_history" />
+	</changeSet>
+	<changeSet author="1.0.0.8" id="14">
+		<dropNotNullConstraint columnDataType="INT4"
+			columnName="pacs_id" tableName="transaction_history" />
+	</changeSet>
+	<changeSet author="1.0.0.8" id="15">
+		<preConditions onFail="MARK_RAN">
+			<columnExists tableName="pacs_gl_mapping" columnName="margin_gl" />
+		</preConditions>
+		<dropColumn tableName="pacs_gl_mapping" columnName="margin_gl" />
+	</changeSet>
+	<changeSet author="1.0.0.8" id="16">
+		<preConditions onFail="MARK_RAN">
+			<columnExists tableName="loan_account_property"
+				columnName="pacs_id" />
+		</preConditions>
+		<dropColumn tableName="loan_account_property" columnName="pacs_id" />
+	</changeSet>
+	<changeSet author="1.0.0.8" id="17">
+		<preConditions onFail="MARK_RAN">
+			<columnExists tableName="loan_account_property"
+				columnName="branch_id" />
+		</preConditions>
+		<dropColumn tableName="loan_account_property" columnName="branch_id" />
+	</changeSet>
+	<changeSet author="1.0.0.8" id="18">
+		<preConditions onFail="MARK_RAN">
+			<columnExists tableName="loan_account_property"
+				columnName="customer_id" />
+		</preConditions>
+		<dropColumn tableName="loan_account_property" columnName="customer_id" />
+	</changeSet>
+	<changeSet author="1.0.0.8" id="19">
+		<preConditions onFail="MARK_RAN">
+			<columnExists tableName="loan_account_property"
+				columnName="savings_account_number" />
+		</preConditions>
+		<dropColumn tableName="loan_account_property" columnName="savings_account_number" />
+	</changeSet>
+	<changeSet author="1.0.0.8" id="20">
+		<preConditions onFail="MARK_RAN">
+			<foreignKeyConstraintExists
+				foreignKeyTableName="loan_account_property" foreignKeyName="loan_account_property_borrowing_product_id_key" />
+		</preConditions>
+		<dropUniqueConstraint constraintName="loan_account_property_borrowing_product_id_key"
+			tableName="loan_account_property" uniqueColumns="borrowing_product_id" />
+	</changeSet>
+	<changeSet author="1.0.0.8" id="21">
+		<preConditions onFail="MARK_RAN">
+			<foreignKeyConstraintExists
+				foreignKeyTableName="borrowing_product_gl_mapping" foreignKeyName="borrowing_product_gl_mapping_product_id_fkey" />
+		</preConditions>
+		<dropForeignKeyConstraint baseTableName="borrowing_product_gl_mapping"
+			constraintName="borrowing_product_gl_mapping_product_id_fkey" />
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="22">
+		<preConditions onFail="MARK_RAN">
+			<columnExists tableName="season_definition"
+				columnName="drawal_end_day" />
+		</preConditions>
+		<dropColumn tableName="season_definition" columnName="drawal_end_day" />
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="23">
+		<preConditions onFail="MARK_RAN">
+			<columnExists tableName="season_definition"
+				columnName="drawal_end_month" />
+		</preConditions>
+		<dropColumn tableName="season_definition" columnName="drawal_end_month" />
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="24">
+		<preConditions onFail="MARK_RAN">
+			<columnExists tableName="season_definition"
+				columnName="loan_overdue_day" />
+		</preConditions>
+		<dropColumn tableName="season_definition" columnName="loan_overdue_day" />
+	</changeSet>
+	
+	<changeSet author="1.0.0.8" id="25">
+		<preConditions onFail="MARK_RAN">
+			<columnExists tableName="season_definition"
+				columnName="loan_overdue_month" />
+		</preConditions>
+		<dropColumn tableName="season_definition" columnName="loan_overdue_month" />
+	</changeSet>
+	
+<!-- 	<changeSet author="1.0.0.8" id="26">
+		<preConditions onFail="MARK_RAN">
+			<columnExists tableName="scheme"
+				columnName="product_id" />
+		</preConditions>
+		<dropColumn tableName="scheme" columnName="product_id" />
+	</changeSet> -->
+		
+</databaseChangeLog>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.2.xsd http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet author="1.0.0.6" id="1">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<sequenceExists sequenceName="charges_id_seq" />
+			</not>
+		</preConditions>
+		<comment>charges sequence</comment>
+		<createSequence sequenceName="charges_id_seq"
+			startValue="1" incrementBy="1" minValue="1" />
+	</changeSet>
+
+
+	<changeSet author="1.0.0.6" id="2">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<sequenceExists sequenceName="inconsistency_audit_trail_id_seq" />
+			</not>
+		</preConditions>
+		<comment>Account inconsistency sequence</comment>
+		<createSequence sequenceName="inconsistency_audit_trail_id_seq"
+			startValue="1" incrementBy="1" minValue="1" />
+	</changeSet>
+
+	<changeSet author="1.0.0.6" id="3">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<sequenceExists sequenceName="event_type_definition_id_seq" />
+			</not>
+		</preConditions>
+		<comment>event type def id seq</comment>
+		<createSequence sequenceName="event_type_definition_id_seq"
+			startValue="1" incrementBy="1" minValue="1" />
+	</changeSet>
+
+	<changeSet author="1.0.0.6" id="4">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<sequenceExists sequenceName="event_type_id_seq" />
+			</not>
+		</preConditions>
+		<comment>event type id seq</comment>
+		<createSequence sequenceName="event_type_id_seq"
+			startValue="1" incrementBy="1" minValue="1" />
+	</changeSet>
+
+	<changeSet author="1.0.0.6" id="5">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<sequenceExists sequenceName="component_id_seq" />
+			</not>
+		</preConditions>
+		<comment>component id seq</comment>
+		<createSequence sequenceName="component_id_seq"
+			startValue="1" incrementBy="1" minValue="1" />
+	</changeSet>
+	<changeSet author="1.0.0.6" id="6">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<sequenceExists sequenceName="borrowings_account_id_seq" />
+			</not>
+		</preConditions>
+		<createSequence sequenceName="borrowings_account_id_seq" />
+	</changeSet>
+
+	<changeSet author="1.0.0.6" id="7">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<sequenceExists sequenceName="bank_pacs_gl_map_id_seq" />
+			</not>
+		</preConditions>
+		<createSequence sequenceName="bank_pacs_gl_map_id_seq" />
+	</changeSet>
+	
+	<changeSet author="1.0.0.6" id="8">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<sequenceExists sequenceName="season_parameter_id_seq" />
+			</not>
+		</preConditions>
+		<createSequence sequenceName="season_parameter_id_seq" />
+	</changeSet>
+</databaseChangeLog>

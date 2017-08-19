@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.2.xsd http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+	<changeSet author="1.2.0" id="1" runOnChange="true">
+		<comment>check if record exists and then insert if not</comment>
+		<insert tableName="npa_parameters">
+			<column name="id" value="1" />
+			<column name="status" value="SubStandard" />
+			<column name="no_of_seasons" value="1" />
+			<column name="period" value="1" />
+		</insert>
+	</changeSet>
+	<changeSet author="1.2.0" id="2" runOnChange="true">
+		<comment>check if record exists and then insert if not</comment>
+		<insert tableName="npa_parameters">
+			<column name="id" value="2" />
+			<column name="status" value="Doubtful1" />
+			<column name="no_of_seasons" value="1" />
+			<column name="period" value="1" />
+		</insert>
+	</changeSet>
+	<changeSet author="1.2.0" id="3" runOnChange="true">
+		<comment>check if record exists and then insert if not</comment>
+		<insert tableName="npa_parameters">
+			<column name="id" value="3" />
+			<column name="status" value="Doubtful2" />
+			<column name="no_of_seasons" value="1" />
+			<column name="period" value="1" />
+		</insert>
+	</changeSet>
+	<changeSet author="1.2.0" id="4" runOnChange="true">
+		<comment>check if record exists and then insert if not</comment>
+		<insert tableName="npa_parameters">
+			<column name="id" value="4" />
+			<column name="status" value="Doubtful3" />
+			<column name="no_of_seasons" value="1" />
+			<column name="period" value="1" />
+		</insert>
+	</changeSet>
+	<changeSet author="1.2.0" id="5" runOnChange="true">
+		<comment>check if record exists and then insert if not</comment>
+		<insert tableName="npa_parameters">
+			<column name="id" value="5" />
+			<column name="status" value="Loss" />
+			<column name="no_of_seasons" value="1" />
+			<column name="period" value="1" />
+		</insert>
+	</changeSet>
+	<changeSet author="1.2.0" id="6" runOnChange="true">
+		<comment>check if record exists and then insert if not</comment>
+		<insert tableName="npa_parameters">
+			<column name="id" value="6" />
+			<column name="status" value="Provision Percentage" />
+			<column name="no_of_seasons" value="1" />
+			<column name="period" value="1" />
+		</insert>
+		</changeSet>
+	<changeSet author="1.2.0" id="7" runOnChange="true">
+		<comment>check if record exists and then insert if not</comment>
+		<insert tableName="unit ">
+			<column name="id" value="4" />
+			<column name="unit" value="Num" />
+			<column name="remarks" value="Numbers" />
+			</insert>	
+		</changeSet>
+		<changeSet author="1.2.0" id="8" runOnChange="true">
+		<comment>check if record exists and then insert if not</comment>
+		<insert tableName="unit ">
+			<column name="id" value="5" />
+			<column name="unit" value="Met" />
+			<column name="remarks" value="Meter" />
+			</insert>	
+		</changeSet>
+		<changeSet author="1.2.0" id="9" runOnChange="true">
+		<comment>check if record exists and then insert if not</comment>
+		<insert tableName="unit ">
+			<column name="id" value="6" />
+			<column name="unit" value="BG" />
+			<column name="remarks" value="Bags" />
+			</insert>	
+		</changeSet>
+		
+		
+		
+</databaseChangeLog>
+	

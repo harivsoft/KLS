@@ -1,0 +1,1 @@
+DISTICT=select * from kls_schema.account limit 1
