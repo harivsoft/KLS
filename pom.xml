@@ -101,10 +101,18 @@
 	</scm>
 	<distributionManagement>
 		<repository>
-			<id>com.vsoftcorp.release</id>
-			<name>VSoft Release Repository</name>
-			<url>http://52.66.76.240:8081/nexus/content/repositories/releases/</url>
+			<id>release</id>
+			<name>Release</name>
+			<url>http://http://35.154.251.46:8081/nexus/content/repositories/releases/</url>
 		</repository>
+
+
+
+                <snapshotrepository>
+			<id>snapshots</id>
+			<name>Snapshots</name>
+			<url>http://http://35.154.251.46:8081/nexus/content/repositories/snapshots/</url>
+		</snapshotrepository>
 	</distributionManagement>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
