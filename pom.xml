@@ -108,11 +108,11 @@
 
 
 
-                <snapshotrepository>
+                <snapshotsrepository>
 			<id>snapshots</id>
 			<name>Snapshots</name>
 			<url>http://http://35.154.251.46:8081/nexus/content/repositories/snapshots/</url>
-		</snapshotrepository>
+		</snapshotsrepository>
 	</distributionManagement>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
